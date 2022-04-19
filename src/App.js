@@ -1,10 +1,9 @@
 import "./App.css";
+import NavRoutes from "./components/routes";
 
 function App() {
   return (
-    <div className="App">
-      App
-    </div>
+    <NavRoutes />
   );
 }
 
