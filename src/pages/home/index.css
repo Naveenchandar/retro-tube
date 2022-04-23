@@ -1,0 +1,59 @@
+@import url(../../App.css);
+
+.home_header {
+    background-color: var(--header-bg);
+    background-image: url(../../assets/images/home-banner.jpeg);
+    width: 100%;
+    background-position: 70% 70%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50vh;
+    background-blend-mode: multiply;
+}
+
+.home_title {
+    max-width: 50rem;
+    color: var(--white);
+}
+
+.explore_btn {
+    font-size: 1.4rem;
+}
+
+.home_category_img {
+    max-width: 100%;
+    height: auto;
+    filter: opacity(0.7) drop-shadow(0 0 0 var(--header-bg));
+}
+
+.home_categoryname {
+    color: var(--white);
+    background-color: #100c22c2;
+    border-radius: 4px;
+    align-self: center;
+    bottom: 2.5rem;
+    width: 20rem;
+    text-align: center;
+    line-height: 2.5rem;
+}
+
+.home_categoryname:hover {
+    background-color: var(--primary-color);
+}
+
+.home_category_img:hover {
+    filter: unset;
+}
+
+.home_category_img:hover + .home_categoryname {
+    background-color: var(--primary-color);
+}
+
+
+.categories {
+    grid-gap: 1rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4,1fr);
+    padding: 2rem;
+}
