@@ -1,0 +1,16 @@
+.sidebar {
+    border-right: 1px solid #e5e5e5;
+    height: calc(100vh - 7.3rem);
+    min-width: 24rem;
+    position: sticky;
+    top: 7.3rem;
+}
+
+.sidebar_link {
+    font-size: 2rem;
+    font-weight: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+}
