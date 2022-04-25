@@ -14,7 +14,8 @@ export const videos = [
     likes: '134K',
     postedOn: 'Sep 23, 2018',
     type: 'rm',
-    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj'
+    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj',
+    thumbnail: 'https://i.ytimg.com/vi/muGyJEu12A8/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB0sU5CUaDnv2rS1GNa5b_3N8IVxw'
   },
   {
     _id: "5hFd6zGkxLE",
@@ -26,7 +27,9 @@ export const videos = [
     likes: '2.4M',
     postedOn: 'Jul 10, 2018',
     type: 'rm',
-    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj'
+    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj',
+    thumbnail: 'https://i.ytimg.com/vi/5hFd6zGkxLE/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBQTi6Yt-PnHbrUaMNIEjlxqfXLIA',
+    description: "Real Madrid C. F. inform that, as per Cristiano Ronaldo's wishes and at his request, the club has allowed the player to complete his move to Juventus F. C.Real Madrid would today like to place on record its thanks to a player who has shown himself to be the best in the world and made his mark on one of the greatest periods in our club's history and on the world game.Apart from the titles he has lifted, the honours secured and the on-field achievements during these nine years, Cristiano Ronaldo has been a role model in terms of commitment, hard work, responsibility, talent and self-improvement.He became Real Madrid's leading all-time goalscorer, having scored 451 goals in his 438 appearances. In total, he won 16 pieces of silverware, including four European Cup crowns, three of which came in successive years, with these four continental triumphs coming in the past five seasons. In terms of individual honours, as a Real Madrid player, he won the Ballon d'Or on four occasions, The Best award twice and claimed the Golden Shoe three times, amongst many other accoladesCristiano Ronaldo will forever be one of Real Madrid's biggest icons and will represent a unique figure for future generations.Real Madrid will always be his home."
   },
   {
     _id: "dLdW5SOkao4",
@@ -38,7 +41,8 @@ export const videos = [
     likes: '27K',
     postedOn: 'March 12, 2019',
     type: 'rm',
-    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj'
+    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj',
+    thumbnail: 'https://i.ytimg.com/vi/dLdW5SOkao4/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAyF6I8gaf2ARPMAEAEo7YZFYNJDw'
   },
   {
     _id: "Yc-7IQqcqeM",
@@ -50,7 +54,8 @@ export const videos = [
     likes: '232K',
     postedOn: 'May 27, 2014',
     type: 'rm',
-    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj'
+    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj',
+    thumbnail: 'https://i.ytimg.com/vi/Yc-7IQqcqeM/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBPDU0PiMXxs6E6IhQL-u3aULdxww'
   },
   {
     _id: "04Q6ybR1bLc",
@@ -62,7 +67,8 @@ export const videos = [
     likes: '17K',
     postedOn: 'June 18, 2021',
     type: 'rm',
-    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj'
+    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj',
+    thumbnail: 'https://i.ytimg.com/vi/04Q6ybR1bLc/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBIF32zzANx_SHpVaqzwZ_T9SE0tQ'
   },
   {
     _id: "H0GVemJOmIg",
@@ -74,7 +80,8 @@ export const videos = [
     likes: '11K',
     postedOn: 'June 18, 2021',
     type: 'rm',
-    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj'
+    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj',
+    thumbnail: 'https://i.ytimg.com/vi/H0GVemJOmIg/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCE9q_Zo_6YFEKiJ6-vNnqsS1DI7w'
   },
   {
     _id: "X-Dp19wIKhE",
@@ -86,7 +93,8 @@ export const videos = [
     likes: '244K',
     postedOn: 'June 17, 2021',
     type: 'rm',
-    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj'
+    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj',
+    thumbnail: 'https://i.ytimg.com/vi/X-Dp19wIKhE/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDytAWrsMO7ot-tciSXeehCY5xlSQ'
   },
   {
     _id: "hxzVIiGT_f8",
@@ -219,7 +227,7 @@ export const videos = [
     avatar: 'https://yt3.ggpht.com/xZbliDrv1hQJOWfLsK29iWa0pQUWTr-1AO-vluYNr_PPCcvoDUog8IMEH4nAKQFdPHdmlwoy=s68-c-k-c0x00ffffff-no-rj'
   },
   {
-    _id: "hh--jwht7Oo",
+    _id: "_Q_b-42w7HI",
     alt: 'football club videos',
     title: "Lewandowski vs. Müller | Copy the Penalty Challenge",
     creator: "Bayern Munich",
@@ -232,7 +240,7 @@ export const videos = [
     avatar: 'https://yt3.ggpht.com/bUoqRSR8mGhGwTX0rPgsFUNAaDM2yZacgYOoSYtuv21-GXOGeDehD5glMD3S50YOsGYIvgsMWA=s176-c-k-c0x00ffffff-no-rj'
   },
   {
-    _id: "hh--jwht7Oo",
+    _id: "l03qv1y4FXs",
     alt: 'football club videos',
     title: "7 Championships, 7 Beer Showers | Best of FC Bayern",
     creator: "Bayern Munich",
