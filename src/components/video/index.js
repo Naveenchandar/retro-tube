@@ -1,14 +1,20 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './index.css';
 
 function Video({ data }) {
-    const { id, thumbnail, alt, title, creator, views, likes, postedOn, avatar } = data;
+    const { _id, thumbnail, alt, title, creator, views, postedOn, avatar } = data;
+    const navigate = useNavigate();
+
+    const handleClickVideo = (videoId) => {
+        navigate(`/video/${videoId}`);
+    }
+
     return (
         <section className='video'>
             <div className="p-1 m-1 video_main">
                 <div className="pointer video_thumbnail relative_pos">
-                    <div>
-                        <img alt="review-video" src={`${thumbnail}.jpg`} className="rounded-sm" />
+                    <div onClick={() => handleClickVideo(_id)}>
+                        <img alt={alt} src={`${thumbnail}.jpg`} className="rounded-sm" />
                     </div>
                     <span className="video_duration p-1">15:24</span>
                 </div>
