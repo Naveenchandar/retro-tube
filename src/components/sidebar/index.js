@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './index.css';
 
-function Sidebar() {
+export function Sidebar() {
     return (
         <aside className='sidebar'>
             <ul className='mt-1 p-2 sidebar_list'>
@@ -16,5 +16,3 @@ function Sidebar() {
         </aside>
     )
 }
-
-export default Sidebar

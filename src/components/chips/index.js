@@ -4,7 +4,7 @@ import './index.css';
 const chipValues = ['all', 'rm', 'mu', 'ju', 'bm'];
 const chipClassName = 'p-1 chips_item';
 
-function Chips({ activeChip, changeChip}) {
+export function Chips({ activeChip, changeChip}) {
 
   const loadActiveClassName = (val) => {
     if (chipValues.includes(activeChip) && activeChip === val) {
@@ -25,5 +25,3 @@ function Chips({ activeChip, changeChip}) {
     </div>
   )
 }
-
-export default Chips

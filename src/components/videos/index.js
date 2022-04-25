@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useReducer } from 'react';
 import { useEffect } from 'react/cjs/react.development';
 import { initialState, videosReducer } from '../../reducer/videos';
-import Chips from '../chips';
+import { Chips } from '../chips';
 import Video from '../video';
 import './index.css';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import Categories from './categories';
+import { Categories } from './categories';
 import './index.css';
 
 export function Home() {
