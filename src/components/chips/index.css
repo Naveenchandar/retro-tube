@@ -2,8 +2,8 @@
     margin: 1.2rem;
     margin-left: 0;
     padding: 1.4rem;
-    background-color: #0000000d;
-    border-color: #0000001a;
+    background-color: var(--chips-bg);
+    border-color: var(--chips-border);
     height: 3.2rem;
     min-width: 12px;
     border-radius: 16px;
@@ -22,7 +22,7 @@
 }
 
 .chips_item:hover {
-    background-color: #0000001a;
+    background-color: var(--chips-border);
 }
 
 .active_chip {
