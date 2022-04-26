@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { useReducer } from 'react';
-import { useEffect } from 'react/cjs/react.development';
+import { useReducer, useEffect } from 'react';
 import { initialState, videosReducer } from '../../reducer/videos';
 import { Chips } from '../chips';
 import Video from '../video';
