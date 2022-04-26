@@ -8,20 +8,27 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "Computer Programming",
-    description:
-      "Computer programming is the process of designing and building an executable computer program to accomplish a specific computing",
+    categoryName: "Real Madrid",
+    description:"Real Madrid is a spanish footbal club.",
+    img: 'https://www.teahub.io/photos/full/6-69018_real-madrid-wallpaper-desktop-on-wallpaper-hd-1600.jpg'
+
   },
   {
     _id: uuid(),
-    categoryName: "Frontend Development",
-    description:
-      "Front-end web development, also known as client-side development is the practice of producing HTML, CSS and JavaScript for a website or Web Application",
+    categoryName: "Manchester United",
+    description: "Manchester United is a english football club.",
+    img: 'https://wallpaper.dog/large/5561302.jpg'
   },
   {
     _id: uuid(),
-    categoryName: "Backend Development",
-    description:
-      "Backend Development is also known as server-side development. It is everything that the users don't see and contains behind-the-scenes activities that occur when performing any action on a website.",
+    categoryName: "Juventus",
+    description: "Juventus is a italian football club.",
+    img: 'https://wallpaperaccess.com/full/1097799.jpg' 
+  },
+  {
+    _id: uuid(),
+    categoryName: "Bayern Munich",
+    description: "Bayern Munichen is a german football clun.",
+    img: 'https://wallpaperaccess.com/full/2308835.jpg'
   },
 ];
