@@ -1,12 +1,22 @@
 import { useNavigate } from 'react-router-dom';
+import { MoreOptions } from '../more-options';
 import './index.css';
 
-function Video({ data }) {
+function Video({ data, options, handleMoreOptions, watchLater, moreOptionsList, handleFromRemoveWatchLater }) {
     const { _id, thumbnail, alt, title, creator, views, postedOn, avatar } = data;
     const navigate = useNavigate();
 
     const handleClickVideo = (videoId) => {
         navigate(`/video/${videoId}`);
+    }
+
+    const handleClickMoreOptions = (item) => {
+        if (item === 'Watch later') {
+            watchLater(data);
+        }
+        if (item === 'Remove from Watch later') {
+            handleFromRemoveWatchLater(data);
+        }
     }
 
     return (
@@ -28,7 +38,10 @@ function Video({ data }) {
                                 <h3 className="video_caption">{title}</h3>
                                 <div className="mt-1 video_createdby">{creator}</div>
                             </div>
-                            <button><span className="material-icons-outlined ml-1">more_vert</span></button>
+                            <button onClick={() => handleMoreOptions(_id)}><span className="material-icons-outlined ml-1">more_vert</span></button>
+                            {options === _id ? (
+                                <MoreOptions list={moreOptionsList} handleClickMoreOptions={handleClickMoreOptions} />
+                            ) : ''}
                         </div>
                         <div className="flex justify_spacebtw">
                             <div className="flex align_center video_views">
