@@ -16,7 +16,7 @@ export function Sidebar() {
                 <li><NavLink to='/' className={({ isActive }) => activeLinkClassName(isActive)}>Home</NavLink></li>
                 <li><NavLink to='/explore' className={({ isActive }) => activeLinkClassName(isActive)}>Explore</NavLink></li>
                 <li><NavLink to='/' className={({ isActive }) => activeLinkClassName(isActive)}>Playlists</NavLink></li>
-                <li><NavLink to='/' className={({ isActive }) => activeLinkClassName(isActive)}>Watch later</NavLink></li>
+                <li><NavLink to='/watchlater' className={({ isActive }) => activeLinkClassName(isActive)}>Watch later</NavLink></li>
                 <li><NavLink to='/' className={({ isActive }) => activeLinkClassName(isActive)}>Liked videos</NavLink></li>
                 <li><NavLink to='/' className={({ isActive }) => activeLinkClassName(isActive)}>History</NavLink></li>
             </ul>
