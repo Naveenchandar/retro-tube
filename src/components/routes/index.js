@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
-import { Home, Login, SignUp } from '../../pages';
+import { Explore, Home, Login, SignUp, SingleVideo } from '../../pages';
 import { Navbar } from '../navbar';
 
 function NavRoutes() {
@@ -11,6 +11,8 @@ function NavRoutes() {
                 <Route path="/" element={<Home />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/signup' element={<SignUp />} />
+                <Route path='/explore' element={<Explore />} />
+                <Route path='/video/:videoId' element={<SingleVideo />} />
                 <Route />
             </Routes>
         </>

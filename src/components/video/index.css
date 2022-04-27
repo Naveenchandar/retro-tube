@@ -1,0 +1,54 @@
+.video_duration {
+    position: absolute;
+    right: 7px;
+    bottom: 7px;
+    background-color: var(--black);
+    color: var(--white);
+    font-size: 1.2rem;
+    border-radius: 4px;
+}
+
+.video_title_div {
+    align-items: flex-start;
+}
+
+.video_caption {
+    color: var(--black);
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    font-weight: 500;
+    max-height: 4.4rem;
+    overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.video_createdby {
+    color: var(--created-by);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 1.4rem;
+}
+
+.video_profile img {
+    border-radius: 50%;
+    height: 3.5rem;
+    width: 3.5rem;
+}
+
+.video_profile {
+    margin: 1rem 1.2rem 0 0;
+}
+
+.visible_icon {
+    font-size: 1.6rem;
+}
+
+.video_views_count, .video_uploadedat {
+    font-size: 1.4rem;
+}
+
+.video_views, .video_upload {
+    gap: 1rem;
+}

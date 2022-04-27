@@ -5,3 +5,11 @@
     padding: 1.5rem 3rem;
     font-size: 1.4rem;
 }
+
+.auth_btn {
+    color: var(--black) !important;
+}
+
+.auth_btn:hover {
+    background-color: var(--auth-btn-hover) !important;
+}

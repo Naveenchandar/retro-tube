@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function Categories() {
+export function Categories() {
     const [categoryList, setCategoryList] = useState([]);
     const [error, setError] = useState(false);
     const [loading, setIsLoading] = useState(false);
@@ -44,5 +44,3 @@ function Categories() {
         </>
     )
 }
-
-export default Categories

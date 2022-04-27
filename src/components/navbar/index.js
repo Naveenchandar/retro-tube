@@ -11,20 +11,15 @@ export function Navbar() {
                             Retro tube
                         </NavLink>
                         <li className="nav_item active">
-                            <NavLink to='/login' className="nav_link">
+                            <NavLink to='/explore' className="nav_link">
                                 Explore
-                            </NavLink>
-                        </li>
-                        <li className="nav_item">
-                            <NavLink to='/signup' className="nav_link">
-                                Trending
                             </NavLink>
                         </li>
                     </ul>
                 </div>
                 <div className="nav_search flex align_center">
-                    <NavLink to='/signup' className="nav_link">Sign up</NavLink>
-                    <NavLink to='/login' className="nav_link">Log in</NavLink>
+                    <NavLink to='/signup' className="btn nav_link auth_btn">Sign up</NavLink>
+                    <NavLink to='/login' className="btn nav_link auth_btn">Log in</NavLink>
                 </div>
             </nav>
         </div>
