@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { useReducer, useEffect } from 'react';
+import { useReducer, useEffect, useState } from 'react';
 import { initialState, videosReducer } from '../../reducer/videos';
+import { getLocalStorageItem, setLocalStorageItem } from '../../utils';
 import { Chips } from '../chips';
 import Video from '../video';
 import './index.css';
@@ -9,6 +10,8 @@ import './index.css';
 export function Vidoes() {
     const [state, dispatch] = useReducer(videosReducer, initialState);
     const { filterVideoList, loading, error, activeChip } = state;
+    const [showOptions, setShowOptions] = useState();
+    const [watchLaterVideos, setWatchLaterVideos] = useState(getLocalStorageItem('retro-tube-watchlater'));
     useEffect(() => {
         (async () => {
             dispatch({ type: 'LOADING_VIDEOS', payload: true });
@@ -32,6 +35,20 @@ export function Vidoes() {
         dispatch({ type: 'FILTER_VIDEOS_BASEDON_CHIP' })
     }
 
+    const handleMoreOptions = (videoId) => {
+        setShowOptions(videoId);
+    }
+
+    const watchLater = (item) => {
+        const filterDuplicateItem = watchLaterVideos.find(({ _id }) => _id === item._id)
+        if (!filterDuplicateItem) {
+            const data = [...watchLaterVideos, item];
+            setWatchLaterVideos([...watchLaterVideos, item]);
+            setLocalStorageItem('retro-tube-watchlater', JSON.stringify(data));
+        }
+        setShowOptions('');
+    }
+
     if (error) {
         return <p>{error}</p>
     }
@@ -46,7 +63,16 @@ export function Vidoes() {
             <hr />
             <div className='m-2 videos'>
                 {filterVideoList.map(item => {
-                    return (<Video data={item} key={item._id} />)
+                    return (
+                        <Video
+                            data={item}
+                            key={item._id}
+                            options={showOptions}
+                            handleMoreOptions={handleMoreOptions}
+                            watchLater={watchLater}
+                            moreOptionsList= {['Add to playlist', 'Watch later']}
+                        />
+                    )
                 })}
             </div>
         </main>

@@ -1,0 +1,16 @@
+.more_options {
+    position: absolute;
+    background-color: whitesmoke;
+    padding: 0.8rem;
+    right: 0;
+    font-size: 1.2rem;
+}
+
+.more_options_item {
+    padding: 0.8rem;
+    font-size: 1.3rem;
+}
+
+.more_options_item:hover {
+    background-color: var(--white);
+}

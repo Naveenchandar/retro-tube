@@ -1,0 +1,8 @@
+.no_video {
+    display: block;
+    width: 100%;
+}
+
+.no_video a {
+    color: var(--primary-color);
+}
