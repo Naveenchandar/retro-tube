@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
-import { useAuth } from '../../context/useAuth';
+import { useAuth } from '../../context/auth';
 
 export function SignUp() {
     const [info, setUserInfo] = useState({
