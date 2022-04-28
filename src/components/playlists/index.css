@@ -1,0 +1,14 @@
+.playlist_actions {
+    margin-left: auto;
+}
+
+.playlist_edit, .playlist_delete {
+    font-size: 1.4rem;
+}
+
+.playlist_name {
+    width: 16rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

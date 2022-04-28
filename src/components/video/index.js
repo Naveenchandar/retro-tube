@@ -2,7 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { MoreOptions } from '../more-options';
 import './index.css';
 
-function Video({ data, options, handleMoreOptions, watchLater, moreOptionsList, handleFromRemoveWatchLater }) {
+function Video(props) {
+    const { data, options, handleMoreOptions, watchLater, moreOptionsList, handleFromRemoveWatchLater, showPlaylist } = props;
     const { _id, thumbnail, alt, title, creator, views, postedOn, avatar } = data;
     const navigate = useNavigate();
 
@@ -16,6 +17,9 @@ function Video({ data, options, handleMoreOptions, watchLater, moreOptionsList, 
         }
         if (item === 'Remove from Watch later') {
             handleFromRemoveWatchLater(data);
+        }
+        if (item === 'Add to playlist') {
+            showPlaylist(data);
         }
     }
 
