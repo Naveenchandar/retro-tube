@@ -2,10 +2,19 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './index.css';
 
+const sidebarOptions = [
+    { path: '/', name: 'Home' },
+    { path: '/explore', name: 'Explore' },
+    { path: '/', name: 'Playlists' },
+    { path: '/watchlater', name: 'Watch later' },
+    { path: '/', name: 'Liked videos' },
+    { path: '/', name: 'History' }
+];
+
 export function Sidebar() {
     const linkClassName = 'p-1 sidebar_link';
     const activeLinkClassName = (isActive) => {
-        if(isActive) {
+        if (isActive) {
             return `active ${linkClassName}`
         }
         return linkClassName
@@ -13,12 +22,15 @@ export function Sidebar() {
     return (
         <aside className='sidebar'>
             <ul className='mt-1 p-2 sidebar_list'>
-                <li><NavLink to='/' className={({ isActive }) => activeLinkClassName(isActive)}>Home</NavLink></li>
-                <li><NavLink to='/explore' className={({ isActive }) => activeLinkClassName(isActive)}>Explore</NavLink></li>
-                <li><NavLink to='/' className={({ isActive }) => activeLinkClassName(isActive)}>Playlists</NavLink></li>
-                <li><NavLink to='/watchlater' className={({ isActive }) => activeLinkClassName(isActive)}>Watch later</NavLink></li>
-                <li><NavLink to='/' className={({ isActive }) => activeLinkClassName(isActive)}>Liked videos</NavLink></li>
-                <li><NavLink to='/' className={({ isActive }) => activeLinkClassName(isActive)}>History</NavLink></li>
+                {sidebarOptions.map(({ path, name }) => {
+                    return (
+                        <li key={name}>
+                            <NavLink to={path} className={({ isActive }) => activeLinkClassName(isActive)}>
+                                {name}
+                            </NavLink>
+                        </li>
+                    )
+                })}
             </ul>
         </aside>
     )
