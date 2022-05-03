@@ -86,7 +86,7 @@ export function Vidoes() {
             </div>
             <PlaylistModal
                 show={showModal}
-                onHide={() => setShowModal(false)}
+                onHide={() => { setShowModal(false); setShowOptions(''); }}
             />
         </main>
     )
