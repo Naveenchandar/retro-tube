@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 
 const chipValues = ['all', 'rm', 'mu', 'ju', 'bm'];
-const chipClassName = 'p-1 chips_item';
+const chipClassName = 'chips_item';
 
 export function Chips({ activeChip, changeChip}) {
 
