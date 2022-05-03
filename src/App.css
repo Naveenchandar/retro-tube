@@ -2,11 +2,12 @@
 
 :root {
     --header-bg: #00000066;
-    --auth-btn-hover: #dedde2;
+    --btn-hover: #dedde2;
     --chips-bg: #0000000d;
     --chips-border: #0000001a;
     --sidebar-border: #e5e5e5;
     --created-by: ##606060;
+    --sidebar-link: #121212;
 }
 
 * {

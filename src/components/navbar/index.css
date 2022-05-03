@@ -11,5 +11,5 @@
 }
 
 .auth_btn:hover {
-    background-color: var(--auth-btn-hover) !important;
+    background-color: var(--btn-hover) !important;
 }
