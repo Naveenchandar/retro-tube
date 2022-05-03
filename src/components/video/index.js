@@ -3,7 +3,8 @@ import { MoreOptions } from '../more-options';
 import './index.css';
 
 function Video(props) {
-    const { data, options, handleMoreOptions, watchLater, moreOptionsList, handleFromRemoveWatchLater, showPlaylist } = props;
+    const { data, options, handleMoreOptions, watchLater, moreOptionsList, 
+        handleFromRemoveWatchLater, showPlaylist, handleRemoveFromPlaylist } = props;
     const { _id, thumbnail, alt, title, creator, views, postedOn, avatar } = data;
     const navigate = useNavigate();
 
@@ -20,6 +21,9 @@ function Video(props) {
         }
         if (item === 'Add to playlist') {
             showPlaylist(data);
+        }
+        if (item === 'Remove from playlist') {
+            handleRemoveFromPlaylist(data);
         }
     }
 

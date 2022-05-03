@@ -1,0 +1,19 @@
+.playlist_videos {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    width: 80%;
+    margin: 0 auto;
+    align-self: baseline;
+}
+
+.playlist_name {
+    flex-direction: row-reverse;
+}
+
+.playlist_link {
+    justify-content: right;
+    border: 1px solid #e5e5e5;
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: var(--black);
+}

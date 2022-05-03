@@ -76,6 +76,17 @@ export function playlistReducer(state = initialState, { type, payload }) {
             setLocalStorageItem('retro-tube-playlist', JSON.stringify(data));
             return { ...state, playlists: data, inputValue: '', inputError: '', showInput: false };
         }
+        case 'REMOVE_VIDEOS_FROM_PLAYLIST': {
+            const { playlistId, videoId } = payload;
+            const result = playlists.map((item) => {
+                const { id, videos } = item;
+                if (id === playlistId) {
+                    return { ...item, videos: videos.filter(({ _id }) => _id !== videoId) };
+                }
+                return { ...item };
+            });
+            return { ...state, playlists: result };
+        }
         default: {
             return initialState;
         }
