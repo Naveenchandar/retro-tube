@@ -34,7 +34,7 @@ export function PlaylistModal(props) {
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Header closeButton>
+            <Modal.Header closeButton onHide={onHide}>
                 <Modal.Title id="contained-modal-title-vcenter">
                     Save to...
                 </Modal.Title>
@@ -57,7 +57,8 @@ export function PlaylistModal(props) {
                             onChange={(e) => dispatch({ type: 'INPUT_CHANGE', payload: e.target.value })}
                             value={inputValue} id='playlist_input' className='playlist_input'
                             disabled={inputValue?.length > 29}
-                        /> {inputValue?.length}/30
+                        />
+                        <span className='playlist_name_length'>{inputValue?.length}/30</span>
                     </>
                 ) : null}
                 {inputError && (
