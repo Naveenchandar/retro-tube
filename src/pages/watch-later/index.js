@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { useState } from 'react/cjs/react.development';
+import { NoVideos } from '../../components/no-videos';
 import { Sidebar } from '../../components/sidebar'
 import Video from '../../components/video';
 import { getLocalStorageItem, setLocalStorageItem } from '../../utils';
@@ -36,10 +37,7 @@ export function WatchLater() {
                             />
                         )
                     }) :
-                        <div className='text_center'>
-                            <p className='my-2'>No videos to watch, Please add videos to watch later</p>
-                            <Link to='/explore'>Explore All Videos</Link>
-                        </div>
+                        <NoVideos type='watch later' />
                     }
                 </main>
             </div>
