@@ -3,7 +3,7 @@
 }
 
 .playlist_edit, .playlist_delete {
-    font-size: 1.4rem;
+    font-size: 2rem;
 }
 
 .playlist_name {
@@ -11,4 +11,12 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.playlist_names {
+    padding-left: 0;
+}
+
+.playlist_names li {
+    padding: 0.8rem 0;
 }

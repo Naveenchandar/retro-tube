@@ -5,7 +5,7 @@ import './index.css';
 export function Playlists({ item, addVideosToPlaylist, checked, editPlaylist, deletePlaylist }) {
     const { dispatch } = usePlaylist();
     return (
-        <ul>
+        <ul className='playlist_names'>
             <li className='pointer'>
                 <label className='pointer w_100 flex align_center'>
                     <input type='checkbox' checked={checked} onChange={(e) => addVideosToPlaylist(e, item)} /> &ensp;
