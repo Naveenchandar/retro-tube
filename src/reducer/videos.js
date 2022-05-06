@@ -5,7 +5,6 @@ const initialState = {
     loading: false,
     activeChip: 'all',
     videoPlaylistInfo: {},
-    // playlistVideos: []
 };
 function videosReducer(state = initialState, action) {
     switch (action.type) {
@@ -26,9 +25,6 @@ function videosReducer(state = initialState, action) {
         case 'VIDEO_ACTIVE_PLAYLIST_MODAL': {
             return { ...state, videoPlaylistInfo: action.payload };
         }
-        // case 'VIDEOS_PLAYLIST': {
-        //     return {...state, playlistVideos: [...state.playlistVideos, { name, videos: data }]}
-        // }
         default:
             return initialState
     }
