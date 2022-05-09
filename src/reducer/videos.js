@@ -6,9 +6,18 @@ const initialState = {
     activeChip: 'all',
     videoPlaylistInfo: {},
 };
+
+const loadActiveVideosBasedOnChip = (state) => {
+    const filterResult = state.videoList.filter(({ type }) => type === state.activeChip);
+    return filterResult;
+}
 function videosReducer(state = initialState, action) {
     switch (action.type) {
         case 'FETCH_VIDEOS':
+            if (state.activeChip !== 'all') {
+                const filterResult = loadActiveVideosBasedOnChip(state);
+                return { ...state, videoList: action.payload, filterVideoList: filterResult, loading: false, error: '' };
+            }
             return { ...state, videoList: action.payload, filterVideoList: action.payload, loading: false, error: '' };
         case 'LOADING_VIDEOS':
             return { ...state, loading: action.payload, error: '', videoList: state.videoList };
@@ -18,7 +27,7 @@ function videosReducer(state = initialState, action) {
             return { ...state, activeChip: action.payload };
         case 'FILTER_VIDEOS_BASEDON_CHIP':
             if (state.activeChip !== 'all') {
-                const filterResult = state.videoList.filter(({ type }) => type === state.activeChip);
+                const filterResult = loadActiveVideosBasedOnChip(state);
                 return { ...state, filterVideoList: filterResult };
             }
             return { ...state, filterVideoList: state.videoList };

@@ -11,7 +11,7 @@ export function Navbar() {
                             Retro tube
                         </NavLink>
                         <li className="nav_item active">
-                            <NavLink to='/explore' className="nav_link">
+                            <NavLink to='/explore' className="nav_link" state={{ categoryName: 'all' }}>
                                 Explore
                             </NavLink>
                         </li>

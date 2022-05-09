@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { usePlaylist } from '../../context/playlist';
 import { useVideos } from '../../context/videos';
 import { getLocalStorageItem, setLocalStorageItem } from '../../utils';
@@ -12,6 +13,7 @@ import './index.css';
 export function Vidoes() {
     const { state, dispatch } = useVideos();
     const { dispatch: playlistDispatch } = usePlaylist();
+    const { state: { categoryName } } = useLocation();
     const { filterVideoList, loading, error, activeChip } = state;
     const [showOptions, setShowOptions] = useState();
     const [watchLaterVideos, setWatchLaterVideos] = useState(getLocalStorageItem('retro-tube-watchlater'));
@@ -24,6 +26,12 @@ export function Vidoes() {
                 const { status, data: { videos = [] } } = await axios.get('/api/videos');
                 if (status === 200) {
                     dispatch({ type: 'FETCH_VIDEOS', payload: videos });
+                    if(categoryName){
+                        dispatch({ type: 'CHANGE_CHIP', payload: categoryName })
+                        dispatch({ type: 'FILTER_VIDEOS_BASEDON_CHIP' })
+                    } else {
+                        dispatch({ type: 'CHANGE_CHIP', payload: 'all' })
+                    }
                 } else {
                     throw new Error('Something went wrong, Please try again');
                 }
