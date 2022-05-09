@@ -9,3 +9,7 @@ export const getLocalStorageItem = (key) => {
 export const setLocalStorageItem = (key, value) => {
     localStorage.setItem(key, value);
 }
+
+export const removeLocalStorageItem = (key, value) => {
+    localStorage.removeItem(key);
+}

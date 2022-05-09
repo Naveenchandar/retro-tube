@@ -1,0 +1,12 @@
+.clear_history_btn {
+    color: var(--white);
+    background-color: var(--primary-color);
+}
+
+.clear_history_btn svg{
+    font-size: 1.6rem;
+}
+
+.clear_history_btn {
+    display: flex !important;
+}

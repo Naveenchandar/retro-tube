@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react/cjs/react.development';
+import React, { useState } from 'react'
 import { NoVideos } from '../../components/no-videos';
 import { Sidebar } from '../../components/sidebar'
 import Video from '../../components/video';
