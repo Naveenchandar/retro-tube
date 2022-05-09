@@ -7,7 +7,7 @@
 }
 
 .auth_btn {
-    color: var(--black) !important;
+    font-size: 1.6rem;
 }
 
 .auth_btn:hover {
