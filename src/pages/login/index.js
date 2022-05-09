@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/useAuth';
+import { useAuth } from '../../context/auth';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './index.css';
 

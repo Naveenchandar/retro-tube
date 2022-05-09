@@ -2,12 +2,14 @@ import { useNavigate } from 'react-router-dom';
 import { MoreOptions } from '../more-options';
 import './index.css';
 
-function Video({ data, options, handleMoreOptions, watchLater, moreOptionsList, handleFromRemoveWatchLater }) {
+function Video(props) {
+    const { data, options, handleMoreOptions, watchLater, moreOptionsList,
+        handleFromRemoveWatchLater, showPlaylist, handleRemoveFromPlaylist, like, moreAction } = props;
     const { _id, thumbnail, alt, title, creator, views, postedOn, avatar } = data;
     const navigate = useNavigate();
 
     const handleClickVideo = (videoId) => {
-        navigate(`/video/${videoId}`);
+        navigate(`/video/${videoId}`, { state: { like: like ? true : false } });
     }
 
     const handleClickMoreOptions = (item) => {
@@ -16,6 +18,15 @@ function Video({ data, options, handleMoreOptions, watchLater, moreOptionsList, 
         }
         if (item === 'Remove from Watch later') {
             handleFromRemoveWatchLater(data);
+        }
+        if (item === 'Add to playlist') {
+            showPlaylist(data);
+        }
+        if (item === 'Remove from playlist') {
+            handleRemoveFromPlaylist(data);
+        }
+        if (item === 'Remove from liked videos') {
+            moreAction(data);
         }
     }
 
@@ -38,10 +49,13 @@ function Video({ data, options, handleMoreOptions, watchLater, moreOptionsList, 
                                 <h3 className="video_caption">{title}</h3>
                                 <div className="mt-1 video_createdby">{creator}</div>
                             </div>
-                            <button onClick={() => handleMoreOptions(_id)}><span className="material-icons-outlined ml-1">more_vert</span></button>
-                            {options === _id ? (
-                                <MoreOptions list={moreOptionsList} handleClickMoreOptions={handleClickMoreOptions} />
-                            ) : ''}
+                            {moreOptionsList?.length > 0 ?
+                                <>
+                                    <button onClick={() => handleMoreOptions(_id)}><span className="material-icons-outlined ml-1">more_vert</span></button>
+                                    {options === _id ? (
+                                        <MoreOptions list={moreOptionsList} handleClickMoreOptions={handleClickMoreOptions} />
+                                    ) : ''}
+                                </> : ''}
                         </div>
                         <div className="flex justify_spacebtw">
                             <div className="flex align_center video_views">

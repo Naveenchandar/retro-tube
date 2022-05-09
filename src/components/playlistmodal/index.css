@@ -1,0 +1,20 @@
+.add_playlist_icon {
+    font-size: 2rem;
+}
+
+.playlist_input {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--btn-hover);
+    width: 85%;
+    margin-right: 0.5rem;
+    font-size: 1.4rem;
+}
+
+.playlist_name_length {
+    font-size: 1.4rem;
+}
+
+.modal-footer button {
+    font-size: 1.4rem;
+}

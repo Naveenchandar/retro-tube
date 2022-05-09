@@ -3,7 +3,8 @@ const initialState = {
     filterVideoList: [],
     error: '',
     loading: false,
-    activeChip: 'all'
+    activeChip: 'all',
+    videoPlaylistInfo: {},
 };
 function videosReducer(state = initialState, action) {
     switch (action.type) {
@@ -21,6 +22,9 @@ function videosReducer(state = initialState, action) {
                 return { ...state, filterVideoList: filterResult };
             }
             return { ...state, filterVideoList: state.videoList };
+        case 'VIDEO_ACTIVE_PLAYLIST_MODAL': {
+            return { ...state, videoPlaylistInfo: action.payload };
+        }
         default:
             return initialState
     }

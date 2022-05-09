@@ -1,17 +1,22 @@
 import axios from 'axios';
-import { useReducer, useEffect, useState } from 'react';
-import { initialState, videosReducer } from '../../reducer/videos';
+import { useEffect, useState } from 'react';
+import { usePlaylist } from '../../context/playlist';
+import { useVideos } from '../../context/videos';
 import { getLocalStorageItem, setLocalStorageItem } from '../../utils';
 import { Chips } from '../chips';
+import { PlaylistModal } from '../playlistmodal';
 import Video from '../video';
 import './index.css';
 
 
 export function Vidoes() {
-    const [state, dispatch] = useReducer(videosReducer, initialState);
+    const { state, dispatch } = useVideos();
+    const { dispatch: playlistDispatch } = usePlaylist();
     const { filterVideoList, loading, error, activeChip } = state;
     const [showOptions, setShowOptions] = useState();
     const [watchLaterVideos, setWatchLaterVideos] = useState(getLocalStorageItem('retro-tube-watchlater'));
+    const [showModal, setShowModal] = useState(false);
+
     useEffect(() => {
         (async () => {
             dispatch({ type: 'LOADING_VIDEOS', payload: true });
@@ -27,7 +32,7 @@ export function Vidoes() {
             }
             dispatch({ type: 'LOADING_VIDEOS', payload: false });
         })()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const changeChip = async (value) => {
@@ -70,11 +75,19 @@ export function Vidoes() {
                             options={showOptions}
                             handleMoreOptions={handleMoreOptions}
                             watchLater={watchLater}
-                            moreOptionsList= {['Add to playlist', 'Watch later']}
+                            showPlaylist={(data) => {
+                                setShowModal(true);
+                                playlistDispatch({ type: 'VIDEO_ACTIVE_PLAYLIST_MODAL', payload: data });
+                            }}
+                            moreOptionsList={['Add to playlist', 'Watch later']}
                         />
                     )
                 })}
             </div>
+            <PlaylistModal
+                show={showModal}
+                onHide={() => { setShowModal(false); setShowOptions(''); }}
+            />
         </main>
     )
 }

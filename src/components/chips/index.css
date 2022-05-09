@@ -23,6 +23,7 @@
 
 .chips_item:hover {
     background-color: var(--chips-border);
+    color: var(--primary-color);
 }
 
 .active_chip {
