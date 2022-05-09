@@ -9,5 +9,5 @@ export const sidebarOptions = [
     { path: '/playlists', name: 'Playlists', icon: <RiPlayListLine /> },
     { path: '/watchlater', name: 'Watch later', icon: <MdOutlineWatchLater /> },
     { path: '/liked-videos', name: 'Liked videos', icon: <BiLike /> },
-    { path: '/', name: 'History', icon: <MdOutlineHistory /> }
+    { path: '/history', name: 'History', icon: <MdOutlineHistory /> }
 ];

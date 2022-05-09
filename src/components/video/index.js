@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { MoreOptions } from '../more-options';
+import { AiFillCloseCircle } from 'react-icons/ai';
 import './index.css';
 
 function Video(props) {
     const { data, options, handleMoreOptions, watchLater, moreOptionsList,
-        handleFromRemoveWatchLater, showPlaylist, handleRemoveFromPlaylist, like, moreAction } = props;
+        handleFromRemoveWatchLater, showPlaylist, handleRemoveFromPlaylist, like, moreAction, history } = props;
     const { _id, thumbnail, alt, title, creator, views, postedOn, avatar } = data;
     const navigate = useNavigate();
 
@@ -56,6 +57,7 @@ function Video(props) {
                                         <MoreOptions list={moreOptionsList} handleClickMoreOptions={handleClickMoreOptions} />
                                     ) : ''}
                                 </> : ''}
+                            {history ? <AiFillCloseCircle onClick={() => moreAction(data)} className='close_video pointer' title='Remove from history' /> : ''}
                         </div>
                         <div className="flex justify_spacebtw">
                             <div className="flex align_center video_views">

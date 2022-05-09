@@ -1,6 +1,10 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
-import { Explore, Home, LikedVideos, Login, Playlist, Playlists, SignUp, SingleVideo, WatchLater } from '../../pages';
+import {
+    Explore, History, Home, LikedVideos,
+    Login, Playlist, Playlists, SignUp,
+    SingleVideo, WatchLater
+} from '../../pages';
 import { Navbar } from '../navbar';
 
 function NavRoutes() {
@@ -17,6 +21,7 @@ function NavRoutes() {
                 <Route path='/playlists' element={<Playlists />} />
                 <Route path='/playlists/:playlistId' element={<Playlist />} />
                 <Route path='/liked-videos' element={<LikedVideos />} />
+                <Route path='/history' element={<History />} />
             </Routes>
         </>
     )

@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { Sidebar } from '../../components/sidebar';
 import './index.css';
 import { SingleAction } from './singleAction';
+import { getLocalStorageItem, setLocalStorageItem } from '../../utils';
 
 export function SingleVideo() {
     const [videoInfo, setVideoInfo] = useState({});
@@ -15,6 +16,22 @@ export function SingleVideo() {
     const onPlayerReady = (event) => {
         // access to player in all event handlers via event.target
         event.target.pauseVideo();
+    }
+
+    const playVideo = (event) => {
+        if (event?.data) {
+            const historyVideos = getLocalStorageItem('retro-tube-history');
+            if (historyVideos?.length > 0) {
+                const findVideo = historyVideos?.find(({ _id }) => _id === videoInfo?._id);
+                if (!findVideo) {
+                    const data = [...historyVideos, videoInfo];
+                    setLocalStorageItem('retro-tube-history', JSON.stringify(data));
+                }
+            } else {
+                const data = [videoInfo];
+                setLocalStorageItem('retro-tube-history', JSON.stringify(data));
+            }
+        }
     }
 
     useEffect(() => {
@@ -52,7 +69,7 @@ export function SingleVideo() {
         }
         return (
             <main className='main_video w_100 m-2'>
-                <YouTube videoId={videoId} opts={opts} onReady={onPlayerReady} />
+                <YouTube videoId={videoId} opts={opts} onReady={onPlayerReady} onPlay={playVideo} />
                 <section className='single_video_info'>
                     <h2 className="my-2">{title}</h2>
                     <div className="flex align_center justify_spacebtw mb-2">

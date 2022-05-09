@@ -53,3 +53,7 @@
 .video_views, .video_upload {
     gap: 1rem;
 }
+
+.close_video {
+    font-size: 2rem;
+}

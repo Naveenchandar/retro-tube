@@ -13,7 +13,7 @@ import './index.css';
 export function Vidoes() {
     const { state, dispatch } = useVideos();
     const { dispatch: playlistDispatch } = usePlaylist();
-    const { state: { categoryName } } = useLocation();
+    const location = useLocation();
     const { filterVideoList, loading, error, activeChip } = state;
     const [showOptions, setShowOptions] = useState();
     const [watchLaterVideos, setWatchLaterVideos] = useState(getLocalStorageItem('retro-tube-watchlater'));
@@ -26,6 +26,7 @@ export function Vidoes() {
                 const { status, data: { videos = [] } } = await axios.get('/api/videos');
                 if (status === 200) {
                     dispatch({ type: 'FETCH_VIDEOS', payload: videos });
+                    const { state: { categoryName } = '' } = location;
                     if(categoryName){
                         dispatch({ type: 'CHANGE_CHIP', payload: categoryName })
                         dispatch({ type: 'FILTER_VIDEOS_BASEDON_CHIP' })
