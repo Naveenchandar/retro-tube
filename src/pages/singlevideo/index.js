@@ -4,6 +4,7 @@ import YouTube from 'react-youtube';
 import { useParams } from 'react-router-dom';
 import { Sidebar } from '../../components/sidebar';
 import './index.css';
+import { SingleAction } from './singleAction';
 
 export function SingleVideo() {
     const [videoInfo, setVideoInfo] = useState({});
@@ -60,35 +61,18 @@ export function SingleVideo() {
                             <div className="flex_dcolumn justify_spacebtw">
                                 <p>{creator}</p>
                                 <div className="flex mt-auto">
-                                    <div className="icon-container mr-4">
+                                    <div className="icon-container mr-4 flex align_center">
                                         <span className="material-icons mr-1">visibility</span>
                                         <span>{views}</span>
                                     </div>
-                                    <div className="icon-container">
+                                    <div className="icon-container flex align_center">
                                         <span className="material-icons-outlined mr-1">timer</span>
                                         <span>15:24</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="flex my-2 single_video_actions">
-                            <button className="icon-container mr-3">
-                                <span className="material-icons-outlined">thumb_up</span>
-                                Like
-                            </button>
-                            <button className="icon-container mr-3">
-                                <span className="material-icons-outlined">
-                                    playlist_add
-                                </span>
-                                Save to playlist
-                            </button>
-                            <button className="icon-container">
-                                <span className="material-icons-outlined">
-                                    watch_later
-                                </span>
-                                Watch later
-                            </button>
-                        </div>
+                        <SingleAction data={videoInfo} videoId={videoId} />
                     </div>
                 </section>
                 <p className='mb-4 single_video_desc'>{description}</p>

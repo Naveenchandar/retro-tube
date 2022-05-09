@@ -21,7 +21,8 @@
     overflow: hidden;
     display: block;
     text-overflow: ellipsis;
-    white-space: normal;
+    white-space: nowrap;
+    width: 35rem;
 }
 
 .video_createdby {

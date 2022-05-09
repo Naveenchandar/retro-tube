@@ -2,6 +2,7 @@
     border-radius: 0.4rem;
     height: 60rem;
     width: 100%;
+    margin-bottom: 2rem;
 }
 
 .single_video_avatar {
@@ -16,4 +17,8 @@
 
 .single_video_desc {
     line-height: 2.4rem;
+}
+
+.single_video_info {
+    width: 98%;
 }
