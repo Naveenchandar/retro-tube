@@ -18,3 +18,27 @@
 .section_videos {
     margin: 4rem;
 }
+
+.main_header_btn {
+    color: var(--white);
+    background-color: var(--primary-color);
+    height: 4rem;
+}
+
+.main_header_btn svg{
+    font-size: 1.6rem;
+}
+
+.main_header_btn {
+    display: flex !important;
+}
+
+.main_header_btn_caption {
+    font-size: 1.4rem;
+}
+
+.main_header_btn:hover {
+    background-color: var(--white);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}

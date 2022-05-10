@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { AiOutlineDelete } from 'react-icons/ai';
+import { MainHeader } from '../../components/main-header';
 import { NoVideos } from '../../components/no-videos';
 import { Sidebar } from '../../components/sidebar'
 import Video from '../../components/video';
 import { getLocalStorageItem, removeLocalStorageItem, setLocalStorageItem } from '../../utils';
-import './index.css';
 
 export function History() {
     const [historyVideos, setHistoryVideos] = useState(getLocalStorageItem('retro-tube-history'));
@@ -29,17 +29,13 @@ export function History() {
                 <section className='w_100 section_videos'>
                     {historyVideos?.length > 0 ?
                         <>
-                            <div className='flex justify_spacebtw'>
-                                <h1 className='text_left p-3'> History - &nbsp;
-                                    <span>
-                                        {videosLength > 1 ? `${videosLength} videos` : `${videosLength} video`}
-                                    </span>
-                                </h1>
-                                <button className="btn btn_primary clear_history_btn align_center" onClick={clearHistory}>
-                                    <AiOutlineDelete /> &nbsp;
-                                    <span>Clear history</span>
-                                </button>
-                            </div>
+                            <MainHeader
+                                data={videosLength}
+                                title='History'
+                                btn='Clear history'
+                                icon={<AiOutlineDelete />}
+                                onClick={clearHistory}
+                            />
                             <main className={historyVideos?.length ? 'videos' : 'no_video'}>
                                 {historyVideos?.map(item => {
                                     return (

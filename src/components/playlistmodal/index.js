@@ -6,7 +6,7 @@ import { Playlists } from '../playlists';
 import './index.css';
 
 export function PlaylistModal(props) {
-    const { onHide, ...rest } = props
+    const { onHide, list, ...rest } = props
     const { state, dispatch } = usePlaylist();
     const { showInput, inputValue, inputError, playlists } = state;
     const [checked, setChecked] = useState([]);
@@ -46,6 +46,7 @@ export function PlaylistModal(props) {
                     addVideosToPlaylist={addVideosToPlaylist}
                     editPlaylist={() => setEdit(true)}
                     deletePlaylist={() => dispatch({ type: 'DELETE_PLAYLIST', payload: item })}
+                    list={list}
                 />
                 )}
                 <p className='pointer' onClick={() => dispatch({ type: 'TOGGLE_INPUT' })}>
