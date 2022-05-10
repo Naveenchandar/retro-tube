@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { NoVideos } from '../../components/no-videos';
+import { MainHeader } from '../../components/main-header';
+import { MainSection } from '../../components/main-section';
 import { Sidebar } from '../../components/sidebar';
 import Video from '../../components/video';
 import { getLocalStorageItem, setLocalStorageItem } from '../../utils';
@@ -23,23 +24,27 @@ export function LikedVideos() {
         <section>
             <div className='flex'>
                 <Sidebar />
-                <main className={likedVideos?.length ? 'videos' : 'no_video'}>
-                    {likedVideos?.length > 0 ? likedVideos?.map(item => {
-                        return (
-                            <Video
-                                data={item}
-                                key={item._id}
-                                options={showOptions}
-                                handleMoreOptions={handleMoreOptions}
-                                moreOptionsList={['Remove from liked videos']}
-                                like={true}
-                                moreAction={removeLikedVideos}
-                            />
-                        )
-                    }) :
-                        <NoVideos type='liked videos' />
-                    }
-                </main>
+                <MainSection data={likedVideos?.length} type='liked videos'>
+                    <MainHeader
+                        data={likedVideos?.length}
+                        title='Liked videos'
+                    />
+                    <main className={likedVideos?.length ? 'videos' : 'no_video'}>
+                        {likedVideos?.map(item => {
+                            return (
+                                <Video
+                                    data={item}
+                                    key={item._id}
+                                    options={showOptions}
+                                    handleMoreOptions={handleMoreOptions}
+                                    moreOptionsList={['Remove from liked videos']}
+                                    like={true}
+                                    moreAction={removeLikedVideos}
+                                />
+                            )
+                        })}
+                    </main>
+                </MainSection>
             </div>
         </section>
     )

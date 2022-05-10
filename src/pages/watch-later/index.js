@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { NoVideos } from '../../components/no-videos';
+import { MainHeader } from '../../components/main-header';
+import { MainSection } from '../../components/main-section';
 import { Sidebar } from '../../components/sidebar'
 import Video from '../../components/video';
 import { getLocalStorageItem, setLocalStorageItem } from '../../utils';
@@ -22,22 +23,26 @@ export function WatchLater() {
         <section>
             <div className='flex'>
                 <Sidebar />
-                <main className={watchLaterVideos?.length ? 'videos' : 'no_video'}>
-                    {watchLaterVideos?.length > 0 ? watchLaterVideos?.map(item => {
-                        return (
-                            <Video
-                                data={item}
-                                key={item._id}
-                                options={showOptions}
-                                handleMoreOptions={handleMoreOptions}
-                                moreOptionsList={['Add to playlist', 'Remove from Watch later']}
-                                handleFromRemoveWatchLater={handleFromRemoveWatchLater}
-                            />
-                        )
-                    }) :
-                        <NoVideos type='watch later' />
-                    }
-                </main>
+                <MainSection data={watchLaterVideos?.length} type='watch later'>
+                    <MainHeader
+                        data={watchLaterVideos?.length}
+                        title='Watch later'
+                    />
+                    <main className={watchLaterVideos?.length ? 'videos' : 'no_video'}>
+                        {watchLaterVideos?.map(item => {
+                            return (
+                                <Video
+                                    data={item}
+                                    key={item._id}
+                                    options={showOptions}
+                                    handleMoreOptions={handleMoreOptions}
+                                    moreOptionsList={['Add to playlist', 'Remove from Watch later']}
+                                    handleFromRemoveWatchLater={handleFromRemoveWatchLater}
+                                />
+                            )
+                        })}
+                    </main>
+                </MainSection>
             </div>
         </section>
     )
