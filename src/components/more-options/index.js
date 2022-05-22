@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import useComponentVisible from '../../hooks/useVisible';
+import { useComponentVisible } from '../../hooks/useVisible';
 
 export function MoreOptions({ list = [], handleClickMoreOptions }) {
     const { ref, isComponentVisible } = useComponentVisible(true);
