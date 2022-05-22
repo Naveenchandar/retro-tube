@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
-import { useAuth } from '../../context/auth';
 
 export function SignUp() {
     const [info, setUserInfo] = useState({
@@ -15,8 +14,6 @@ export function SignUp() {
     const [showPassword, setShowPassword] = useState({ pwd: false, confirmPwd: false });
 
     const navigate = useNavigate();
-
-    const { updateUser } = useAuth();
 
     useDocumentTitle('R - Sign up');
 
@@ -35,8 +32,13 @@ export function SignUp() {
 
     const handleValidation = () => {
         const { email, password, firstName, lastName, confirmPwd } = info;
+        const isValidEmail = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test(email);
         if (!email) {
             setErrorInfo({ ...errorInfo, email: 'Please enter email id' });
+            return false;
+        }
+        if (!isValidEmail) {
+            setErrorInfo({ ...errorInfo, email: 'Please enter valid email id' });
             return false;
         }
         if (!password) {
@@ -68,9 +70,7 @@ export function SignUp() {
             if (handleValidation()) {
                 const { status, data: { createdUser, encodedToken } } = await axios.post("/api/auth/signup", info)
                 if (status === 201 && createdUser?.id && encodedToken) {
-                    updateUser(info);
-                    localStorage.setItem("retro-tube-token", encodedToken);
-                    navigate('/');
+                    navigate('/login');
                 } else {
                     throw new Error('Email or Password is incorrect');
                 }

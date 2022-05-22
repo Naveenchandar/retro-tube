@@ -1,6 +1,11 @@
+import jwt_decode from "jwt-decode";
+
 export const getLocalStorageItem = (key) => {
     const getItem = localStorage.getItem(key);
     if (getItem) {
+        if (key === 'retro-tube-token') {
+            return jwt_decode(getItem)
+        }
         return JSON.parse(getItem)
     }
     return []
