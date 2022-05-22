@@ -10,6 +10,29 @@
     font-size: 1.6rem;
 }
 
-.auth_btn:hover {
+.auth_btn:hover, .logout_btn:hover {
     background-color: var(--btn-hover) !important;
+}
+
+.logout_btn {
+    color: var(--white);
+    padding: 1rem;
+    border-radius: 4px;
+    top: 100%;
+    right: 0;
+    left: -10%;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.logout_btn:hover {
+    color: var(--black);
+}
+
+.username {
+    color: var(--white);
+}
+
+.username_div {
+    width: 15rem;
 }
