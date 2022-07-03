@@ -6,8 +6,9 @@ import {
     SingleVideo, WatchLater
 } from '../../pages';
 import { Navbar } from '../navbar';
+import { ProtectedRoute } from './protected-route';
 
-function NavRoutes() {
+export const NavRoutes = () => {
     return (
         <>
             <Navbar />
@@ -18,7 +19,12 @@ function NavRoutes() {
                 <Route path='/explore' element={<Explore />} />
                 <Route path='/video/:videoId' element={<SingleVideo />} />
                 <Route path='/watchlater' element={<WatchLater />} />
-                <Route path='/playlists' element={<Playlists />} />
+                <Route path='/playlists' element={
+                    <ProtectedRoute>
+                        <Playlists />
+                    </ProtectedRoute>
+                }
+                />
                 <Route path='/playlists/:playlistId' element={<Playlist />} />
                 <Route path='/liked-videos' element={<LikedVideos />} />
                 <Route path='/history' element={<History />} />
@@ -26,5 +32,3 @@ function NavRoutes() {
         </>
     )
 }
-
-export default NavRoutes
