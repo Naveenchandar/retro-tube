@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { MainHeader } from '../../components/main-header';
 import { MainSection } from '../../components/main-section';
+import { SearchInput } from '../../components/search';
 import { Sidebar } from '../../components/sidebar';
 import Video from '../../components/video';
-import { getLocalStorageItem, setLocalStorageItem } from '../../utils';
+import { filterSearchVideos, getLocalStorageItem, setLocalStorageItem } from '../../utils';
 
 export function LikedVideos() {
     const [likedVideos, setLikedVideos] = useState(getLocalStorageItem('retro-liked-videos'));
+    const [filterLikedVideos, setFilterLikedVideos] = useState(getLocalStorageItem('retro-tube-watchlater'))
     const [showOptions, setShowOptions] = useState();
+    const [searchValue, setSearchValue] = useState('');
 
     const handleMoreOptions = (videoId) => {
         setShowOptions(videoId);
@@ -20,17 +23,36 @@ export function LikedVideos() {
         setShowOptions('');
     }
 
+    const searchWatchLaterVideos = (value = '') => {
+        if (value) {
+            setFilterLikedVideos(filterSearchVideos({ videos: likedVideos, searchText: value }));
+        } else {
+            setFilterLikedVideos(getLocalStorageItem('retro-tube-watchlater'));
+        }
+    }
+
     return (
         <section>
             <div className='flex'>
                 <Sidebar />
                 <MainSection data={likedVideos?.length} type='liked videos'>
+                    <div>
+                        <SearchInput
+                            value={searchValue}
+                            onChange={(value) => setSearchValue(value)}
+                            placeholder={`Search liked videos`}
+                            dispatch={{
+                                search: (value) => searchWatchLaterVideos(value),
+                                noSearch: () => searchWatchLaterVideos()
+                            }}
+                        />
+                    </div>
                     <MainHeader
-                        data={likedVideos?.length}
+                        data={filterLikedVideos?.length}
                         title='Liked videos'
                     />
-                    <main className={likedVideos?.length ? 'videos' : 'no_video'}>
-                        {likedVideos?.map(item => {
+                    <main className={filterLikedVideos?.length ? 'videos' : 'no_video'}>
+                        {filterLikedVideos?.map(item => {
                             return (
                                 <Video
                                     data={item}
