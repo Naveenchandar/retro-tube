@@ -1,4 +1,4 @@
-import { fetchType, filterSearchVideos } from "../utils";
+import { filterSearchVideos } from "../utils";
 
 const initialState = {
     videoList: [],

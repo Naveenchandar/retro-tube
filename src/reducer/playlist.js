@@ -1,4 +1,4 @@
-import { getLocalStorageItem, setLocalStorageItem } from "../utils";
+import { filterSearchVideos, getLocalStorageItem, setLocalStorageItem } from "../utils";
 import { v4 as uuid } from "uuid";
 
 export const initialState = {
@@ -6,6 +6,7 @@ export const initialState = {
     inputValue: '',
     inputError: '',
     playlists: getLocalStorageItem('retro-tube-playlist'),
+    filterPlaylists: getLocalStorageItem('retro-tube-playlist'),
     currentVideo: '',
     editPlaylist: ''
 }
@@ -51,7 +52,7 @@ export function playlistReducer(state = initialState, { type, payload }) {
             return { ...state, playlists: data };
         }
         case 'DELETE_PLAYLIST': {
-            const remainingPlaylist = playlists.filter(({ name }) => name !== payload?.name);
+            const remainingPlaylist = playlists.filter(({ name }) => name?.toLowerCase() !== payload?.name);
             return { ...state, playlists: remainingPlaylist }
         }
         case 'EDIT_PLAYLIST': {
@@ -86,6 +87,16 @@ export function playlistReducer(state = initialState, { type, payload }) {
                 return { ...item };
             });
             return { ...state, playlists: result };
+        }
+        case 'SEARCH_PLAYLISTS': {
+            const obj = {
+                videos: state.playlists, searchText: payload?.searchText, type: 'playlist'
+            }
+            const searchVideos = filterSearchVideos(obj);
+            return { ...state, filterPlaylists: searchVideos };
+        }
+        case 'INIT_PLAYLISTS': {
+            return { ...state, filterPlaylists: playlists };
         }
         default: {
             return initialState;

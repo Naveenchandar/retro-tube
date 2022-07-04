@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Sidebar } from '../../components/sidebar'
 import { usePlaylist } from '../../context/playlist';
 import Video from '../../components/video';
@@ -9,8 +9,9 @@ import { NoVideos } from '../../components/no-videos';
 export function Playlist() {
     const { state: { playlists = [] } = {}, dispatch } = usePlaylist();
     const { playlistId } = useParams();
+    const navigate = useNavigate();
     const [showOptions, setShowOptions] = useState();
-    const { videos = [], id } = playlists?.find(({ id }) => id === playlistId);
+    const { videos = [], id, name } = playlists?.find(({ id }) => id === playlistId);
     const watchLaterVideos = useState(getLocalStorageItem('retro-tube-watchlater'));
 
     const handleMoreOptions = (videoId) => {
@@ -26,23 +27,36 @@ export function Playlist() {
         setShowOptions('');
     }
 
+    const deletePlaylist = (name) => {
+        try {
+            dispatch({ type: 'DELETE_PLAYLIST', payload: { name: name?.toLowerCase() } });
+            navigate('/playlists');
+        } catch (error) {
+            console.error('playlist delete:', error)
+        }
+    }
+
     const getPlaylistVideosById = () => {
         if (videos?.length) {
-            return videos?.map(item => {
-                return (
-                    <Video
-                        data={item}
-                        key={item._id}
-                        options={showOptions}
-                        handleMoreOptions={handleMoreOptions}
-                        watchLater={watchLater}
-                        moreOptionsList={['Remove from playlist', 'Add to Watch later']}
-                        handleRemoveFromPlaylist={(video) => dispatch(
-                            { type: 'REMOVE_VIDEOS_FROM_PLAYLIST', payload: { playlistId: id, videoId: video._id } }
-                        )}
-                    />
-                )
-            })
+            return (
+                <main className='videos'>
+                    {videos?.map(item => {
+                        return (
+                            <Video
+                                data={item}
+                                key={item._id}
+                                options={showOptions}
+                                handleMoreOptions={handleMoreOptions}
+                                watchLater={watchLater}
+                                moreOptionsList={['Remove from playlist', 'Add to Watch later']}
+                                handleRemoveFromPlaylist={(video) => dispatch(
+                                    { type: 'REMOVE_VIDEOS_FROM_PLAYLIST', payload: { playlistId: id, videoId: video._id } }
+                                )}
+                            />
+                        )
+                    })}
+                </main>
+            )
         }
         return (
             <NoVideos type='playlist' />
@@ -53,7 +67,14 @@ export function Playlist() {
         <section>
             <div className='flex'>
                 <Sidebar />
-                <main className={videos?.length ? 'videos' : 'no_video'}>
+                <main className='flex flex_dcolumn w_100'>
+                    <div className='playlist_head flex'>
+                        <h4>{name}</h4>
+                        <button
+                            className="btn btn_primary"
+                            onClick={() => deletePlaylist(name)}
+                        >Delete Playlist</button>
+                    </div>
                     {getPlaylistVideosById()}
                 </main>
             </div>
