@@ -5,8 +5,7 @@
     width: 300px;
     margin: 2rem auto;
     display: flex;
-    border: 1px solid rgb(200, 201, 202);
+    border: 1px solid #c8c9ca;
     font-size: 1.6rem;
-    position: absolute;
     top: 5px;
 }
