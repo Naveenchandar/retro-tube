@@ -51,7 +51,7 @@ export function LikedVideos() {
                         data={filterLikedVideos?.length}
                         title='Liked videos'
                     />
-                    <main className={filterLikedVideos?.length ? 'videos' : 'no_video'}>
+                    <main className={filterLikedVideos?.length ? 'videos group_videos' : 'no_video'}>
                         {filterLikedVideos?.map(item => {
                             return (
                                 <Video

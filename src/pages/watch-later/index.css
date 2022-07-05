@@ -6,3 +6,7 @@
 .no_video a {
     color: var(--primary-color);
 }
+
+.group_videos {
+    grid-template-columns: repeat(3, 1fr);
+}

@@ -51,7 +51,7 @@ export function WatchLater() {
                         data={filterWatchLaterVideos?.length}
                         title='Watch later'
                     />
-                    <main className={filterWatchLaterVideos?.length ? 'videos' : 'no_video'}>
+                    <main className={filterWatchLaterVideos?.length ? 'videos group_videos' : 'no_video'}>
                         {filterWatchLaterVideos?.map(item => {
                             return (
                                 <Video

@@ -54,7 +54,7 @@ export function History() {
                         icon={<AiOutlineDelete />}
                         onClick={clearHistory}
                     />
-                    <main className={filterHistoryVideos?.length ? 'videos' : 'no_video'}>
+                    <main className={filterHistoryVideos?.length ? 'videos group_videos' : 'no_video'}>
                         {filterHistoryVideos?.map(item => {
                             return (
                                 <Video
