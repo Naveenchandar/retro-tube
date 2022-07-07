@@ -23,6 +23,12 @@ export function Categories() {
             }
             setIsLoading(false);
         })();
+
+        return () => {
+            setCategoryList([]);
+            setError(false);
+            setIsLoading(false);
+        }
     }, [])
 
     const categoryRedirect = (categoryName) => {

@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import jwt_decode from "jwt-decode";
 import { useAuth } from '../../context/auth';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './index.css';
+import { notification } from '../../utils';
 
 export function Login() {
   const [info, setUserInfo] = useState({
@@ -22,6 +23,14 @@ export function Login() {
   const from = location.state?.from?.pathname || "";
 
   useDocumentTitle('Retro Cart | Login');
+
+  useEffect(() => {
+    return () => {
+      setUserInfo({ email: '', password: '' });
+      setErrorInfo({ email: '', password: '', error: '' });
+      setShowPassword(false);
+    }
+  }, [])
 
 
   const handleInputChange = (targetValue, type) => {
@@ -57,14 +66,17 @@ export function Login() {
       if (handleValidation()) {
         const { status, data: { encodedToken } } = await axios.post("/api/auth/login", info)
         if (status === 200 && encodedToken) {
+          const { firstName } = jwt_decode(encodedToken);
           updateUser(jwt_decode(encodedToken));
           localStorage.setItem("retro-tube-token", encodedToken);
+          notification('success', `Welcom ${firstName}`);
           navigate(from, { replace: true });
         } else {
           throw new Error('Email or Password is incorrect');
         }
       }
     } catch (error) {
+      notification('danger', 'Email or Password is incorrect');
       setErrorInfo({ error: 'Email or Password is incorrect' });
     }
   }
@@ -73,11 +85,15 @@ export function Login() {
     setUserInfo({
       email: "naveenchandar@gmail.com",
       password: "naveenchandar",
+      username: "naveenc"
     });
     updateUser({
       email: "naveenchandar@gmail.com",
       password: "naveenchandar",
-    })
+      firstName: "Naveen",
+      lastName: "Chandar"
+    });
+    notification('success', 'Welcome Naveen');
     navigate('/');
   }
 
