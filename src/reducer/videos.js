@@ -1,3 +1,5 @@
+import { filterSearchVideos } from "../utils";
+
 const initialState = {
     videoList: [],
     filterVideoList: [],
@@ -11,6 +13,7 @@ const loadActiveVideosBasedOnChip = (state) => {
     const filterResult = state.videoList.filter(({ type }) => type === state.activeChip);
     return filterResult;
 }
+
 function videosReducer(state = initialState, action) {
     switch (action.type) {
         case 'FETCH_VIDEOS':
@@ -34,8 +37,16 @@ function videosReducer(state = initialState, action) {
         case 'VIDEO_ACTIVE_PLAYLIST_MODAL': {
             return { ...state, videoPlaylistInfo: action.payload };
         }
-        default:
-            return initialState
+        case 'SEARCH_VIDEOS': {
+            const obj = {
+                videos: state.videoList, searchText: action.payload?.searchText, type: 'explore', chip: state.activeChip
+            }
+            const searchVideos = filterSearchVideos(obj);
+            return { ...state, filterVideoList: searchVideos };
+        }
+        default: {
+            return initialState;
+        }
     }
 }
 

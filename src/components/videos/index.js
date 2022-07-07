@@ -6,6 +6,7 @@ import { useVideos } from '../../context/videos';
 import { getLocalStorageItem, setLocalStorageItem } from '../../utils';
 import { Chips } from '../chips';
 import { PlaylistModal } from '../playlistmodal';
+import { SearchInput } from '../search';
 import Video from '../video';
 import './index.css';
 
@@ -15,9 +16,11 @@ export function Vidoes() {
     const { dispatch: playlistDispatch } = usePlaylist();
     const location = useLocation();
     const { filterVideoList, loading, error, activeChip } = state;
+
     const [showOptions, setShowOptions] = useState();
     const [watchLaterVideos, setWatchLaterVideos] = useState(getLocalStorageItem('retro-tube-watchlater'));
     const [showModal, setShowModal] = useState(false);
+    const [searchValue, setSearchValue] = useState('');
 
     useEffect(() => {
         (async () => {
@@ -26,9 +29,9 @@ export function Vidoes() {
                 const { status, data: { videos = [] } } = await axios.get('/api/videos');
                 if (status === 200) {
                     dispatch({ type: 'FETCH_VIDEOS', payload: videos });
-                    const { state: { categoryName } = '' } = location;
-                    if(categoryName){
-                        dispatch({ type: 'CHANGE_CHIP', payload: categoryName })
+                    const { state } = location;
+                    if (state?.categoryName) {
+                        dispatch({ type: 'CHANGE_CHIP', payload: state?.categoryName })
                         dispatch({ type: 'FILTER_VIDEOS_BASEDON_CHIP' })
                     } else {
                         dispatch({ type: 'CHANGE_CHIP', payload: 'all' })
@@ -72,7 +75,18 @@ export function Vidoes() {
     }
 
     return (
-        <main className='main_container w_100'>
+        <main className='main_container w_100 section_videos'>
+            <div>
+                <SearchInput
+                    value={searchValue}
+                    onChange={(value) => setSearchValue(value)}
+                    placeholder={`Search explore`}
+                    dispatch={{
+                        search: () => dispatch({ type: 'SEARCH_VIDEOS', payload: { searchText: searchValue } }),
+                        noSearch: () => dispatch({ type: 'FILTER_VIDEOS_BASEDON_CHIP' })
+                    }}
+                />
+            </div>
             <Chips activeChip={activeChip} changeChip={changeChip} />
             <hr />
             <div className='m-2 videos'>

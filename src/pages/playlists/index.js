@@ -8,24 +8,38 @@ import './index.css';
 import { MainHeader } from '../../components/main-header';
 import { PlaylistModal } from '../../components/playlistmodal';
 import { MainSection } from '../../components/main-section';
+import { SearchInput } from '../../components/search';
 
 export function Playlists() {
-    const { state: { playlists = [] } = {} } = usePlaylist();
+    const { state: { playlists = [], filterPlaylists = [] } = {}, dispatch } = usePlaylist();
     const [showModal, setShowModal] = useState(false);
+    const [searchValue, setSearchValue] = useState('');
+
     return (
         <section>
             <div className='flex'>
                 <Sidebar />
                 <MainSection data={playlists?.length} type='playlists'>
+                    <div>
+                        <SearchInput
+                            value={searchValue}
+                            onChange={(value) => setSearchValue(value)}
+                            placeholder={`Search playlists`}
+                            dispatch={{
+                                search: (value) => dispatch({ type: 'SEARCH_PLAYLISTS', payload: { searchText: value } }),
+                                noSearch: () => dispatch({ type: 'INIT_PLAYLISTS' })
+                            }}
+                        />
+                    </div>
                     <MainHeader
-                        data={playlists?.length}
+                        data={filterPlaylists?.length}
                         title='Playlists'
                         btn='Add new playlist'
                         icon={<IoMdAdd />}
                         onClick={() => setShowModal(true)}
                     />
-                    <main className={playlists?.length ? 'playlist_videos' : 'no_video'}>
-                        {playlists?.map(({ id, name, videos }) => {
+                    <main className={filterPlaylists?.length ? 'playlist_videos' : 'no_video'}>
+                        {filterPlaylists?.map(({ id, name, videos }) => {
                             return (
                                 <Link
                                     key={id}
