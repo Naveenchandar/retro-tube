@@ -1,29 +1,18 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchCategories } from '../../features/categorySlice';
 
 export function Categories() {
-    const [categoryList, setCategoryList] = useState([]);
-    const [error, setError] = useState(false);
-    const [loading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    const { categoryList, error, loading } = useSelector(state => state.categories);
+    const dispatch = useDispatch();
+    
     useEffect(() => {
         (async () => {
-            setIsLoading(true);
-            try {
-                const { status, data: { categories } } = await axios.get('/api/categories');
-                if (status === 200 && categories) {
-                    setCategoryList(categories)
-                } else {
-                    throw new Error('Something went wrong while loading categories, Please try again');
-                }
-            } catch (error) {
-                setCategoryList([]);
-                setError(error.message)
-            }
-            setIsLoading(false);
+           await (dispatch(fetchCategories()));
         })();
-    }, [])
+    }, [dispatch])
 
     const categoryRedirect = (categoryName) => {
         navigate('/explore', { state: { categoryName } });

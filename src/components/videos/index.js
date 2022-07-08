@@ -1,55 +1,51 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { usePlaylist } from '../../context/playlist';
-import { useVideos } from '../../context/videos';
 import { getLocalStorageItem, setLocalStorageItem } from '../../utils';
 import { Chips } from '../chips';
 import { PlaylistModal } from '../playlistmodal';
 import { SearchInput } from '../search';
 import Video from '../video';
 import './index.css';
+import { chipOnChange, filterBasedOnActiveChip, loadingVideos, loadVideos, loadVideosError, searchVideos } from '../../features/videos/videosSlice';
 
 
 export function Vidoes() {
-    const { state, dispatch } = useVideos();
-    const { dispatch: playlistDispatch } = usePlaylist();
+    // const { dispatch: playlistDispatch } = usePlaylist();
     const location = useLocation();
-    const { filterVideoList, loading, error, activeChip } = state;
 
     const [showOptions, setShowOptions] = useState();
     const [watchLaterVideos, setWatchLaterVideos] = useState(getLocalStorageItem('retro-tube-watchlater'));
     const [showModal, setShowModal] = useState(false);
     const [searchValue, setSearchValue] = useState('');
 
+    const { filterVideoList, loading, error, activeChip } = useSelector(store => store.videos);
+    const dispatch = useDispatch();
+
     useEffect(() => {
         (async () => {
-            dispatch({ type: 'LOADING_VIDEOS', payload: true });
+            dispatch(loadingVideos(true));
             try {
-                const { status, data: { videos = [] } } = await axios.get('/api/videos');
-                if (status === 200) {
-                    dispatch({ type: 'FETCH_VIDEOS', payload: videos });
-                    const { state } = location;
-                    if (state?.categoryName) {
-                        dispatch({ type: 'CHANGE_CHIP', payload: state?.categoryName })
-                        dispatch({ type: 'FILTER_VIDEOS_BASEDON_CHIP' })
-                    } else {
-                        dispatch({ type: 'CHANGE_CHIP', payload: 'all' })
-                    }
+                await dispatch(loadVideos());
+                const { state } = location;
+                if (state?.categoryName) {
+                    dispatch(chipOnChange(state?.categoryName));
+                    dispatch(filterBasedOnActiveChip())
                 } else {
-                    throw new Error('Something went wrong, Please try again');
+                    dispatch(chipOnChange('all'));
                 }
             } catch (error) {
-                dispatch({ type: 'VIDEOS_ERROR', payload: error.message });
+                dispatch(loadVideosError(error.message));
             }
-            dispatch({ type: 'LOADING_VIDEOS', payload: false });
+            dispatch(loadingVideos(false));
         })()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const changeChip = async (value) => {
-        dispatch({ type: 'CHANGE_CHIP', payload: value })
-        dispatch({ type: 'FILTER_VIDEOS_BASEDON_CHIP' })
+        dispatch(chipOnChange(value));
+        dispatch(filterBasedOnActiveChip())
     }
 
     const handleMoreOptions = (videoId) => {
@@ -82,8 +78,8 @@ export function Vidoes() {
                     onChange={(value) => setSearchValue(value)}
                     placeholder={`Search explore`}
                     dispatch={{
-                        search: () => dispatch({ type: 'SEARCH_VIDEOS', payload: { searchText: searchValue } }),
-                        noSearch: () => dispatch({ type: 'FILTER_VIDEOS_BASEDON_CHIP' })
+                        search: () => dispatch(searchVideos({ searchText: searchValue })),
+                        noSearch: () => dispatch(filterBasedOnActiveChip())
                     }}
                 />
             </div>
@@ -100,7 +96,7 @@ export function Vidoes() {
                             watchLater={watchLater}
                             showPlaylist={(data) => {
                                 setShowModal(true);
-                                playlistDispatch({ type: 'VIDEO_ACTIVE_PLAYLIST_MODAL', payload: data });
+                                // playlistDispatch({ type: 'VIDEO_ACTIVE_PLAYLIST_MODAL', payload: data });
                             }}
                             moreOptionsList={['Add to playlist', 'Watch later']}
                         />
