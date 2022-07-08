@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { Sidebar } from '../../components/sidebar'
 import { usePlaylist } from '../../context/playlist';
 import Video from '../../components/video';
@@ -7,9 +8,13 @@ import { getLocalStorageItem, setLocalStorageItem } from '../../utils';
 import { NoVideos } from '../../components/no-videos';
 
 export function Playlist() {
-    const { state: { playlists = [] } = {}, dispatch } = usePlaylist();
+    // const { state: { playlists = [] } = {}, dispatch } = usePlaylist();
+    const { playlists = [] } = useSelector(state => state.playlist);
+    const dispatch = useDispatch();
+    
     const { playlistId } = useParams();
     const navigate = useNavigate();
+    
     const [showOptions, setShowOptions] = useState();
     const { videos = [], id, name } = playlists?.find(({ id }) => id === playlistId);
     const watchLaterVideos = useState(getLocalStorageItem('retro-tube-watchlater'));
@@ -67,13 +72,13 @@ export function Playlist() {
         <section>
             <div className='flex'>
                 <Sidebar />
-                <main className='flex flex_dcolumn w_100'>
-                    <div className='playlist_head flex'>
-                        <h4>{name}</h4>
+                <main className='flex flex_dcolumn w_100 section_videos'>
+                    <div className='playlist_head flex justify_spacebtw m-4'>
+                        <h1>{name}</h1>
                         <button
-                            className="btn btn_primary"
+                            className="btn btn_primary main_header_btn align_center"
                             onClick={() => deletePlaylist(name)}
-                        >Delete Playlist</button>
+                        ><span className='main_header_btn_caption'>Delete Playlist</span></button>
                     </div>
                     {getPlaylistVideosById()}
                 </main>
