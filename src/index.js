@@ -6,7 +6,9 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
-import { Provider } from './provider';
+// import { Provider } from './provider';
+import { store } from './store';
+import { Provider } from 'react-redux';
 
 // Call make Server
 makeServer();
@@ -14,7 +16,7 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Provider>
+      <Provider store={store}>
         <App />
       </Provider>
     </BrowserRouter>
