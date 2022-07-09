@@ -3,10 +3,10 @@ import { Store } from 'react-notifications-component';
 
 export const getLocalStorageItem = (key) => {
     const getItem = localStorage.getItem(key);
+    if(key === 'retro-tube-token'){
+        return getItem ? jwt_decode(getItem) : {}
+    }
     if (getItem) {
-        if (key === 'retro-tube-token') {
-            return jwt_decode(getItem)
-        }
         return JSON.parse(getItem)
     }
     return []
