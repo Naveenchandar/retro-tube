@@ -3,7 +3,6 @@ import {useDispatch} from 'react-redux';
 import './index.css';
 
 export function Playlists({ item, addVideosToPlaylist, checked, editPlaylist, deletePlaylist, list }) {
-    // const { dispatch } = usePlaylist();
     const dispatch = useDispatch();
     return (
         <ul className='playlist_names'>
@@ -23,7 +22,7 @@ export function Playlists({ item, addVideosToPlaylist, checked, editPlaylist, de
                         <AiOutlineDelete
                             className='pointer playlist_delete'
                             title='Delete Playlist'
-                            onClick={() => dispatch(deletePlaylist(item))}
+                            onClick={deletePlaylist}
                         />
                     </label>
                 </label>

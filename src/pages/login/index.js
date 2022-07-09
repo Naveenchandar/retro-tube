@@ -2,9 +2,11 @@ import axios from 'axios';
 import { useState } from 'react'
 import { Link, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import jwt_decode from "jwt-decode";
-import { useAuth } from '../../context/auth';
+import { useSelector, useDispatch } from 'react-redux';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './index.css';
+import { updateUser } from '../../features/authSlice';
+import { notification } from '../../utils';
 
 export function Login() {
   const [info, setUserInfo] = useState({
@@ -15,7 +17,8 @@ export function Login() {
   });
   const [showPassword, setShowPassword] = useState(false);
 
-  const { user, updateUser } = useAuth();
+  const { user } = useSelector(state => state.user);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -57,15 +60,16 @@ export function Login() {
       if (handleValidation()) {
         const { status, data: { encodedToken } } = await axios.post("/api/auth/login", info)
         if (status === 200 && encodedToken) {
-          updateUser(jwt_decode(encodedToken));
+          notification('success', 'logged in successfully');
+          dispatch(updateUser(jwt_decode(encodedToken)));
           localStorage.setItem("retro-tube-token", encodedToken);
-          navigate(from, { replace: true });
+          navigate(from ? from : '/', { replace: true });
         } else {
           throw new Error('Email or Password is incorrect');
         }
       }
     } catch (error) {
-      setErrorInfo({ error: 'Email or Password is incorrect' });
+      setErrorInfo({ error: error?.response?.data?.errors || error?.message });
     }
   }
 
@@ -73,12 +77,16 @@ export function Login() {
     setUserInfo({
       email: "naveenchandar@gmail.com",
       password: "naveenchandar",
+      username: "naveenram"
     });
-    updateUser({
+    dispatch(updateUser({
       email: "naveenchandar@gmail.com",
       password: "naveenchandar",
-    })
-    navigate('/');
+      firstName: "Naveen",
+      lastName: "Ram"
+    }));
+    navigate(from ? from : '/', { replace: true });
+    notification('success', 'Welcome naveen');
   }
 
   const togglePassword = () => setShowPassword((showPassword) => !showPassword);

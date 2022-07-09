@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { IoMdAdd } from 'react-icons/io';
 import { useSelector, useDispatch } from 'react-redux';
@@ -17,6 +17,10 @@ export function Playlists() {
 
     const [showModal, setShowModal] = useState(false);
     const [searchValue, setSearchValue] = useState('');
+
+    useEffect(() => {
+        dispatch(initPlaylist());
+    }, [dispatch])
 
     return (
         <section>

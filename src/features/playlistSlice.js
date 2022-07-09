@@ -1,5 +1,5 @@
 import { createSlice, current } from '@reduxjs/toolkit';
-import { filterSearchVideos, getLocalStorageItem, setLocalStorageItem } from '../utils';
+import { filterSearchVideos, getLocalStorageItem, notification, setLocalStorageItem } from '../utils';
 import { v4 as uuid } from "uuid";
 
 const initialState = {
@@ -38,6 +38,7 @@ const playlistSlice = createSlice({
                 state.inputValue = '';
                 state.inputError = '';
                 state.showInput = !state.showInput;
+                notification('success', `${currentState.inputValue} playlist created`);
             } else {
                 state.inputError = 'Playlist name already exists';
             }
@@ -62,6 +63,7 @@ const playlistSlice = createSlice({
         deletePlaylist: (state, action) => {
             const remainingPlaylist = current(state).playlists.filter(({ name }) => name?.toLowerCase() !== action.payload?.name);
             state.playlists = remainingPlaylist;
+            notification('success', `${action.payload?.name} playlist deleted`);
         },
         editPlaylist: (state, action) => {
             const currentState = current(state);
@@ -92,6 +94,7 @@ const playlistSlice = createSlice({
                 state.inputValue = '';
                 state.inputError = '';
                 state.showInput = false;
+                notification('success', `${currentState.inputValue} playlist updated`);
             }
             initPlaylist();
         },
@@ -106,6 +109,7 @@ const playlistSlice = createSlice({
                 return { ...item };
             });
             state.playlists = result;
+            notification('success', 'playlist video removed');
         },
         searchPlaylist: (state, action) => {
             const currentSate = current(state);
@@ -116,6 +120,7 @@ const playlistSlice = createSlice({
             state.filterPlaylists = searchVideos;
         },
         initPlaylist: (state, action) => {
+            state.playlists = current(state).playlists;
             state.filterPlaylists = current(state).playlists;
         }
     }

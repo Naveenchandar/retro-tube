@@ -1,21 +1,22 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/auth";
+import { useSelector, useDispatch } from 'react-redux';
 import { useComponentVisible } from "../../hooks/useVisible";
+import { updateUser } from "../../features/authSlice";
 import './index.css';
 
 export function Navbar() {
-    const { user: { firstName = '', email = '' }, updateUser } = useAuth();
+    const { user: { firstName = '', email = '' } } = useSelector(state => state.user);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const { ref, isComponentVisible } = useComponentVisible(true);
 
     const [isLogoutVisible, setIsLogoutVisible] = useState(false);
 
     const handleLogout = () => {
-        updateUser({});
-        navigate('/login');
         localStorage.removeItem('retro-tube-token');
+        dispatch(updateUser({}));
+        navigate('/login');
     }
 
     useEffect(() => {

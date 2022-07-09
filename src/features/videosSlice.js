@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { filterSearchVideos } from '../../utils';
+import { filterSearchVideos } from '../utils';
 
 const initialState = {
     videoList: [],

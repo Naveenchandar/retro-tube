@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { MoreOptions } from '../more-options';
 import { AiFillCloseCircle } from 'react-icons/ai';
+import { useSelector } from 'react-redux';
+import { MoreOptions } from '../more-options';
 import './index.css';
 
 function Video(props) {
@@ -8,6 +9,8 @@ function Video(props) {
         handleFromRemoveWatchLater, showPlaylist, handleRemoveFromPlaylist, like, moreAction, history } = props;
     const { _id, thumbnail, alt, title, creator, views, postedOn, avatar } = data;
     const navigate = useNavigate();
+
+    const { user } = useSelector(store => store.user);
 
     const handleClickVideo = (videoId) => {
         navigate(`/video/${videoId}`, { state: { like: like ? true : false } });
@@ -21,7 +24,11 @@ function Video(props) {
             handleFromRemoveWatchLater(data);
         }
         if (item === 'Add to playlist') {
-            showPlaylist(data);
+            if (user?.email) {
+                showPlaylist(data);
+            } else {
+                navigate('/login', { replace: true });
+            }
         }
         if (item === 'Remove from playlist') {
             handleRemoveFromPlaylist(data);

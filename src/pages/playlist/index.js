@@ -2,13 +2,11 @@ import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Sidebar } from '../../components/sidebar'
-import { usePlaylist } from '../../context/playlist';
 import Video from '../../components/video';
 import { getLocalStorageItem, setLocalStorageItem } from '../../utils';
 import { NoVideos } from '../../components/no-videos';
 
 export function Playlist() {
-    // const { state: { playlists = [] } = {}, dispatch } = usePlaylist();
     const { playlists = [] } = useSelector(state => state.playlist);
     const dispatch = useDispatch();
     

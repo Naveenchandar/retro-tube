@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { usePlaylist } from '../../context/playlist';
 import { getLocalStorageItem, setLocalStorageItem } from '../../utils';
 import { Chips } from '../chips';
 import { PlaylistModal } from '../playlistmodal';
 import { SearchInput } from '../search';
 import Video from '../video';
 import './index.css';
-import { chipOnChange, filterBasedOnActiveChip, loadingVideos, loadVideos, loadVideosError, searchVideos } from '../../features/videos/videosSlice';
+import { chipOnChange, filterBasedOnActiveChip, loadingVideos, loadVideos, loadVideosError, searchVideos } from '../../features/videosSlice';
+import { videosAddToPlaylist } from '../../features/playlistSlice';
 
 
 export function Vidoes() {
-    // const { dispatch: playlistDispatch } = usePlaylist();
     const location = useLocation();
 
     const [showOptions, setShowOptions] = useState();
@@ -96,7 +95,7 @@ export function Vidoes() {
                             watchLater={watchLater}
                             showPlaylist={(data) => {
                                 setShowModal(true);
-                                // playlistDispatch({ type: 'VIDEO_ACTIVE_PLAYLIST_MODAL', payload: data });
+                                dispatch(videosAddToPlaylist(data));
                             }}
                             moreOptionsList={['Add to playlist', 'Watch later']}
                         />
