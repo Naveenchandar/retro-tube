@@ -1,11 +1,9 @@
-import axios from 'axios';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate, Navigate } from 'react-router-dom';
-import jwt_decode from "jwt-decode";
 import { useSelector, useDispatch } from 'react-redux';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './index.css';
-import { updateUser } from '../../features/authSlice';
+import { loginUser, updateUser } from '../../features/authSlice';
 import { notification } from '../../utils';
 
 export function Login() {
@@ -17,12 +15,18 @@ export function Login() {
   });
   const [showPassword, setShowPassword] = useState(false);
 
-  const { user } = useSelector(state => state.user);
+  const { user, loading, error } = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "";
+
+  useEffect(() => {
+    if (error) {
+      setErrorInfo({ error })
+    }
+  }, [error])
 
   useDocumentTitle('Retro Cart | Login');
 
@@ -58,18 +62,10 @@ export function Login() {
     event.preventDefault();
     try {
       if (handleValidation()) {
-        const { status, data: { encodedToken } } = await axios.post("/api/auth/login", info)
-        if (status === 200 && encodedToken) {
-          notification('success', 'logged in successfully');
-          dispatch(updateUser(jwt_decode(encodedToken)));
-          localStorage.setItem("retro-tube-token", encodedToken);
-          navigate(from ? from : '/', { replace: true });
-        } else {
-          throw new Error('Email or Password is incorrect');
-        }
+        await dispatch(loginUser(info));
       }
     } catch (error) {
-      setErrorInfo({ error: error?.response?.data?.errors || error?.message });
+      setErrorInfo({ error: error?.response?.data?.error || error?.message });
     }
   }
 
@@ -147,7 +143,8 @@ export function Login() {
               </button>
               <button
                 className="login_btn btn btn_primary w-100"
-              >Login</button>
+                disabled={loading && true}
+              >{loading ? 'Loading...' : 'Login'}</button>
               <p className="login_new_acc text_center m-1"><Link to='/signup'>Create New Account </Link></p>
             </div>
           </div>
