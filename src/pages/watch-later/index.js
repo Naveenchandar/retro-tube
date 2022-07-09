@@ -19,6 +19,7 @@ export function WatchLater() {
     const handleFromRemoveWatchLater = (video) => {
         const remainingVideos = watchLaterVideos.filter(({ _id }) => _id !== video._id);
         setWatchlaterVideos(remainingVideos);
+        setFilterWatchlaterVideos(remainingVideos);
         setLocalStorageItem('retro-tube-watchlater', JSON.stringify(remainingVideos));
         setShowOptions('');
     }
