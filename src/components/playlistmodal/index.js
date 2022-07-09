@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useSelector, useDispatch } from 'react-redux';
-import { usePlaylist } from '../../context/playlist';
 import { deletePlaylist, inputChange, playlistCreate, toggleInput, updatePlaylist, videosAddToPlaylist } from '../../features/playlistSlice';
 import { Playlists } from '../playlists';
 import './index.css';
