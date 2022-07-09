@@ -42,7 +42,7 @@ export function Playlist() {
     const getPlaylistVideosById = () => {
         if (videos?.length) {
             return (
-                <main className='videos'>
+                <main className='videos group_videos'>
                     {videos?.map(item => {
                         return (
                             <Video
