@@ -40,19 +40,21 @@ export function Navbar() {
                         </li>
                     </ul>
                 </div>
-                {email ?
-                    <div className="relative_pos username_div">
-                        <h3 className="pointer username" onClick={() => setIsLogoutVisible(isComponentVisible ? true : false)}>Hi, {firstName}</h3>
-                        {isLogoutVisible && isComponentVisible && (
-                            <button className="auth_btn logout_btn nav_link absolute_pos" ref={ref} onClick={handleLogout}>Logout</button>
-                        )}
-                    </div>
-                    :
-                    <div className="nav_search flex align_center">
-                        <NavLink to='/signup' className="btn nav_link auth_btn">Sign up</NavLink>
-                        <NavLink to='/login' className="btn nav_link auth_btn">Log in</NavLink>
-                    </div>
-                }
+                <div className="flex align_center">
+                    {email ?
+                        <div className="relative_pos username_div">
+                            <h3 className="pointer username" onClick={() => setIsLogoutVisible(isComponentVisible ? true : false)}>Hi, {firstName}</h3>
+                            {isLogoutVisible && isComponentVisible && (
+                                <button className="auth_btn logout_btn nav_link absolute_pos" ref={ref} onClick={handleLogout}>Logout</button>
+                            )}
+                        </div>
+                        :
+                        <div className="nav_search flex align_center">
+                            <NavLink to='/signup' className="btn nav_link auth_btn">Sign up</NavLink>
+                            <NavLink to='/login' className="btn nav_link auth_btn">Log in</NavLink>
+                        </div>
+                    }
+                </div>
             </nav>
         </div>
     );
