@@ -14,11 +14,10 @@
     "react-bootstrap": "^2.4.0",
     "react-dom": "^17.0.0",
     "react-icons": "^4.4.0",
-    "react-notifications-component": "file:../../react-notifications-component",
+    "react-notifications-component": "^4.0.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-youtube": "^9.0.2",
-    "serve": "^14.0.1",
     "uuid": "^8.3.2"
   },
   "scripts": {
