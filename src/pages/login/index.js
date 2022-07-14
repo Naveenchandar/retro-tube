@@ -30,6 +30,14 @@ export function Login() {
 
   useDocumentTitle('Retro Cart | Login');
 
+  useEffect(() => {
+    return () => {
+      setUserInfo({ email: '', password: '' });
+      setErrorInfo({ email: '', password: '', error: '' });
+      setShowPassword(false);
+    }
+  }, [])
+
 
   const handleInputChange = (targetValue, type) => {
     if (type === 'email') {

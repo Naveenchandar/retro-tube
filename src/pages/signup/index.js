@@ -47,7 +47,7 @@ export function SignUp() {
                 setErrorInfo(response);
             }
         } catch (error) {
-            setErrorInfo({ error: 'Something went wrong, Please try again.' });
+            setErrorInfo({ error: error?.response?.data?.errors?.[0] || error?.message || error || 'Something went wrong, Please try again.'});
         }
     }
 
