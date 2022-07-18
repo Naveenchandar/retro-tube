@@ -5,6 +5,8 @@ import { Sidebar } from '../../components/sidebar'
 import Video from '../../components/video';
 import { getLocalStorageItem, setLocalStorageItem } from '../../utils';
 import { NoVideos } from '../../components/no-videos';
+import { deletePlaylist as playlistDelete } from '../../features/playlistSlice';
+
 
 export function Playlist() {
     const { playlists = [] } = useSelector(state => state.playlist);
@@ -32,7 +34,7 @@ export function Playlist() {
 
     const deletePlaylist = (name) => {
         try {
-            dispatch({ type: 'DELETE_PLAYLIST', payload: { name: name?.toLowerCase() } });
+            dispatch(playlistDelete(name));
             navigate('/playlists');
         } catch (error) {
             console.error('playlist delete:', error)

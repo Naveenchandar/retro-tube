@@ -61,9 +61,10 @@ const playlistSlice = createSlice({
             return { ...state, playlists: data };
         },
         deletePlaylist: (state, action) => {
-            const remainingPlaylist = current(state).playlists.filter(({ name }) => name?.toLowerCase() !== action.payload?.name);
+            const playlistName = action.payload.name || action.payload;
+            const remainingPlaylist = current(state).playlists.filter(({ name }) => name?.toLowerCase() !== playlistName?.toLowerCase());
             state.playlists = remainingPlaylist;
-            notification('success', `${action.payload?.name} playlist deleted`);
+            notification('success', `${playlistName} playlist deleted`);
         },
         editPlaylist: (state, action) => {
             const currentState = current(state);
