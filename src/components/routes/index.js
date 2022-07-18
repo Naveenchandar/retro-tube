@@ -18,16 +18,33 @@ export const NavRoutes = () => {
                 <Route path='/signup' element={<SignUp />} />
                 <Route path='/explore' element={<Explore />} />
                 <Route path='/video/:videoId' element={<SingleVideo />} />
-                <Route path='/watchlater' element={<WatchLater />} />
+                <Route path='/watchlater' element={
+                    <ProtectedRoute>
+                        <WatchLater />
+                    </ProtectedRoute>
+                }
+                />
                 <Route path='/playlists' element={
                     <ProtectedRoute>
                         <Playlists />
                     </ProtectedRoute>
                 }
                 />
-                <Route path='/playlists/:playlistId' element={<Playlist />} />
-                <Route path='/liked-videos' element={<LikedVideos />} />
-                <Route path='/history' element={<History />} />
+                <Route path='/playlists/:playlistId' element={
+                    <ProtectedRoute>
+                        <Playlist />
+                    </ProtectedRoute>
+                } />
+                <Route path='/liked-videos' element={
+                    <ProtectedRoute>
+                        <LikedVideos />
+                    </ProtectedRoute>
+                } />
+                <Route path='/history' element={
+                    <ProtectedRoute>
+                        <History />
+                    </ProtectedRoute>
+                } />
             </Routes>
         </>
     )

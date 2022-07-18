@@ -1,19 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { IoMdAdd } from 'react-icons/io';
-import { Sidebar } from '../../components/sidebar';
+import { useSelector, useDispatch } from 'react-redux';
 import { Badge } from 'react-bootstrap';
-import { usePlaylist } from '../../context/playlist';
+import { Sidebar } from '../../components/sidebar';
 import './index.css';
 import { MainHeader } from '../../components/main-header';
 import { PlaylistModal } from '../../components/playlistmodal';
 import { MainSection } from '../../components/main-section';
 import { SearchInput } from '../../components/search';
+import { initPlaylist, searchPlaylist } from '../../features/playlistSlice';
 
 export function Playlists() {
-    const { state: { playlists = [], filterPlaylists = [] } = {}, dispatch } = usePlaylist();
+    const { playlists = [], filterPlaylists = [] } = useSelector(state => state.playlist);
+    const dispatch = useDispatch();
+
     const [showModal, setShowModal] = useState(false);
     const [searchValue, setSearchValue] = useState('');
+
+    useEffect(() => {
+        dispatch(initPlaylist());
+    }, [dispatch])
 
     return (
         <section>
@@ -26,8 +33,8 @@ export function Playlists() {
                             onChange={(value) => setSearchValue(value)}
                             placeholder={`Search playlists`}
                             dispatch={{
-                                search: (value) => dispatch({ type: 'SEARCH_PLAYLISTS', payload: { searchText: value } }),
-                                noSearch: () => dispatch({ type: 'INIT_PLAYLISTS' })
+                                search: (value) => dispatch(searchPlaylist({ searchText: value })),
+                                noSearch: () => dispatch(initPlaylist())
                             }}
                         />
                     </div>
@@ -60,7 +67,7 @@ export function Playlists() {
             </div >
             <PlaylistModal
                 show={showModal}
-                onHide={() => setShowModal(false)}
+                onHide={() => { setShowModal(false); dispatch(initPlaylist()) }}
                 list
             />
         </section >

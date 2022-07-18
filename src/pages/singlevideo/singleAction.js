@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import { PlaylistModal } from '../../components/playlistmodal';
-import { usePlaylist } from '../../context/playlist';
+import { useDispatch } from 'react-redux';
+import { videoActivePlaylistModal } from '../../features/playlistSlice';
 import { getLocalStorageItem, setLocalStorageItem } from '../../utils'
 
 export function SingleAction({ data, videoId }) {
     const { state: { like } } = useLocation();
-    const { dispatch } = usePlaylist();
+    const dispatch = useDispatch();
     const { _id } = data;
     const [likedVideos, setLikedVideos] = useState(getLocalStorageItem('retro-liked-videos'));
     const [filled, setFilled] = useState(like);
@@ -28,7 +29,7 @@ export function SingleAction({ data, videoId }) {
 
     const saveToPlaylist = () => {
         setShowModal(true);
-        dispatch({ type: 'VIDEO_ACTIVE_PLAYLIST_MODAL', payload: data });
+        dispatch(videoActivePlaylistModal(data));
     }
 
     const watchLater = () => {

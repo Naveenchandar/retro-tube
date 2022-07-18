@@ -3,10 +3,10 @@ import { Store } from 'react-notifications-component';
 
 export const getLocalStorageItem = (key) => {
     const getItem = localStorage.getItem(key);
+    if (key === 'retro-tube-token') {
+        return getItem ? jwt_decode(getItem) : {}
+    }
     if (getItem) {
-        if (key === 'retro-tube-token') {
-            return jwt_decode(getItem)
-        }
         return JSON.parse(getItem)
     }
     return []
@@ -60,4 +60,36 @@ export const searchValueChange = (value) => {
         return value;
     }
     return '';
+}
+
+const updateErrorObj = (obj, type, message) => {
+    return { ...obj, [type]: message, valid: false }
+}
+
+export const handleValidation = (info, errorInfo) => {
+    const { email, password, firstName, lastName, confirmPwd } = info;
+    const isValidEmail = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test(email);
+    if (!email) {
+        return updateErrorObj(errorInfo, 'email', 'Please enter email id');
+    }
+    if (!isValidEmail) {
+        return updateErrorObj(errorInfo, 'email', 'Please enter valid email id');
+    }
+    if (!password) {
+        return updateErrorObj(errorInfo, 'password', 'Please enter password');
+    }
+    if (!firstName) {
+        return updateErrorObj(errorInfo, 'firstName', 'Please enter first name');
+    }
+    if (!lastName) {
+        return updateErrorObj(errorInfo, 'lastName', 'Please enter last nmae');
+    }
+    if (!confirmPwd) {
+        return updateErrorObj(errorInfo, 'confirmPwd', 'Please enter confirm password');
+    }
+    if (password && confirmPwd && password !== confirmPwd) {
+        const obj = { ...errorInfo, 'error': '' };
+        return updateErrorObj(obj, 'confirmPwd', 'Password mismatch');
+    }
+    return { ...errorInfo, valid: true };
 }

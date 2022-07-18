@@ -4,6 +4,10 @@
     min-height: 7vh;
     padding: 1.5rem 3rem;
     font-size: 1.4rem;
+    position: sticky;
+    top: 0.1rem;
+    z-index: 2;
+    padding: 1rem;
 }
 
 .auth_btn {

@@ -1,22 +1,23 @@
 import { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { AiOutlinePlus } from 'react-icons/ai';
-import { usePlaylist } from '../../context/playlist';
+import { useSelector, useDispatch } from 'react-redux';
+import { deletePlaylist, inputChange, playlistCreate, toggleInput, updatePlaylist, videosAddToPlaylist } from '../../features/playlistSlice';
 import { Playlists } from '../playlists';
 import './index.css';
 
 export function PlaylistModal(props) {
-    const { onHide, list, ...rest } = props
-    const { state, dispatch } = usePlaylist();
-    const { showInput, inputValue, inputError, playlists } = state;
+    const { onHide, list, ...rest } = props;
+    const { showInput, inputValue, inputError, playlists } = useSelector(state => state.playlist);
+    const dispatch = useDispatch();
     const [checked, setChecked] = useState([]);
     const [edit, setEdit] = useState(false);
 
     const createPlaylist = () => {
         if (edit) {
-            dispatch({ type: 'UPDATE_PLAYLIST' });
+            dispatch(updatePlaylist());
         } else {
-            dispatch({ type: 'CREATE_PLAYLIST' });
+            dispatch(playlistCreate());
         }
     }
 
@@ -24,7 +25,7 @@ export function PlaylistModal(props) {
         if (event.target?.checked) {
             setChecked([...checked, targetValue]);
         }
-        dispatch({ type: 'ADD_VIDEOS_TO_PLAYLIST', payload: targetValue })
+        dispatch(videosAddToPlaylist(targetValue))
     }
 
     return (
@@ -45,17 +46,17 @@ export function PlaylistModal(props) {
                     key={item.name}
                     addVideosToPlaylist={addVideosToPlaylist}
                     editPlaylist={() => setEdit(true)}
-                    deletePlaylist={() => dispatch({ type: 'DELETE_PLAYLIST', payload: item })}
+                    deletePlaylist={() => dispatch(deletePlaylist(item))}
                     list={list}
                 />
                 )}
-                <p className='pointer' onClick={() => dispatch({ type: 'TOGGLE_INPUT' })}>
+                <p className='pointer' onClick={() => dispatch(toggleInput())}>
                     <AiOutlinePlus className='add_playlist_icon' /> Create new playlist
                 </p>
                 {showInput ? (
                     <>
                         <input type='text' placeholder='Enter playlist name'
-                            onChange={(e) => dispatch({ type: 'INPUT_CHANGE', payload: e.target.value })}
+                            onChange={(e) => dispatch(inputChange(e.target.value))}
                             value={inputValue} id='playlist_input' className='playlist_input'
                             disabled={inputValue?.length > 29}
                         />

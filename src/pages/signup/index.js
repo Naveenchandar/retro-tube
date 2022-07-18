@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
+import { handleValidation } from '../../utils';
+import { signupUser } from '../../features/authSlice';
 
 export function SignUp() {
     const [info, setUserInfo] = useState({
@@ -14,8 +16,10 @@ export function SignUp() {
     const [showPassword, setShowPassword] = useState({ pwd: false, confirmPwd: false });
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { signUpError, signUpLoading } = useSelector(state => state.user);
 
-    useDocumentTitle('R - Sign up');
+    useDocumentTitle('Retro-tube | Sign up');
 
     const togglePassword = (type) => {
         if (type === 'pwd') {
@@ -26,54 +30,21 @@ export function SignUp() {
     }
 
     const handleInputChange = (targetValue, type) => {
-        setErrorInfo('');
+        setErrorInfo({ email: '', password: '', firstName: '', lastName: '', confirmPwd: '' });
         setUserInfo({ ...info, [type]: targetValue });
-    }
-
-    const handleValidation = () => {
-        const { email, password, firstName, lastName, confirmPwd } = info;
-        const isValidEmail = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test(email);
-        if (!email) {
-            setErrorInfo({ ...errorInfo, email: 'Please enter email id' });
-            return false;
-        }
-        if (!isValidEmail) {
-            setErrorInfo({ ...errorInfo, email: 'Please enter valid email id' });
-            return false;
-        }
-        if (!password) {
-            setErrorInfo({ ...errorInfo, password: 'Please enter password' });
-            return false;
-        }
-        if (!firstName) {
-            setErrorInfo({ ...errorInfo, firstName: 'Please enter first name' });
-            return false;
-        }
-        if (!lastName) {
-            setErrorInfo({ ...errorInfo, lastName: 'Please enter last nmae' });
-            return false;
-        }
-        if (!confirmPwd) {
-            setErrorInfo({ ...errorInfo, confirmPwd: 'Please enter confirm password' });
-            return false;
-        }
-        if (password && confirmPwd && password !== confirmPwd) {
-            setErrorInfo({ ...errorInfo, confirmPwd: 'Password mismatch', error: '' });
-            return false;
-        }
-        return true;
     }
 
     const handleSignup = async (event) => {
         event.preventDefault();
         try {
-            if (handleValidation()) {
-                const { status, data: { createdUser, encodedToken } } = await axios.post("/api/auth/signup", info)
-                if (status === 201 && createdUser?.id && encodedToken) {
+            const response = handleValidation(info, errorInfo)
+            if (response?.valid) {
+                const { payload: { error } } = await dispatch(signupUser(info));
+                if (!error) {
                     navigate('/login');
-                } else {
-                    throw new Error('Email or Password is incorrect');
                 }
+            } else {
+                setErrorInfo(response);
             }
         } catch (error) {
             setErrorInfo({ error: error?.response?.data?.errors?.[0] || error?.message || error || 'Something went wrong, Please try again.'});
@@ -168,8 +139,13 @@ export function SignUp() {
                             </div>
                             {errorInfo.confirmPwd && <p className='input_errormsg py-1'>{errorInfo.confirmPwd}</p>}
                         </div>
-                        {errorInfo.error && <p className='input_errormsg py-1'>{errorInfo.error}</p>}
-                        <button className="login_btn btn btn_primary w-100">Sign up</button>
+                        {(errorInfo.error || signUpError) && <p className='input_errormsg py-1'>{errorInfo.error || signUpError}</p>}
+                        <button
+                            className="login_btn btn btn_primary w-100"
+                            disabled={signUpLoading && true}
+                        >
+                            {signUpLoading ? 'Loading' : 'Sign up'}
+                        </button>
                         <p className="login_new_acc text_center m-1"><Link to='/login'>Login </Link></p>
                     </div>
                 </div>

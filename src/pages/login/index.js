@@ -1,10 +1,9 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate, Navigate } from 'react-router-dom';
-import jwt_decode from "jwt-decode";
-import { useAuth } from '../../context/auth';
+import { useSelector, useDispatch } from 'react-redux';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './index.css';
+import { loginUser, updateUser } from '../../features/authSlice';
 import { notification } from '../../utils';
 
 export function Login() {
@@ -16,11 +15,18 @@ export function Login() {
   });
   const [showPassword, setShowPassword] = useState(false);
 
-  const { user, updateUser } = useAuth();
+  const { user, loading, error } = useSelector(state => state.user);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "";
+
+  useEffect(() => {
+    if (error) {
+      setErrorInfo({ error })
+    }
+  }, [error])
 
   useDocumentTitle('Retro Cart | Login');
 
@@ -64,20 +70,10 @@ export function Login() {
     event.preventDefault();
     try {
       if (handleValidation()) {
-        const { status, data: { encodedToken } } = await axios.post("/api/auth/login", info)
-        if (status === 200 && encodedToken) {
-          const { firstName } = jwt_decode(encodedToken);
-          updateUser(jwt_decode(encodedToken));
-          localStorage.setItem("retro-tube-token", encodedToken);
-          notification('success', `Welcom ${firstName}`);
-          navigate(from, { replace: true });
-        } else {
-          throw new Error('Email or Password is incorrect');
-        }
+        await dispatch(loginUser(info));
       }
     } catch (error) {
-      notification('danger', 'Email or Password is incorrect');
-      setErrorInfo({ error: 'Email or Password is incorrect' });
+      setErrorInfo({ error: error?.response?.data?.error || error?.message });
     }
   }
 
@@ -85,16 +81,16 @@ export function Login() {
     setUserInfo({
       email: "naveenchandar@gmail.com",
       password: "naveenchandar",
-      username: "naveenc"
+      username: "naveenram"
     });
-    updateUser({
+    dispatch(updateUser({
       email: "naveenchandar@gmail.com",
       password: "naveenchandar",
       firstName: "Naveen",
-      lastName: "Chandar"
-    });
-    notification('success', 'Welcome Naveen');
-    navigate('/');
+      lastName: "Ram"
+    }));
+    navigate(from ? from : '/', { replace: true });
+    notification('success', 'Welcome naveen');
   }
 
   const togglePassword = () => setShowPassword((showPassword) => !showPassword);
@@ -155,7 +151,8 @@ export function Login() {
               </button>
               <button
                 className="login_btn btn btn_primary w-100"
-              >Login</button>
+                disabled={loading && true}
+              >{loading ? 'Loading...' : 'Login'}</button>
               <p className="login_new_acc text_center m-1"><Link to='/signup'>Create New Account </Link></p>
             </div>
           </div>
