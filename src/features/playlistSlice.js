@@ -64,6 +64,7 @@ const playlistSlice = createSlice({
             const playlistName = action.payload.name || action.payload;
             const remainingPlaylist = current(state).playlists.filter(({ name }) => name?.toLowerCase() !== playlistName?.toLowerCase());
             state.playlists = remainingPlaylist;
+            setLocalStorageItem('retro-tube-playlist', JSON.stringify(remainingPlaylist));
             notification('success', `${playlistName} playlist deleted`);
         },
         editPlaylist: (state, action) => {
