@@ -3,6 +3,11 @@
  * You can add videos of your wish with different attributes
  * */
 
+import MuLogo from '../../assets/images/mu-logo.jpeg';
+import RmLogo from '../../assets/images/rm-logo.jpeg';
+import JuLogo from '../../assets/images/ju-logo.jpeg';
+import BmLogo from '../../assets/images/bm-logo.jpeg';
+
 export const videos = [
   {
     _id: "muGyJEu12A8",
@@ -14,7 +19,7 @@ export const videos = [
     likes: '134K',
     postedOn: 'Sep 23, 2018',
     type: 'rm',
-    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj',
+    avatar: RmLogo,
     thumbnail: 'https://i.ytimg.com/vi/muGyJEu12A8/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB0sU5CUaDnv2rS1GNa5b_3N8IVxw'
   },
   {
@@ -27,7 +32,7 @@ export const videos = [
     likes: '2.4M',
     postedOn: 'Jul 10, 2018',
     type: 'rm',
-    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj',
+    avatar: RmLogo,
     thumbnail: 'https://i.ytimg.com/vi/5hFd6zGkxLE/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBQTi6Yt-PnHbrUaMNIEjlxqfXLIA',
     description: "Real Madrid C. F. inform that, as per Cristiano Ronaldo's wishes and at his request, the club has allowed the player to complete his move to Juventus F. C.Real Madrid would today like to place on record its thanks to a player who has shown himself to be the best in the world and made his mark on one of the greatest periods in our club's history and on the world game.Apart from the titles he has lifted, the honours secured and the on-field achievements during these nine years, Cristiano Ronaldo has been a role model in terms of commitment, hard work, responsibility, talent and self-improvement.He became Real Madrid's leading all-time goalscorer, having scored 451 goals in his 438 appearances. In total, he won 16 pieces of silverware, including four European Cup crowns, three of which came in successive years, with these four continental triumphs coming in the past five seasons. In terms of individual honours, as a Real Madrid player, he won the Ballon d'Or on four occasions, The Best award twice and claimed the Golden Shoe three times, amongst many other accoladesCristiano Ronaldo will forever be one of Real Madrid's biggest icons and will represent a unique figure for future generations.Real Madrid will always be his home."
   },
@@ -41,7 +46,7 @@ export const videos = [
     likes: '27K',
     postedOn: 'March 12, 2019',
     type: 'rm',
-    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj',
+    avatar: RmLogo,
     thumbnail: 'https://i.ytimg.com/vi/dLdW5SOkao4/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAyF6I8gaf2ARPMAEAEo7YZFYNJDw'
   },
   {
@@ -54,7 +59,7 @@ export const videos = [
     likes: '232K',
     postedOn: 'May 27, 2014',
     type: 'rm',
-    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj',
+    avatar: RmLogo,
     thumbnail: 'https://i.ytimg.com/vi/Yc-7IQqcqeM/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBPDU0PiMXxs6E6IhQL-u3aULdxww'
   },
   {
@@ -67,7 +72,7 @@ export const videos = [
     likes: '17K',
     postedOn: 'June 18, 2021',
     type: 'rm',
-    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj',
+    avatar: RmLogo,
     thumbnail: 'https://i.ytimg.com/vi/04Q6ybR1bLc/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBIF32zzANx_SHpVaqzwZ_T9SE0tQ'
   },
   {
@@ -80,7 +85,7 @@ export const videos = [
     likes: '11K',
     postedOn: 'June 18, 2021',
     type: 'rm',
-    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj',
+    avatar: RmLogo,
     thumbnail: 'https://i.ytimg.com/vi/H0GVemJOmIg/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCE9q_Zo_6YFEKiJ6-vNnqsS1DI7w'
   },
   {
@@ -93,7 +98,7 @@ export const videos = [
     likes: '244K',
     postedOn: 'June 17, 2021',
     type: 'rm',
-    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj',
+    avatar: RmLogo,
     thumbnail: 'https://i.ytimg.com/vi/X-Dp19wIKhE/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDytAWrsMO7ot-tciSXeehCY5xlSQ'
   },
   {
@@ -106,7 +111,7 @@ export const videos = [
     likes: '191K',
     postedOn: 'May 29, 2022',
     type: 'rm',
-    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj',
+    avatar: RmLogo,
     thumbnail: 'https://i.ytimg.com/vi/4H1gCbxa_ls/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLClJWyDHUinCQFN0g3F1hdw-PgH8A'
   },
   {
@@ -119,7 +124,7 @@ export const videos = [
     likes: '58K',
     postedOn: 'Mar 08, 2018',
     type: 'rm',
-    avatar: 'https://yt3.ggpht.com/ytc/AKedOLSqx_vKxMzse4ykoG6LtiPKEYkLd8Oh7YydCTMwpqk=s176-c-k-c0x00ffffff-no-rj',
+    avatar: RmLogo,
     thumbnail: 'https://i.ytimg.com/vi/84HI6VtrocQ/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC_GdOJUAFVjH7kZfXqm93qqZXOqQ'
   },
   {
@@ -133,7 +138,7 @@ export const videos = [
     postedOn: 'August 28, 2021',
     type: 'mu',
     thumbnail: 'https://i.ytimg.com/vi/hxzVIiGT_f8/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA-b7-PC-UF38qC5eRr9F1gtcpLww',
-    avatar: 'https://yt3.ggpht.com/jhyv6I72diPw6jNP9LdlQ4GCv6MhOg-s9-q4STT_m3FCRCB8YyMlW-51ozS0ZTDnyg6zzVgT1Q=s176-c-k-c0x00ffffff-no-rj'
+    avatar: MuLogo
   },
   {
     _id: "922h6L3ZjO0",
@@ -146,7 +151,7 @@ export const videos = [
     postedOn: 'March 11, 2018',
     type: 'mu',
     thumbnail: 'https://i.ytimg.com/vi/922h6L3ZjO0/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBvz_Xwml38cDqF_5cBydy4HY8BOA',
-    avatar: 'https://yt3.ggpht.com/jhyv6I72diPw6jNP9LdlQ4GCv6MhOg-s9-q4STT_m3FCRCB8YyMlW-51ozS0ZTDnyg6zzVgT1Q=s176-c-k-c0x00ffffff-no-rj'
+    avatar: MuLogo
   },
   {
     _id: "2rOKggB6fnQ",
@@ -159,7 +164,7 @@ export const videos = [
     postedOn: 'Feb 22, 2018',
     type: 'mu',
     thumbnail: 'https://i.ytimg.com/vi/2rOKggB6fnQ/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBe9QMEIlaUR_DkQJNcqJyf4Yce1g',
-    avatar: 'https://yt3.ggpht.com/jhyv6I72diPw6jNP9LdlQ4GCv6MhOg-s9-q4STT_m3FCRCB8YyMlW-51ozS0ZTDnyg6zzVgT1Q=s176-c-k-c0x00ffffff-no-rj'
+    avatar: MuLogo
   },
   {
     _id: "xEfwVQpHLio",
@@ -172,7 +177,7 @@ export const videos = [
     postedOn: 'May 8, 2018',
     type: 'mu',
     thumbnail: 'https://i.ytimg.com/vi/xEfwVQpHLio/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCgKHWH2hgE1CDHtuv3KLkB5qGMeA',
-    avatar: 'https://yt3.ggpht.com/jhyv6I72diPw6jNP9LdlQ4GCv6MhOg-s9-q4STT_m3FCRCB8YyMlW-51ozS0ZTDnyg6zzVgT1Q=s176-c-k-c0x00ffffff-no-rj'
+    avatar: MuLogo
   },
   {
     _id: "BiWafKt68eI",
@@ -185,7 +190,7 @@ export const videos = [
     postedOn: 'Feb 22, 2018',
     type: 'mu',
     thumbnail: 'https://i.ytimg.com/vi/BiWafKt68eI/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD1HD_u8S9CcN5GxE4HhGqIQkoiJg',
-    avatar: 'https://yt3.ggpht.com/jhyv6I72diPw6jNP9LdlQ4GCv6MhOg-s9-q4STT_m3FCRCB8YyMlW-51ozS0ZTDnyg6zzVgT1Q=s176-c-k-c0x00ffffff-no-rj'
+    avatar: MuLogo
   },
   {
     _id: "Ahnby2vUlxM",
@@ -198,7 +203,7 @@ export const videos = [
     postedOn: 'Sep 12, 2021',
     type: 'mu',
     thumbnail: 'https://i.ytimg.com/vi/Ahnby2vUlxM/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAdl5PKaFOmj2tTD2e0XF8QjtcywQ',
-    avatar: 'https://yt3.ggpht.com/jhyv6I72diPw6jNP9LdlQ4GCv6MhOg-s9-q4STT_m3FCRCB8YyMlW-51ozS0ZTDnyg6zzVgT1Q=s176-c-k-c0x00ffffff-no-rj'
+    avatar: MuLogo
   },
   {
     _id: "qsyFbyX5PuY",
@@ -211,7 +216,7 @@ export const videos = [
     postedOn: 'Feb 23, 2019',
     type: 'mu',
     thumbnail: 'https://i.ytimg.com/vi/qsyFbyX5PuY/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAABZ3Stdncy9KgfR5syxWrLCaHHw',
-    avatar: 'https://yt3.ggpht.com/jhyv6I72diPw6jNP9LdlQ4GCv6MhOg-s9-q4STT_m3FCRCB8YyMlW-51ozS0ZTDnyg6zzVgT1Q=s176-c-k-c0x00ffffff-no-rj'
+    avatar: MuLogo
   },
   {
     _id: "ZE-GjQy-PLc",
@@ -224,7 +229,7 @@ export const videos = [
     postedOn: 'Mar 23, 2018',
     type: 'mu',
     thumbnail: 'https://i.ytimg.com/vi/ZE-GjQy-PLc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAsHgcUkiYL44ED54_S2ZJDDPnL3Q',
-    avatar: 'https://yt3.ggpht.com/jhyv6I72diPw6jNP9LdlQ4GCv6MhOg-s9-q4STT_m3FCRCB8YyMlW-51ozS0ZTDnyg6zzVgT1Q=s176-c-k-c0x00ffffff-no-rj'
+    avatar: MuLogo
   },
   {
     _id: "AmHsd9NG_fs",
@@ -237,7 +242,7 @@ export const videos = [
     postedOn: 'Mar 13, 2022',
     type: 'mu',
     thumbnail: 'https://i.ytimg.com/vi/AmHsd9NG_fs/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA8oGnMiif67P8XYAJwXP9GjBbUfA',
-    avatar: 'https://yt3.ggpht.com/jhyv6I72diPw6jNP9LdlQ4GCv6MhOg-s9-q4STT_m3FCRCB8YyMlW-51ozS0ZTDnyg6zzVgT1Q=s176-c-k-c0x00ffffff-no-rj'
+    avatar: MuLogo
   },
   {
     _id: "-_EVfrXqkEo",
@@ -250,7 +255,7 @@ export const videos = [
     postedOn: 'Apr 17, 2022',
     type: 'mu',
     thumbnail: 'https://i.ytimg.com/vi/-_EVfrXqkEo/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD2QdmOXe4zaLbKbjLyBgG46-q5Bw',
-    avatar: 'https://yt3.ggpht.com/jhyv6I72diPw6jNP9LdlQ4GCv6MhOg-s9-q4STT_m3FCRCB8YyMlW-51ozS0ZTDnyg6zzVgT1Q=s176-c-k-c0x00ffffff-no-rj'
+    avatar: MuLogo
   },
   {
     _id: "chq-NNOQV50",
@@ -263,7 +268,7 @@ export const videos = [
     postedOn: 'August 31, 2021',
     type: 'ju',
     thumbnail: 'https://i.ytimg.com/vi/pMuoNqz-LK8/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA1EpcgvJctDmNDcHoX_PzIRg3jVQ',
-    avatar: 'https://yt3.ggpht.com/xZbliDrv1hQJOWfLsK29iWa0pQUWTr-1AO-vluYNr_PPCcvoDUog8IMEH4nAKQFdPHdmlwoy=s68-c-k-c0x00ffffff-no-rj'
+    avatar: JuLogo
   },
   {
     _id: "cLfSpFg6Pxg",
@@ -276,7 +281,7 @@ export const videos = [
     postedOn: 'March 16, 2019',
     type: 'ju',
     thumbnail: 'https://i.ytimg.com/vi/cLfSpFg6Pxg/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDNaBd_39KT-jmSGx2deoIQJcmmgQ',
-    avatar: 'https://yt3.ggpht.com/xZbliDrv1hQJOWfLsK29iWa0pQUWTr-1AO-vluYNr_PPCcvoDUog8IMEH4nAKQFdPHdmlwoy=s68-c-k-c0x00ffffff-no-rj'
+    avatar: JuLogo
   },
   {
     _id: "p5HFfvkR9t4",
@@ -289,7 +294,7 @@ export const videos = [
     postedOn: 'July 16, 2018',
     type: 'ju',
     thumbnail: 'https://i.ytimg.com/vi/hgB9rLdJDWE/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAaiGr0TF10mbgqwHxHui2k3dhe8A',
-    avatar: 'https://yt3.ggpht.com/xZbliDrv1hQJOWfLsK29iWa0pQUWTr-1AO-vluYNr_PPCcvoDUog8IMEH4nAKQFdPHdmlwoy=s68-c-k-c0x00ffffff-no-rj'
+    avatar: JuLogo
   },
   {
     _id: "8PuCoI5H5dQ",
@@ -302,7 +307,7 @@ export const videos = [
     postedOn: 'August 29, 2018',
     type: 'ju',
     thumbnail: 'https://i.ytimg.com/vi/8PuCoI5H5dQ/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDGGohreY4aNGwuR3O8ViX-xMl3Vw',
-    avatar: 'https://yt3.ggpht.com/xZbliDrv1hQJOWfLsK29iWa0pQUWTr-1AO-vluYNr_PPCcvoDUog8IMEH4nAKQFdPHdmlwoy=s68-c-k-c0x00ffffff-no-rj'
+    avatar: JuLogo
   },
   {
     _id: "hh--jwht7Oo",
@@ -315,7 +320,7 @@ export const videos = [
     postedOn: 'July 30, 2018',
     type: 'ju',
     thumbnail: 'https://i.ytimg.com/vi/hh--jwht7Oo/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCio0DqgfikJg9zhbRwyCfo2GwItw',
-    avatar: 'https://yt3.ggpht.com/xZbliDrv1hQJOWfLsK29iWa0pQUWTr-1AO-vluYNr_PPCcvoDUog8IMEH4nAKQFdPHdmlwoy=s68-c-k-c0x00ffffff-no-rj'
+    avatar: JuLogo
   },
   {
     _id: "mdjgXTiTACE",
@@ -328,7 +333,7 @@ export const videos = [
     postedOn: 'Jan 29, 2015',
     type: 'ju',
     thumbnail: 'https://i.ytimg.com/vi/mdjgXTiTACE/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB3BkvmsNZnrGVmonfCk_sDj-czSA',
-    avatar: 'https://yt3.ggpht.com/xZbliDrv1hQJOWfLsK29iWa0pQUWTr-1AO-vluYNr_PPCcvoDUog8IMEH4nAKQFdPHdmlwoy=s68-c-k-c0x00ffffff-no-rj'
+    avatar: JuLogo
   },
   {
     _id: "CfnsrX3TXX0",
@@ -341,7 +346,7 @@ export const videos = [
     postedOn: 'Feb 06, 2014',
     type: 'ju',
     thumbnail: 'https://i.ytimg.com/vi/CfnsrX3TXX0/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLARcdCvrIJFGBB5rDqDufYDevYR1A',
-    avatar: 'https://yt3.ggpht.com/xZbliDrv1hQJOWfLsK29iWa0pQUWTr-1AO-vluYNr_PPCcvoDUog8IMEH4nAKQFdPHdmlwoy=s68-c-k-c0x00ffffff-no-rj'
+    avatar: JuLogo
   },
   {
     _id: "DHKx20X4_HM",
@@ -354,7 +359,7 @@ export const videos = [
     postedOn: 'Aug 30, 2020',
     type: 'ju',
     thumbnail: 'https://i.ytimg.com/vi/DHKx20X4_HM/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAgxkKelaW7B9EbHSTpMQLgJJ9kjg',
-    avatar: 'https://yt3.ggpht.com/xZbliDrv1hQJOWfLsK29iWa0pQUWTr-1AO-vluYNr_PPCcvoDUog8IMEH4nAKQFdPHdmlwoy=s68-c-k-c0x00ffffff-no-rj'
+    avatar: JuLogo
   },
   {
     _id: "_Q_b-42w7HI",
@@ -367,7 +372,7 @@ export const videos = [
     postedOn: 'July 15, 2020',
     type: 'bm',
     thumbnail: 'https://i.ytimg.com/vi/_Q_b-42w7HI/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCVMoBat6p07v3ryj9CDDrRllgajA',
-    avatar: 'https://yt3.ggpht.com/bUoqRSR8mGhGwTX0rPgsFUNAaDM2yZacgYOoSYtuv21-GXOGeDehD5glMD3S50YOsGYIvgsMWA=s176-c-k-c0x00ffffff-no-rj'
+    avatar: BmLogo
   },
   {
     _id: "l03qv1y4FXs",
@@ -380,7 +385,7 @@ export const videos = [
     postedOn: 'May 22, 2019',
     type: 'bm',
     thumbnail: 'https://i.ytimg.com/vi/l03qv1y4FXs/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCPzaIWblaWgULdvmVT39B9lSS_bw',
-    avatar: 'https://yt3.ggpht.com/bUoqRSR8mGhGwTX0rPgsFUNAaDM2yZacgYOoSYtuv21-GXOGeDehD5glMD3S50YOsGYIvgsMWA=s176-c-k-c0x00ffffff-no-rj'
+    avatar: BmLogo
   },
   {
     _id: "XE-c0-X5pVA",
@@ -393,7 +398,7 @@ export const videos = [
     postedOn: 'May 21, 2019',
     type: 'bm',
     thumbnail: 'https://i.ytimg.com/vi/XE-c0-X5pVA/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBfEtKRWHRDn7rQOZjsyuumYEMxVA',
-    avatar: 'https://yt3.ggpht.com/bUoqRSR8mGhGwTX0rPgsFUNAaDM2yZacgYOoSYtuv21-GXOGeDehD5glMD3S50YOsGYIvgsMWA=s176-c-k-c0x00ffffff-no-rj'
+    avatar: BmLogo
   },
   {
     _id: "poKcrN-VpiM",
@@ -406,7 +411,7 @@ export const videos = [
     postedOn: 'May 30, 2019',
     type: 'bm',
     thumbnail: 'https://i.ytimg.com/vi/poKcrN-VpiM/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDUlvyavwSzOfO04823L5Heoik8xA',
-    avatar: 'https://yt3.ggpht.com/bUoqRSR8mGhGwTX0rPgsFUNAaDM2yZacgYOoSYtuv21-GXOGeDehD5glMD3S50YOsGYIvgsMWA=s176-c-k-c0x00ffffff-no-rj'
+    avatar: BmLogo
   },
   {
     _id: "2SnX-lRiZzc",
@@ -419,7 +424,7 @@ export const videos = [
     postedOn: 'May 6, 2020',
     type: 'bm',
     thumbnail: 'https://i.ytimg.com/vi/2SnX-lRiZzc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAxoifggg0FWV-te4ejo_mejNo_OQ',
-    avatar: 'https://yt3.ggpht.com/bUoqRSR8mGhGwTX0rPgsFUNAaDM2yZacgYOoSYtuv21-GXOGeDehD5glMD3S50YOsGYIvgsMWA=s176-c-k-c0x00ffffff-no-rj'
+    avatar: BmLogo
   },
   {
     _id: "EupCe8TJITg",
@@ -432,7 +437,7 @@ export const videos = [
     postedOn: 'Jan 23, 2019',
     type: 'bm',
     thumbnail: 'https://i.ytimg.com/vi/EupCe8TJITg/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDsTU45XjFgD_GF22HnaauA5dBSuQ',
-    avatar: 'https://yt3.ggpht.com/bUoqRSR8mGhGwTX0rPgsFUNAaDM2yZacgYOoSYtuv21-GXOGeDehD5glMD3S50YOsGYIvgsMWA=s176-c-k-c0x00ffffff-no-rj'
+    avatar: BmLogo
   },
   {
     _id: "nMAjDtr1GoI",
@@ -445,7 +450,7 @@ export const videos = [
     postedOn: 'Jun 15, 2019',
     type: 'bm',
     thumbnail: 'https://i.ytimg.com/vi/nMAjDtr1GoI/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAied898atJKnt54zgerq4DpCSamw',
-    avatar: 'https://yt3.ggpht.com/bUoqRSR8mGhGwTX0rPgsFUNAaDM2yZacgYOoSYtuv21-GXOGeDehD5glMD3S50YOsGYIvgsMWA=s176-c-k-c0x00ffffff-no-rj'
+    avatar: BmLogo
   },
   {
     _id: "Uwgk3NCPoJQ",
@@ -458,6 +463,6 @@ export const videos = [
     postedOn: 'Aug 24, 2020',
     type: 'bm',
     thumbnail: 'https://i.ytimg.com/vi/Uwgk3NCPoJQ/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDEnrDm-p9vEP8ailw23LRqe86ugQ',
-    avatar: 'https://yt3.ggpht.com/bUoqRSR8mGhGwTX0rPgsFUNAaDM2yZacgYOoSYtuv21-GXOGeDehD5glMD3S50YOsGYIvgsMWA=s176-c-k-c0x00ffffff-no-rj'
+    avatar: BmLogo
   },
 ];
