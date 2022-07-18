@@ -5,7 +5,7 @@ import { Sidebar } from '../../components/sidebar'
 import Video from '../../components/video';
 import { getLocalStorageItem, setLocalStorageItem } from '../../utils';
 import { NoVideos } from '../../components/no-videos';
-import { deletePlaylist as playlistDelete } from '../../features/playlistSlice';
+import { deletePlaylist as playlistDelete, removeVideosFromPlaylist } from '../../features/playlistSlice';
 
 
 export function Playlist() {
@@ -55,7 +55,7 @@ export function Playlist() {
                                 watchLater={watchLater}
                                 moreOptionsList={['Remove from playlist', 'Add to Watch later']}
                                 handleRemoveFromPlaylist={(video) => dispatch(
-                                    { type: 'REMOVE_VIDEOS_FROM_PLAYLIST', payload: { playlistId: id, videoId: video._id } }
+                                    dispatch(removeVideosFromPlaylist({ playlistId: id, videoId: video._id }))
                                 )}
                             />
                         )

@@ -1,9 +1,7 @@
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
-import {useDispatch} from 'react-redux';
 import './index.css';
 
 export function Playlists({ item, addVideosToPlaylist, checked, editPlaylist, deletePlaylist, list }) {
-    const dispatch = useDispatch();
     return (
         <ul className='playlist_names'>
             <li className='pointer'>
@@ -17,12 +15,12 @@ export function Playlists({ item, addVideosToPlaylist, checked, editPlaylist, de
                         <AiOutlineEdit
                             className='pointer playlist_edit'
                             title='Edit Playlist'
-                            onClick={() => { editPlaylist(item); dispatch({ type: 'EDIT_PLAYLIST', payload: item }); }}
+                            onClick={() => editPlaylist(item)}
                         /> &nbsp;
                         <AiOutlineDelete
                             className='pointer playlist_delete'
                             title='Delete Playlist'
-                            onClick={deletePlaylist}
+                            onClick={() => deletePlaylist(item)}
                         />
                     </label>
                 </label>

@@ -8,7 +8,7 @@ import { SearchInput } from '../search';
 import Video from '../video';
 import './index.css';
 import { chipOnChange, filterBasedOnActiveChip, loadingVideos, loadVideos, loadVideosError, searchVideos } from '../../features/videosSlice';
-import { videosAddToPlaylist } from '../../features/playlistSlice';
+import { videoActivePlaylistModal } from '../../features/playlistSlice';
 
 
 export function Vidoes() {
@@ -95,7 +95,7 @@ export function Vidoes() {
                             watchLater={watchLater}
                             showPlaylist={(data) => {
                                 setShowModal(true);
-                                dispatch(videosAddToPlaylist(data));
+                                dispatch(videoActivePlaylistModal(data));
                             }}
                             moreOptionsList={['Add to playlist', 'Watch later']}
                         />
