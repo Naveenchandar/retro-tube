@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { useDocumentTitle } from '../../hooks/useDocumentTitle';
+import { useDocumentTitle } from 'hooks/useDocumentTitle';
 import './index.css';
 import { loginUser, updateUser } from 'features/authSlice';
 import { notification } from '../../utils';
