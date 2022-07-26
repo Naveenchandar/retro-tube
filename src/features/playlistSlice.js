@@ -1,5 +1,5 @@
 import { createSlice, current } from '@reduxjs/toolkit';
-import { filterSearchVideos, getLocalStorageItem, notification, setLocalStorageItem } from '../utils';
+import { filterSearchVideos, getLocalStorageItem, notification, setLocalStorageItem } from 'utils';
 import { v4 as uuid } from "uuid";
 
 const initialState = {

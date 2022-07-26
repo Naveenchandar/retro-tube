@@ -4,8 +4,8 @@ import {
     Explore, History, Home, LikedVideos,
     Login, Playlist, Playlists, SignUp,
     SingleVideo, WatchLater
-} from '../../pages';
-import { Navbar } from '../navbar';
+} from 'pages';
+import { Navbar } from 'components/navbar';
 import { ProtectedRoute } from './protected-route';
 
 export function NavRoutes() {

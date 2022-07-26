@@ -6,7 +6,7 @@ import {
     Sidebar,
     Video,
 } from 'components';
-import { filterSearchVideos, getLocalStorageItem, setLocalStorageItem } from '../../utils';
+import { filterSearchVideos, getLocalStorageItem, setLocalStorageItem } from 'utils';
 
 export function LikedVideos() {
     const [likedVideos, setLikedVideos] = useState(getLocalStorageItem('retro-liked-videos'));

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getLocalStorageItem, setLocalStorageItem } from '../../utils';
+import { getLocalStorageItem, setLocalStorageItem } from 'utils';
 import { Chips } from '../chips';
 import { PlaylistModal } from '../playlistmodal';
 import { SearchInput } from '../search';

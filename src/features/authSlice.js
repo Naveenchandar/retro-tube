@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
-import { notification } from '../utils';
-import { getLocalStorageItem } from '../utils';
+import { notification, getLocalStorageItem } from 'utils';
 
 const initialState = {
     user: getLocalStorageItem('retro-tube-token'),

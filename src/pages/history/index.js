@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { AiOutlineDelete } from 'react-icons/ai';
 import { MainHeader, MainSection, SearchInput, Sidebar, Video } from 'components';
-import { getLocalStorageItem, removeLocalStorageItem, setLocalStorageItem } from '../../utils';
+import { getLocalStorageItem, removeLocalStorageItem, setLocalStorageItem } from 'utils';
 
 export function History() {
     const [historyVideos, setHistoryVideos] = useState(getLocalStorageItem('retro-tube-history'));

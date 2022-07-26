@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDocumentTitle } from 'hooks/useDocumentTitle';
-import { handleValidation } from '../../utils';
+import { handleValidation } from 'utils';
 import { signupUser } from 'features/authSlice';
 
 export function SignUp() {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { searchValueChange } from '../../utils';
+import { searchValueChange } from 'utils';
 import './index.css';
 
 export function SearchInput({ value, onChange, placeholder, dispatch: { search, noSearch } }) {

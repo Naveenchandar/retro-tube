@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { MainHeader, MainSection, SearchInput, Sidebar, Video } from 'components';
-import { filterSearchVideos, getLocalStorageItem, setLocalStorageItem } from '../../utils';
+import { filterSearchVideos, getLocalStorageItem, setLocalStorageItem } from 'utils';
 import './index.css';
 
 export function WatchLater() {

@@ -1,4 +1,4 @@
-import { filterSearchVideos, getLocalStorageItem, setLocalStorageItem } from "../utils";
+import { filterSearchVideos, getLocalStorageItem, setLocalStorageItem } from "utils";
 import { v4 as uuid } from "uuid";
 
 export const initialState = {

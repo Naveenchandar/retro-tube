@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { PlaylistModal } from 'components';
 import { useDispatch } from 'react-redux';
 import { videoActivePlaylistModal } from 'features/playlistSlice';
-import { getLocalStorageItem, setLocalStorageItem } from '../../utils'
+import { getLocalStorageItem, setLocalStorageItem } from 'utils';
 
 export function SingleAction({ data, videoId }) {
     const { state: { like } } = useLocation();

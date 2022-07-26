@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { Sidebar } from 'components';
 import './index.css';
 import { SingleAction } from './singleAction';
-import { getLocalStorageItem, setLocalStorageItem } from '../../utils';
+import { getLocalStorageItem, setLocalStorageItem } from 'utils';
 
 export function SingleVideo() {
     const [videoInfo, setVideoInfo] = useState({});
