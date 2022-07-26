@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCategories } from '../../features/categorySlice';
+import { fetchCategories } from 'features/categorySlice';
 
 export function Categories() {
     const navigate = useNavigate();

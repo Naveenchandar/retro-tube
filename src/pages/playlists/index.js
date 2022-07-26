@@ -11,7 +11,7 @@ import {
     SearchInput,
 } from 'components';
 import './index.css';
-import { initPlaylist, searchPlaylist } from '../../features/playlistSlice';
+import { initPlaylist, searchPlaylist } from 'features/playlistSlice';
 
 export function Playlists() {
     const { playlists = [], filterPlaylists = [] } = useSelector(state => state.playlist);

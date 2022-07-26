@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Sidebar, NoVideos } from 'components'
 import { Video } from 'components/video';
 import { getLocalStorageItem, setLocalStorageItem } from '../../utils';
-import { deletePlaylist as playlistDelete, removeVideosFromPlaylist } from '../../features/playlistSlice';
+import { deletePlaylist as playlistDelete, removeVideosFromPlaylist } from 'features/playlistSlice';
 
 
 export function Playlist() {

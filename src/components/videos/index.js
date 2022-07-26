@@ -7,8 +7,8 @@ import { PlaylistModal } from '../playlistmodal';
 import { SearchInput } from '../search';
 import { Video } from 'components';
 import './index.css';
-import { chipOnChange, filterBasedOnActiveChip, loadingVideos, loadVideos, loadVideosError, searchVideos } from '../../features/videosSlice';
-import { videoActivePlaylistModal } from '../../features/playlistSlice';
+import { chipOnChange, filterBasedOnActiveChip, loadingVideos, loadVideos, loadVideosError, searchVideos } from 'features/videosSlice';
+import { videoActivePlaylistModal } from 'features/playlistSlice';
 
 
 export function Videos() {
