@@ -8,7 +8,7 @@ import {
 import { Navbar } from '../navbar';
 import { ProtectedRoute } from './protected-route';
 
-export const NavRoutes = () => {
+export function NavRoutes() {
     return (
         <>
             <Navbar />

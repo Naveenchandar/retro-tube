@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { searchValueChange } from '../../utils';
 import './index.css';
 
-export const SearchInput = ({ value, onChange, placeholder, dispatch: { search, noSearch } }) => {
+export function SearchInput({ value, onChange, placeholder, dispatch: { search, noSearch } }) {
 
     const [inputExpand, setInputExpand] = useState(false);
 
