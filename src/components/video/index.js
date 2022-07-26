@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
-import { MoreOptions } from '../more-options';
+import { MoreOptions } from 'components';
 import './index.css';
 
 export function Video(props) {

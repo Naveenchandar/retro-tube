@@ -3,7 +3,7 @@ import { Modal, Button } from 'react-bootstrap';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useSelector, useDispatch } from 'react-redux';
 import { deletePlaylist, inputChange, playlistCreate, toggleInput, updatePlaylist, videosAddToPlaylist } from 'features/playlistSlice';
-import { Playlists } from '../playlists';
+import { Playlists } from 'components';
 import './index.css';
 
 export function PlaylistModal(props) {

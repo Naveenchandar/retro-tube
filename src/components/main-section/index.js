@@ -1,5 +1,5 @@
 import React from 'react'
-import { NoVideos } from '../no-videos'
+import { NoVideos } from 'components';
 
 export function MainSection({ data, type, children }) {
     return (
