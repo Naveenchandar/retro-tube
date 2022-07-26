@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { MoreOptions } from '../more-options';
 import './index.css';
 
-function Video(props) {
+export function Video(props) {
     const { data, options, handleMoreOptions, watchLater, moreOptionsList,
         handleFromRemoveWatchLater, showPlaylist, handleRemoveFromPlaylist, like, moreAction, history } = props;
     const { _id, thumbnail, alt, title, creator, views, postedOn, avatar } = data;
@@ -82,5 +82,3 @@ function Video(props) {
         </section>
     )
 }
-
-export default Video

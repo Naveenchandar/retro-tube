@@ -1,13 +1,12 @@
 import React from 'react';
-import { Sidebar } from '../../components/sidebar';
-import { Vidoes } from '../../components/videos';
+import { Sidebar, Videos } from 'components';
 
 export function Explore() {
     return (
         <section>
             <div className='flex'>
                 <Sidebar />
-                <Vidoes />
+                <Videos />
             </div>
         </section>
     )

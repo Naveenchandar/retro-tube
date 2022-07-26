@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import { IoMdAdd } from 'react-icons/io';
 import { useSelector, useDispatch } from 'react-redux';
 import { Badge } from 'react-bootstrap';
-import { Sidebar } from '../../components/sidebar';
+import {
+    Sidebar,
+    MainHeader,
+    PlaylistModal,
+    MainSection,
+    SearchInput,
+} from 'components';
 import './index.css';
-import { MainHeader } from '../../components/main-header';
-import { PlaylistModal } from '../../components/playlistmodal';
-import { MainSection } from '../../components/main-section';
-import { SearchInput } from '../../components/search';
 import { initPlaylist, searchPlaylist } from '../../features/playlistSlice';
 
 export function Playlists() {

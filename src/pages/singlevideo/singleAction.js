@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom';
-import { PlaylistModal } from '../../components/playlistmodal';
+import { PlaylistModal } from 'components';
 import { useDispatch } from 'react-redux';
 import { videoActivePlaylistModal } from '../../features/playlistSlice';
 import { getLocalStorageItem, setLocalStorageItem } from '../../utils'

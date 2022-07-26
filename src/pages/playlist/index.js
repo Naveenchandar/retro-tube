@@ -1,20 +1,19 @@
 import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Sidebar } from '../../components/sidebar'
-import Video from '../../components/video';
+import { Sidebar, NoVideos } from 'components'
+import { Video } from 'components/video';
 import { getLocalStorageItem, setLocalStorageItem } from '../../utils';
-import { NoVideos } from '../../components/no-videos';
 import { deletePlaylist as playlistDelete, removeVideosFromPlaylist } from '../../features/playlistSlice';
 
 
 export function Playlist() {
     const { playlists = [] } = useSelector(state => state.playlist);
     const dispatch = useDispatch();
-    
+
     const { playlistId } = useParams();
     const navigate = useNavigate();
-    
+
     const [showOptions, setShowOptions] = useState();
     const { videos = [], id, name } = playlists?.find(({ id }) => id === playlistId);
     const watchLaterVideos = useState(getLocalStorageItem('retro-tube-watchlater'));

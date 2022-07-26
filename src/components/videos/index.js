@@ -5,13 +5,13 @@ import { getLocalStorageItem, setLocalStorageItem } from '../../utils';
 import { Chips } from '../chips';
 import { PlaylistModal } from '../playlistmodal';
 import { SearchInput } from '../search';
-import Video from '../video';
+import { Video } from 'components';
 import './index.css';
 import { chipOnChange, filterBasedOnActiveChip, loadingVideos, loadVideos, loadVideosError, searchVideos } from '../../features/videosSlice';
 import { videoActivePlaylistModal } from '../../features/playlistSlice';
 
 
-export function Vidoes() {
+export function Videos() {
     const location = useLocation();
 
     const [showOptions, setShowOptions] = useState();

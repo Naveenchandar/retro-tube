@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios';
 import YouTube from 'react-youtube';
 import { useParams } from 'react-router-dom';
-import { Sidebar } from '../../components/sidebar';
+import { Sidebar } from 'components';
 import './index.css';
 import { SingleAction } from './singleAction';
 import { getLocalStorageItem, setLocalStorageItem } from '../../utils';

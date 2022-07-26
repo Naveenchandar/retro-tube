@@ -1,7 +1,6 @@
 import { ReactNotifications } from 'react-notifications-component'
 import "./App.css";
-import { Footer } from "./components/footer";
-import { NavRoutes } from "./components/routes";
+import { Footer, NavRoutes } from "components";
 
 function App() {
   return (

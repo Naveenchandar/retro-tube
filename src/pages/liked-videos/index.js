@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
-import { MainHeader } from '../../components/main-header';
-import { MainSection } from '../../components/main-section';
-import { SearchInput } from '../../components/search';
-import { Sidebar } from '../../components/sidebar';
-import { Video } from 'components';
+import {
+    MainHeader,
+    MainSection,
+    SearchInput,
+    Sidebar,
+    Video,
+} from 'components';
 import { filterSearchVideos, getLocalStorageItem, setLocalStorageItem } from '../../utils';
 
 export function LikedVideos() {

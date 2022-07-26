@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
 import { AiOutlineDelete } from 'react-icons/ai';
-import { MainHeader } from '../../components/main-header';
-import { MainSection } from '../../components/main-section';
-import { SearchInput } from '../../components/search';
-import { Sidebar } from '../../components/sidebar'
-import Video from '../../components/video';
+import { MainHeader, MainSection, SearchInput, Sidebar, Video } from 'components';
 import { getLocalStorageItem, removeLocalStorageItem, setLocalStorageItem } from '../../utils';
 
 export function History() {
