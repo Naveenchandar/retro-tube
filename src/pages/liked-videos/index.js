@@ -3,12 +3,12 @@ import { MainHeader } from '../../components/main-header';
 import { MainSection } from '../../components/main-section';
 import { SearchInput } from '../../components/search';
 import { Sidebar } from '../../components/sidebar';
-import Video from '../../components/video';
+import { Video } from 'components';
 import { filterSearchVideos, getLocalStorageItem, setLocalStorageItem } from '../../utils';
 
 export function LikedVideos() {
     const [likedVideos, setLikedVideos] = useState(getLocalStorageItem('retro-liked-videos'));
-    const [filterLikedVideos, setFilterLikedVideos] = useState(getLocalStorageItem('retro-tube-watchlater'))
+    const [filterLikedVideos, setFilterLikedVideos] = useState(getLocalStorageItem('retro-liked-videos'))
     const [showOptions, setShowOptions] = useState();
     const [searchValue, setSearchValue] = useState('');
 
@@ -23,11 +23,11 @@ export function LikedVideos() {
         setShowOptions('');
     }
 
-    const searchWatchLaterVideos = (value = '') => {
+    const searchLikedVideos = (value = '') => {
         if (value) {
             setFilterLikedVideos(filterSearchVideos({ videos: likedVideos, searchText: value }));
         } else {
-            setFilterLikedVideos(getLocalStorageItem('retro-tube-watchlater'));
+            setFilterLikedVideos(getLocalStorageItem('retro-liked-videos'));
         }
     }
 
@@ -42,8 +42,8 @@ export function LikedVideos() {
                             onChange={(value) => setSearchValue(value)}
                             placeholder={`Search liked videos`}
                             dispatch={{
-                                search: (value) => searchWatchLaterVideos(value),
-                                noSearch: () => searchWatchLaterVideos()
+                                search: (value) => searchLikedVideos(value),
+                                noSearch: () => searchLikedVideos()
                             }}
                         />
                     </div>
