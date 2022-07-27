@@ -1,0 +1,29 @@
+.not_found {
+    padding: 1rem;
+    background-color: var(--background-color);
+    height: 70rem;
+    gap: 1rem;
+}
+
+.error404 {
+    font-size: 1.6rem;
+}
+
+.error404-msg {
+    font-size: 1.4rem;
+    margin: 1rem 32rem;
+    color: var(--red);
+}
+
+.not_found a {
+    font-size: 1.2rem;
+    text-decoration: none;
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.not_found a:hover {
+    background-color: var(--white);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}

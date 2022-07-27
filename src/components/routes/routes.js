@@ -1,11 +1,24 @@
 import React from 'react';
-import { useRoutes } from 'react-router-dom';
+import { Link, useRoutes } from 'react-router-dom';
 import {
     Explore, History, Home, LikedVideos,
     Login, Playlist, Playlists, SignUp,
     SingleVideo, WatchLater
 } from 'pages';
 import { ProtectedRoute } from './protected-route';
+import './index.css';
+
+const NoRouteFound = () => {
+    return (
+        <div className='not_found flex flex_dcolumn justify_center align_center'>
+            <p className="error404">404 | Page Not Found!</p>
+            <p className="error404-msg">
+                Oops!! Looks like you have entered a wrong URL
+            </p>
+            <Link to='/' className="btn btn_primary">Back to home</Link>
+        </div>
+    )
+}
 
 export function Router() {
     const routes = [
@@ -35,7 +48,13 @@ export function Router() {
                     path: "liked-videos",
                     element: <ProtectedRoute><LikedVideos /></ProtectedRoute>
                 },
-                { path: "history", element: <ProtectedRoute><History /></ProtectedRoute> },
+                { 
+                    path: "history", 
+                    element: <ProtectedRoute><History /></ProtectedRoute> 
+                },
+                { 
+                    path: "*", element: <NoRouteFound /> 
+                },
             ]
         }
     ];
