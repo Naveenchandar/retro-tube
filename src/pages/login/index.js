@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useDocumentTitle } from 'hooks/useDocumentTitle';
 import './index.css';
 import { loginUser, updateUser } from 'features/authSlice';
-import { notification } from 'utils';
 
 export function Login() {
   const [info, setUserInfo] = useState({
