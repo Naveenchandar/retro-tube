@@ -3,8 +3,11 @@
     align-items: start;
     display: grid;
     gap: 4px;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+.group_videos {
     grid-template-columns: repeat(3, 1fr);
-   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
 
 .playlist_head {
@@ -13,7 +16,7 @@
     margin: 0 2rem;
 }
 
-.playlist_head > h4 {
+.playlist_head>h4 {
     font-size: 2.6rem;
     margin-left: 1.6rem;
 }
@@ -22,6 +25,6 @@ body :is(.section_videos, .explore_section, .section) {
     background-color: var(--background);
 }
 
-.playlist_head > h1 {
+.playlist_head>h1 {
     color: var(--text-primary);
 }

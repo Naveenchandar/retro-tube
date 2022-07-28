@@ -6,8 +6,8 @@ export const getLocalStorageItem = (key) => {
     if (key === 'retro-tube-token') {
         return getItem ? jwt_decode(getItem) : {}
     }
-    if (key === 'theme') {
-        return getItem ? jwt_decode(getItem) : ''
+    if (key === 'retro-tube-theme') {
+        return getItem;
     }
     if (getItem) {
         return JSON.parse(getItem)
@@ -96,3 +96,15 @@ export const handleValidation = (info, errorInfo) => {
     }
     return { ...errorInfo, valid: true };
 }
+
+export const videoclassName = (data) => {
+    const videoLength = data?.length;
+    console.log('videoLength:', videoLength)
+    if(videoLength > 2) {
+        return 'videos group_videos'
+    }
+    if(videoLength > 0 && videoLength < 3){
+        return 'videos group_videos'
+    }
+    return 'no_video'
+} 

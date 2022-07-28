@@ -45,4 +45,10 @@
 
 .theme {
     color: var(--white);
+    margin-top: -3px;
+}
+
+.theme svg {
+    height: 2rem;
+    width: 2rem;
 }

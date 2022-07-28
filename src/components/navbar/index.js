@@ -5,6 +5,8 @@ import { useComponentVisible } from "hooks/useVisible";
 import { updateUser } from "features/authSlice";
 import './index.css';
 import { useTheme } from "hooks/useTheme";
+import { BiSun } from 'react-icons/bi';
+import { BsFillMoonFill } from 'react-icons/bs';
 
 export function Navbar() {
     const { user: { firstName = '', email = '' } } = useSelector(state => state.user);
@@ -56,7 +58,9 @@ export function Navbar() {
                             <NavLink to='/login' className="btn nav_link auth_btn">Log in</NavLink>
                         </div>
                     }
-                    <label className="theme" onClick={() => changeTheme()}>{theme === 'dark' ? 'Light' : 'Dark'}</label>
+                    <label className="theme" onClick={() => changeTheme()} title={theme}>
+                        {theme === 'dark' ? <BsFillMoonFill /> : <BiSun />}
+                    </label>
                 </div>
             </nav>
         </div>

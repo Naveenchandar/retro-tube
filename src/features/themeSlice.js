@@ -1,8 +1,8 @@
 import { createSlice, current } from '@reduxjs/toolkit';
-import { getLocalStorageItem } from 'utils';
+import { getLocalStorageItem, setLocalStorageItem } from 'utils';
 
 const initialState = {
-    theme: getLocalStorageItem('theme')
+    theme: getLocalStorageItem('retro-tube-theme')
 }
 
 const themeSlice = createSlice({
@@ -11,10 +11,11 @@ const themeSlice = createSlice({
     reducers: {
         loadTheme: (state, action) => {
             const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            state.theme = defaultDark ? 'light' : 'dark';
+            state.theme = defaultDark ? 'dark' : 'light';
         },
         changeTheme: (state, action) => {
             const newTheme = current(state).theme === 'light' ? 'dark' : 'light';
+            setLocalStorageItem('retro-tube-theme', newTheme);
             state.theme = newTheme;
         }
     }
