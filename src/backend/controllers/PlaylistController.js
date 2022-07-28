@@ -53,7 +53,7 @@ export const addNewPlaylistHandler = function (schema, request) {
     404,
     {},
     {
-      errors: ["The email you entered is not Registered. Not Found error"],
+      error: "The email you entered is not Registered. Not Found error",
     }
   );
 };
