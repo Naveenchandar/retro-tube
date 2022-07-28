@@ -97,14 +97,11 @@ export const handleValidation = (info, errorInfo) => {
     return { ...errorInfo, valid: true };
 }
 
-export const videoclassName = (data) => {
-    const videoLength = data?.length;
-    console.log('videoLength:', videoLength)
-    if(videoLength > 2) {
-        return 'videos group_videos'
+export const checkOnlineStatus = async () => {
+    try {
+        const online = window.navigator.onLine
+        return online;
+    } catch (err) {
+        return false;
     }
-    if(videoLength > 0 && videoLength < 3){
-        return 'videos group_videos'
-    }
-    return 'no_video'
-} 
+};

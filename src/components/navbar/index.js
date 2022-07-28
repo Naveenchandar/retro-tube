@@ -58,7 +58,7 @@ export function Navbar() {
                             <NavLink to='/login' className="btn nav_link auth_btn">Log in</NavLink>
                         </div>
                     }
-                    <label className="theme" onClick={() => changeTheme()} title={theme}>
+                    <label className="theme pointer" onClick={() => changeTheme()} title={theme}>
                         {theme === 'dark' ? <BsFillMoonFill /> : <BiSun />}
                     </label>
                 </div>
