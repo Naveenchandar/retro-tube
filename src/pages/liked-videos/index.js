@@ -21,6 +21,7 @@ export function LikedVideos() {
     const removeLikedVideos = (video) => {
         const remainingVideos = likedVideos.filter(({ _id }) => _id !== video._id);
         setLikedVideos(remainingVideos);
+        setFilterLikedVideos(remainingVideos);
         setLocalStorageItem('retro-liked-videos', JSON.stringify(remainingVideos));
         setShowOptions('');
     }

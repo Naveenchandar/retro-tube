@@ -11,12 +11,14 @@ export function History() {
     const removeFromHistory = (video) => {
         const remainingVideos = historyVideos.filter(({ _id }) => _id !== video._id);
         setHistoryVideos(remainingVideos);
+        setFilterHistoryVideos(remainingVideos);
         setLocalStorageItem('retro-tube-history', JSON.stringify(remainingVideos));
     }
 
     const clearHistory = () => {
         removeLocalStorageItem('retro-tube-history');
         setHistoryVideos([]);
+        setFilterHistoryVideos([]);
     }
 
     const searchWatchLaterVideos = (value = '') => {
