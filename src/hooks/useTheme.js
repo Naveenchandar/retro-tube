@@ -16,7 +16,7 @@ export const useTheme = () => {
             axios.defaults.headers.common["authorization"] = token;
             dispatch(updateUser(user));
         }
-    }, []);
+    }, [dispatch]);
     useEffect(() => {
         dispatch(loadTheme());
     }, [dispatch])
