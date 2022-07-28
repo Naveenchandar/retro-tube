@@ -57,3 +57,7 @@
     grid-template-columns: repeat(4,1fr);
     padding: 2rem;
 }
+
+.home {
+    background-color: var(--background);
+}

@@ -4,12 +4,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useComponentVisible } from "hooks/useVisible";
 import { updateUser } from "features/authSlice";
 import './index.css';
+import { useTheme } from "hooks/useTheme";
 
 export function Navbar() {
     const { user: { firstName = '', email = '' } } = useSelector(state => state.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { ref, isComponentVisible } = useComponentVisible(true);
+    const { theme, changeTheme } = useTheme();
 
     const [isLogoutVisible, setIsLogoutVisible] = useState(false);
 
@@ -54,6 +56,7 @@ export function Navbar() {
                             <NavLink to='/login' className="btn nav_link auth_btn">Log in</NavLink>
                         </div>
                     }
+                    <label className="theme" onClick={() => changeTheme()}>{theme === 'dark' ? 'Light' : 'Dark'}</label>
                 </div>
             </nav>
         </div>

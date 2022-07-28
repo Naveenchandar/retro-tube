@@ -17,3 +17,7 @@
     font-size: 2.6rem;
     margin-left: 1.6rem;
 }
+
+body :is(.section_videos, .explore_section) {
+    background-color: var(--background);
+}

@@ -8,6 +8,8 @@
     top: 0.1rem;
     z-index: 2;
     padding: 1rem;
+    background-color: var(--nav-bg);
+    border-bottom: var(--border-bottom);
 }
 
 .auth_btn {
@@ -39,4 +41,8 @@
 
 .username_div {
     width: 15rem;
+}
+
+.theme {
+    color: var(--white);
 }

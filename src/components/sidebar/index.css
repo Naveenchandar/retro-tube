@@ -4,6 +4,7 @@
     min-width: 24rem;
     position: sticky;
     top: 7.3rem;
+    background-color: var(--background);
 }
 
 .sidebar_link {
@@ -15,10 +16,11 @@
     display: inline-block;
     color: var(--sidebar-link);
     text-decoration: none;
+    color: var(--text-primary);
 }
 
 .sidebar_list .active {
-    color: var(--primary-color);
+    color: var(--text-link);
 }
 
 .sidebar_list li {
@@ -31,6 +33,15 @@
     background-color: var(--btn-hover);
 }
 
+.sidebar_list li:hover .nav_icon svg {
+    color: var(--black);
+}
+
+.sidebar_list li:hover .sidebar_link {
+    color: var(--black);
+}
+
 .nav_icon svg {
     font-size: 2rem;
+    color: var(--text-primary);
 }

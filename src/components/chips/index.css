@@ -19,11 +19,12 @@
     font-weight: 400;
     line-height: 2rem;
     letter-spacing: 0.2px;
+    color: var(--text-primary);
 }
 
 .chips_item:hover {
-    background-color: var(--chips-border);
-    color: var(--primary-color);
+    background-color: var(--chips-hover);
+    color: var(--text-primary-1);
 }
 
 .active_chip {

@@ -13,7 +13,7 @@
 }
 
 .video_caption {
-    color: var(--black);
+    color: var(--text-primary);
     font-size: 1.6rem;
     line-height: 2.2rem;
     font-weight: 500;
@@ -26,7 +26,6 @@
 }
 
 .video_createdby {
-    color: var(--created-by);
     text-overflow: ellipsis;
     overflow: hidden;
     font-size: 1.4rem;
@@ -56,4 +55,12 @@
 
 .close_video {
     font-size: 2rem;
+}
+
+.video :is(.video_createdby, .video_views) {
+    color: var(--video-subheader);
+}
+
+.section_videos hr {
+    color: var(--text-primary);
 }
