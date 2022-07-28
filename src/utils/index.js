@@ -6,6 +6,9 @@ export const getLocalStorageItem = (key) => {
     if (key === 'retro-tube-token') {
         return getItem ? jwt_decode(getItem) : {}
     }
+    if (key === 'theme') {
+        return getItem ? jwt_decode(getItem) : ''
+    }
     if (getItem) {
         return JSON.parse(getItem)
     }
