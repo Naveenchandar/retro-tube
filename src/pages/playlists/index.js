@@ -49,15 +49,15 @@ export function Playlists() {
                         type='playlist'
                     />
                     <main className={filterPlaylists?.length ? 'playlist_videos' : 'no_video'}>
-                        {filterPlaylists?.map(({ id, name, videos }) => {
+                        {filterPlaylists?.map(({ _id, title, videos }) => {
                             return (
                                 <Link
-                                    key={id}
-                                    to={`/playlists/${id}`}
+                                    key={_id}
+                                    to={`/playlists/${_id}`}
                                     className='playlist_link flex p-3 m-3'
                                 >
                                     <div className="ms-2 me-auto">
-                                        <div className="fw-bold">{name}</div>
+                                        <div className="fw-bold">{title}</div>
                                     </div>
                                     <Badge bg="primary">
                                         {videos?.length > 1 ? `${videos.length} videos` : `${videos.length} video`}

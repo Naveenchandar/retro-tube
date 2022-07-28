@@ -1,6 +1,6 @@
-import { createSlice, current } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
+import axios from 'axios';
 import { filterSearchVideos, getLocalStorageItem, notification, setLocalStorageItem } from 'utils';
-import { v4 as uuid } from "uuid";
 
 const initialState = {
     showInput: false,
@@ -9,8 +9,40 @@ const initialState = {
     playlists: getLocalStorageItem('retro-tube-playlist'),
     filterPlaylists: getLocalStorageItem('retro-tube-playlist'),
     currentVideo: '',
-    editPlaylist: ''
+    editPlaylist: '',
+    addPlaylist: {
+        loading: false,
+        error: '',
+        data: {}
+    }
 }
+
+export const addPlaylists = createAsyncThunk('add/playlists', async (newPlaylistName, action) => {
+    try {
+        const { playlist: { inputValue, playlists } } = action.getState();
+        const filterDuplicateItem = playlists?.find(({ title }) => title?.toLowerCase()?.trim() === inputValue?.toLowerCase()?.trim());
+        if (!inputValue) {
+            throw new Error('Please enter playlist name');
+        } else if (!filterDuplicateItem) {
+            const {
+                status, data,
+            } = await axios.post("/api/user/playlists", {
+                playlist: { title: newPlaylistName }
+            });
+            if (status === 201) {
+                notification('success', `${newPlaylistName} playlist created`);
+                return data;
+            } else {
+                throw new Error('Error while creating playlist, please try again');
+            }
+        } else {
+            throw new Error('Playlist name already exists');
+        }
+    } catch (error) {
+        notification('danger', error?.response?.data?.error || error?.message);
+        return { error: error?.response?.data?.error || error?.message }
+    }
+})
 
 const playlistSlice = createSlice({
     name: 'playlist',
@@ -27,22 +59,22 @@ const playlistSlice = createSlice({
             state.inputError = action.payload;
         },
         playlistCreate: (state, action) => {
-            const currentState = current(state);
-            const filterDuplicateItem = currentState.playlists.find(({ name }) => name === currentState.inputValue);
-            if (!state.inputValue) {
-                state.inputError = 'Please enter playlist name';
-            } else if (!filterDuplicateItem) {
-                const data = [...currentState.playlists, { id: uuid(), name: currentState.inputValue, videos: [] }];
-                setLocalStorageItem('retro-tube-playlist', JSON.stringify(data));
-                state.playlists = data;
-                state.inputValue = '';
-                state.inputError = '';
-                state.showInput = !state.showInput;
-                notification('success', `${currentState.inputValue} playlist created`);
-            } else {
-                state.inputError = 'Playlist name already exists';
-            }
-            initPlaylist();
+            // const currentState = current(state);
+            // const filterDuplicateItem = currentState.playlists.find(({ name }) => name === currentState.inputValue);
+            // if (!state.inputValue) {
+            //     state.inputError = 'Please enter playlist name';
+            // } else if (!filterDuplicateItem) {
+            //     const data = [...currentState.playlists, { id: uuid(), name: currentState.inputValue, videos: [] }];
+            //     setLocalStorageItem('retro-tube-playlist', JSON.stringify(data));
+            //     state.playlists = data;
+            //     state.inputValue = '';
+            //     state.inputError = '';
+            //     state.showInput = !state.showInput;
+            //     notification('success', `${currentState.inputValue} playlist created`);
+            // } else {
+            //     state.inputError = 'Playlist name already exists';
+            // }
+            // initPlaylist();
         },
         videoActivePlaylistModal: (state, action) => {
             state.currentVideo = action.payload;
@@ -125,6 +157,30 @@ const playlistSlice = createSlice({
             state.playlists = current(state).playlists;
             state.filterPlaylists = current(state).playlists;
         }
+    },
+    extraReducers: {
+        [addPlaylists.pending]: (state, action) => {
+            state.addPlaylist.loading = true;
+        },
+        [addPlaylists.fulfilled]: (state, action) => {
+            state.addPlaylist.loading = true;
+            if (action.payload.playlists) {
+                state.addPlaylist.data = action.payload.playlists;
+                state.playlists = action.payload.playlists;
+                state.inputValue = '';
+                state.showInput = !state.showInput;
+            }
+            if (action.payload.error) {
+                state.addPlaylist.error = action.payload.error;
+                state.addPlaylist.addPlaylist = {};
+            }
+            state.addPlaylist.loading = false;
+        },
+        [addPlaylists.rejected]: (state, action) => {
+            state.error = action.payload;
+            state.loading = false;
+            state.addPlaylist = {};
+        },
     }
 });
 

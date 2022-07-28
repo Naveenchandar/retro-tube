@@ -10,9 +10,10 @@ export const useTheme = () => {
     const dispatch = useDispatch();
     const updateTheme = () => dispatch(changeTheme());
     useEffect(() => {
+        const token = localStorage.getItem("retro-tube-token");
         const user = getLocalStorageItem("retro-tube-token");
         if (user._id) {
-            axios.defaults.headers.common["authorization"] = user?._id;
+            axios.defaults.headers.common["authorization"] = token;
             dispatch(updateUser(user));
         }
     }, []);

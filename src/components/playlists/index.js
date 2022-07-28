@@ -10,7 +10,7 @@ export function Playlists({ item, addVideosToPlaylist, checked, editPlaylist, de
                         <input type='checkbox' checked={checked} onChange={(e) => addVideosToPlaylist(e, item)} />
                     )}
                     &ensp;
-                    <span title={item?.name} className='playlist_name'>{item?.name}</span>
+                    <span title={item?.title} className='playlist_name'>{item?.title}</span>
                     <label className='playlist_actions'>
                         <AiOutlineEdit
                             className='pointer playlist_edit'

@@ -77,20 +77,27 @@ export function Login() {
     }
   }
 
-  const handleTestLogin = () => {
-    setUserInfo({
-      email: "naveenchandar@gmail.com",
-      password: "naveenchandar",
-      username: "naveenram"
-    });
-    dispatch(updateUser({
-      email: "naveenchandar@gmail.com",
-      password: "naveenchandar",
-      firstName: "Naveen",
-      lastName: "Ram"
-    }));
-    navigate(from ? from : '/', { replace: true });
-    notification('success', 'Welcome naveen');
+  const handleTestLogin = async () => {
+    try {
+      const info = {
+        email: "naveen@gmail.com",
+        password: "naveen",
+      };
+      setUserInfo({
+        ...info,
+        username: "naveenram"
+      });
+      dispatch(updateUser({
+        ...info,
+        firstName: "Naveen",
+        lastName: "Ram"
+      }));
+      await dispatch(loginUser(info));
+      navigate(from ? from : '/', { replace: true });
+      await dispatch(loginUser(info));
+    } catch (error) {
+      setErrorInfo({ error: error?.response?.data?.error || error?.message });
+    }
   }
 
   const togglePassword = () => setShowPassword((showPassword) => !showPassword);
