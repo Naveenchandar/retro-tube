@@ -46,6 +46,7 @@ export function Playlists() {
                         btn='Add new playlist'
                         icon={<IoMdAdd />}
                         onClick={() => setShowModal(true)}
+                        type='playlist'
                     />
                     <main className={filterPlaylists?.length ? 'playlist_videos' : 'no_video'}>
                         {filterPlaylists?.map(({ id, name, videos }) => {
