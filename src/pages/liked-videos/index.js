@@ -34,7 +34,7 @@ export function LikedVideos() {
     }
 
     return (
-        <section>
+        <section className='section'>
             <div className='flex'>
                 <Sidebar />
                 <MainSection data={likedVideos?.length} type='liked videos'>

@@ -28,7 +28,7 @@ export function History() {
     }
 
     return (
-        <section>
+        <section className='section'>
             <div className='flex'>
                 <Sidebar />
                 <MainSection data={historyVideos?.length} type='history'>

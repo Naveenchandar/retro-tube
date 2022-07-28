@@ -59,7 +59,9 @@ export function Video(props) {
                             </div>
                             {moreOptionsList?.length > 0 ?
                                 <>
-                                    <button onClick={() => handleMoreOptions(_id)}><span className="material-icons-outlined ml-1">more_vert</span></button>
+                                    <button onClick={() => handleMoreOptions(_id)}>
+                                        <span className="material-icons-outlined ml-1 vertical_icon">more_vert</span>
+                                    </button>
                                     {options === _id ? (
                                         <MoreOptions list={moreOptionsList} handleClickMoreOptions={handleClickMoreOptions} />
                                     ) : ''}

@@ -30,7 +30,7 @@ export function WatchLater() {
 
     return (
         <section>
-            <div className='flex'>
+            <div className='flex watch_later'>
                 <Sidebar />
                 <MainSection data={watchLaterVideos?.length} type='watch later'>
                     <div>

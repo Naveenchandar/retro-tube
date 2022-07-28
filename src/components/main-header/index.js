@@ -1,8 +1,9 @@
 import React from 'react';
+import './index.css';
 
 export function MainHeader({ data, title, icon, btn, onClick }) {
     return (
-        <div className='flex justify_spacebtw'>
+        <div className='flex justify_spacebtw main_header'>
             <h1 className='text_left p-3'> {title} - &nbsp;
                 <span>
                     {data > 1 ? `${data} videos` : `${data} video`}

@@ -68,7 +68,7 @@ export function Playlist() {
     }
 
     return (
-        <section>
+        <section className='section'>
             <div className='flex'>
                 <Sidebar />
                 <main className='flex flex_dcolumn w_100 section_videos'>

@@ -18,6 +18,10 @@
     margin-left: 1.6rem;
 }
 
-body :is(.section_videos, .explore_section) {
+body :is(.section_videos, .explore_section, .section) {
     background-color: var(--background);
+}
+
+.playlist_head > h1 {
+    color: var(--text-primary);
 }
