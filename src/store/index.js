@@ -5,6 +5,7 @@ import playlistReducer from 'features/playlistSlice';
 import authReducer from 'features/authSlice';
 import themeReducer from 'features/themeSlice';
 import watchlaterReducer from 'features/watchLaterSlice';
+import historyReducer from 'features/historySlice';
 
 export const store = configureStore({
     reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
         user: authReducer,
         theme: themeReducer,
         watchlater: watchlaterReducer,
+        history: historyReducer,
     }
 })
