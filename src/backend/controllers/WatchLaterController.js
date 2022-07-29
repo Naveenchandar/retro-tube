@@ -20,7 +20,7 @@ export const getWatchLaterVideosHandler = function (schema, request) {
         404,
         {},
         {
-          errors: ["The email you entered is not Registered. Not Found error"],
+          error: "The email you entered is not Registered. Not Found error",
         }
       );
     }
@@ -51,7 +51,7 @@ export const addItemToWatchLaterVideos = function (schema, request) {
         409,
         {},
         {
-          errors: ["The video is already in your watch later videos"],
+          error: "The video is already in your watch later videos",
         }
       );
     }
@@ -62,7 +62,7 @@ export const addItemToWatchLaterVideos = function (schema, request) {
     404,
     {},
     {
-      errors: ["The email you entered is not Registered. Not Found error"],
+      error: "The email you entered is not Registered. Not Found error",
     }
   );
 };
@@ -85,6 +85,6 @@ export const removeItemFromWatchLaterVideos = function (schema, request) {
   return new Response(
     404,
     {},
-    { errors: ["The user you request does not exist. Not Found error."] }
+    { error: "The user you request does not exist. Not Found error." }
   );
 };
