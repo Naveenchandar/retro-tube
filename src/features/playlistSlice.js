@@ -12,37 +12,45 @@ const initialState = {
     editPlaylist: '',
     addPlaylist: {
         loading: false,
-        error: '',
-        data: {}
+        error: ''
     }
 }
 
-export const addPlaylists = createAsyncThunk('add/playlists', async (newPlaylistName, action) => {
-    try {
-        const { playlist: { inputValue, playlists } } = action.getState();
-        const filterDuplicateItem = playlists?.find(({ title }) => title?.toLowerCase()?.trim() === inputValue?.toLowerCase()?.trim());
-        if (!inputValue) {
-            throw new Error('Please enter playlist name');
-        } else if (!filterDuplicateItem) {
-            const {
-                status, data,
-            } = await axios.post("/api/user/playlists", {
-                playlist: { title: newPlaylistName }
-            });
-            if (status === 201) {
+export const addPlaylists = createAsyncThunk('add/playlists',
+    async (newPlaylistName, { getState, rejectWithValue }) => {
+        try {
+            const { playlist: { inputValue, playlists } } = getState();
+            const filterDuplicateItem = playlists?.find(({ title }) => (
+                title?.toLowerCase()?.trim() === inputValue?.toLowerCase()?.trim()
+            ));
+            if (!inputValue) {
+                throw new Error('Please enter playlist name');
+            } else if (!filterDuplicateItem) {
+                const { data: { playlists } } = await axios.post("/api/user/playlists", {
+                    playlist: { title: newPlaylistName }
+                });
                 notification('success', `${newPlaylistName} playlist created`);
-                return data;
+                return playlists;
             } else {
-                throw new Error('Error while creating playlist, please try again');
+                throw new Error('Playlist name already exists');
             }
-        } else {
-            throw new Error('Playlist name already exists');
+        } catch (error) {
+            notification('danger', error?.response?.data?.error || error?.message);
+            return rejectWithValue(error?.response?.data?.error || error?.message);
         }
-    } catch (error) {
-        notification('danger', error?.response?.data?.error || error?.message);
-        return { error: error?.response?.data?.error || error?.message }
-    }
-})
+    })
+
+export const playlistDelete = createAsyncThunk('delete/playlist',
+    async ({ _id, title }, { rejectWithValue }) => {
+        try {
+            const { data: { playlists } } = await axios.delete(`/api/user/playlists/${_id}`);
+            notification('success', `${title} playlist deleted`);
+            return playlists;
+        } catch (error) {
+            notification('danger', error?.response?.data?.error || error?.message);
+            return rejectWithValue(error?.response?.data?.error || error?.message);
+        }
+    })
 
 const playlistSlice = createSlice({
     name: 'playlist',
@@ -159,28 +167,23 @@ const playlistSlice = createSlice({
         }
     },
     extraReducers: {
-        [addPlaylists.pending]: (state, action) => {
+        [addPlaylists.pending]: (state) => {
             state.addPlaylist.loading = true;
         },
-        [addPlaylists.fulfilled]: (state, action) => {
-            state.addPlaylist.loading = true;
-            if (action.payload.playlists) {
-                state.addPlaylist.data = action.payload.playlists;
-                state.playlists = action.payload.playlists;
-                state.inputValue = '';
-                state.showInput = !state.showInput;
-            }
-            if (action.payload.error) {
-                state.addPlaylist.error = action.payload.error;
-                state.addPlaylist.addPlaylist = {};
-            }
+        [addPlaylists.fulfilled]: (state, { payload }) => {
+            state.playlists = payload;
+            state.inputValue = '';
+            state.showInput = !state.showInput;
             state.addPlaylist.loading = false;
         },
-        [addPlaylists.rejected]: (state, action) => {
-            state.error = action.payload;
+        [addPlaylists.rejected]: (state, { payload }) => {
+            state.error = payload;
             state.loading = false;
             state.addPlaylist = {};
         },
+        [playlistDelete.fulfilled]: (state, { payload }) => {
+            state.playlists = payload;
+        }
     }
 });
 

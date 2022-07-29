@@ -1,4 +1,4 @@
-import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
+import { AiOutlineDelete } from 'react-icons/ai';
 import './index.css';
 
 export function Playlists({ item, addVideosToPlaylist, checked, editPlaylist, deletePlaylist, list }) {
@@ -12,15 +12,15 @@ export function Playlists({ item, addVideosToPlaylist, checked, editPlaylist, de
                     &ensp;
                     <span title={item?.title} className='playlist_name'>{item?.title}</span>
                     <label className='playlist_actions'>
-                        <AiOutlineEdit
+                        {/* <AiOutlineEdit
                             className='pointer playlist_edit'
                             title='Edit Playlist'
                             onClick={() => editPlaylist(item)}
-                        /> &nbsp;
+                        /> &nbsp; */}
                         <AiOutlineDelete
                             className='pointer playlist_delete'
                             title='Delete Playlist'
-                            onClick={() => deletePlaylist(item)}
+                            onClick={() => deletePlaylist(item?._id)}
                         />
                     </label>
                 </label>

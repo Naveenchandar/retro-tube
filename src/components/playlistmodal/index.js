@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useSelector, useDispatch } from 'react-redux';
-import { addPlaylists, deletePlaylist, inputChange, toggleInput, updatePlaylist, videosAddToPlaylist } from 'features/playlistSlice';
+import { addPlaylists, playlistDelete, inputChange, toggleInput, updatePlaylist, videosAddToPlaylist } from 'features/playlistSlice';
 import { Playlists } from 'components';
 import './index.css';
 
@@ -46,7 +46,7 @@ export function PlaylistModal(props) {
                     key={item.title}
                     addVideosToPlaylist={addVideosToPlaylist}
                     editPlaylist={() => setEdit(true)}
-                    deletePlaylist={() => dispatch(deletePlaylist(item))}
+                    deletePlaylist={() => dispatch(playlistDelete(item))}
                     list={list}
                 />
                 )}
