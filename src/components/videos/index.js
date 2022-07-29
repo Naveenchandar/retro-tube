@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getLocalStorageItem, setLocalStorageItem } from 'utils';
+// import { getLocalStorageItem, setLocalStorageItem } from 'utils';
 import { Chips, PlaylistModal, SearchInput, Video } from 'components';
 import './index.css';
 import { chipOnChange, filterBasedOnActiveChip, loadingVideos, loadVideos, loadVideosError, searchVideos } from 'features/videosSlice';
