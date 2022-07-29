@@ -116,7 +116,7 @@ export const addVideoToPlaylistHandler = function (schema, request) {
         409,
         {},
         {
-          errors: ["The video is already in your playlist"],
+          error: "The video is already in your playlist",
         }
       );
     }
@@ -126,7 +126,7 @@ export const addVideoToPlaylistHandler = function (schema, request) {
   return new Response(
     404,
     {},
-    { errors: ["The user you request does not exist. Not Found error."] }
+    { error: "The user you request does not exist. Not Found error." }
   );
 };
 

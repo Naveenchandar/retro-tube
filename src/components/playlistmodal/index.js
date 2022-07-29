@@ -1,25 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useSelector, useDispatch } from 'react-redux';
-import { addPlaylists, playlistDelete, inputChange, toggleInput, updatePlaylist, videosAddToPlaylist } from 'features/playlistSlice';
+import { addPlaylists, playlistDelete, inputChange, toggleInput, videosAddToPlaylist, fetchAllPlaylists } from 'features/playlistSlice';
 import { Playlists } from 'components';
 import './index.css';
 
 export function PlaylistModal(props) {
-    const { onHide, list, ...rest } = props;
+    const { onHide, list, videoId, ...rest } = props;
     const { showInput, inputValue, inputError, playlists, addPlaylist: { loading, error } } = useSelector(state => state.playlist);
     const dispatch = useDispatch();
     const [checked, setChecked] = useState([]);
-    const [edit, setEdit] = useState(false);
 
     const createPlaylist = () => {
-        if (edit) {
-            dispatch(updatePlaylist());
-        } else {
-            dispatch(addPlaylists(inputValue));
-        }
+        dispatch(addPlaylists(inputValue));
     }
+
+    useEffect(() => {
+        (async () => {
+            await dispatch(fetchAllPlaylists());
+        })()
+    }, [dispatch])
 
     const addVideosToPlaylist = (event, targetValue) => {
         if (event.target?.checked) {
@@ -45,9 +46,9 @@ export function PlaylistModal(props) {
                     item={item}
                     key={item.title}
                     addVideosToPlaylist={addVideosToPlaylist}
-                    editPlaylist={() => setEdit(true)}
                     deletePlaylist={() => dispatch(playlistDelete(item))}
                     list={list}
+                    videoId={videoId}
                 />
                 )}
                 <p className='pointer' onClick={() => dispatch(toggleInput())}>
@@ -69,9 +70,7 @@ export function PlaylistModal(props) {
             </Modal.Body>
             <Modal.Footer>
                 {showInput ?
-                    <Button onClick={createPlaylist}>{
-                        edit ? 'Update' : loading ? 'Loading...' : 'Create'
-                    }</Button>
+                    <Button onClick={createPlaylist} disabled={loading}>Create</Button>
                     : <Button onClick={onHide}>Close</Button>
                 }
             </Modal.Footer>

@@ -1,17 +1,16 @@
-import React, { useState } from 'react'
-import { useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
 import { PlaylistModal } from 'components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { videoActivePlaylistModal } from 'features/playlistSlice';
-import { getLocalStorageItem, setLocalStorageItem } from 'utils';
-import { addToLikedVideos } from 'features/likedVideosSlice';
+import { getLocalStorageItem, isVideoLiked, setLocalStorageItem } from 'utils';
+import { addToLikedVideos, removedLikedVideo } from 'features/likedVideosSlice';
 
 export function SingleAction({ data, videoId }) {
-    const { state: { like } } = useLocation();
+    const { videos } = useSelector(state => state.likedVideos);
     const dispatch = useDispatch();
     // const { _id } = data;
     // const [likedVideos, setLikedVideos] = useState(getLocalStorageItem('retro-liked-videos'));
-    const [filled, setFilled] = useState(like);
+    const [filled, setFilled] = useState(isVideoLiked(videoId, videos));
     const [showModal, setShowModal] = useState(false);
 
     const likeVideo = async () => {
@@ -25,9 +24,11 @@ export function SingleAction({ data, videoId }) {
         //     setLikedVideos(filterVideos);
         //     setLocalStorageItem('retro-liked-videos', JSON.stringify(filterVideos));
         // }
-        setFilled(true);
-        const obj = {...data, isLiked: true};
-        await dispatch(addToLikedVideos(obj));
+        if (filled) {
+            await dispatch(removedLikedVideo(videoId));
+        } else {
+            await dispatch(addToLikedVideos(data));
+        }
     }
 
     const saveToPlaylist = () => {
