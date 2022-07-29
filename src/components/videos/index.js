@@ -6,13 +6,14 @@ import { Chips, PlaylistModal, SearchInput, Video } from 'components';
 import './index.css';
 import { chipOnChange, filterBasedOnActiveChip, loadingVideos, loadVideos, loadVideosError, searchVideos } from 'features/videosSlice';
 import { videoActivePlaylistModal } from 'features/playlistSlice';
+import { addToWatchlaterVideos } from 'features/watchLaterSlice';
 
 
 export function Videos() {
     const location = useLocation();
 
     const [showOptions, setShowOptions] = useState();
-    const [watchLaterVideos, setWatchLaterVideos] = useState(getLocalStorageItem('retro-tube-watchlater'));
+    // const [watchLaterVideos, setWatchLaterVideos] = useState(getLocalStorageItem('retro-tube-watchlater'));
     const [showModal, setShowModal] = useState(false);
     const [searchValue, setSearchValue] = useState('');
 
@@ -48,13 +49,14 @@ export function Videos() {
         setShowOptions(videoId);
     }
 
-    const watchLater = (item) => {
-        const filterDuplicateItem = watchLaterVideos.find(({ _id }) => _id === item._id)
-        if (!filterDuplicateItem) {
-            const data = [...watchLaterVideos, item];
-            setWatchLaterVideos([...watchLaterVideos, item]);
-            setLocalStorageItem('retro-tube-watchlater', JSON.stringify(data));
-        }
+    const watchLater = async (item) => {
+        await dispatch(addToWatchlaterVideos(item));
+        // const filterDuplicateItem = watchLaterVideos.find(({ _id }) => _id === item._id)
+        // if (!filterDuplicateItem) {
+        //     const data = [...watchLaterVideos, item];
+        //     setWatchLaterVideos([...watchLaterVideos, item]);
+        //     setLocalStorageItem('retro-tube-watchlater', JSON.stringify(data));
+        // }
         setShowOptions('');
     }
 
