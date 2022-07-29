@@ -11,7 +11,7 @@ import {
     SearchInput,
 } from 'components';
 import './index.css';
-import { initPlaylist, searchPlaylist } from 'features/playlistSlice';
+import { fetchAllPlaylists, searchPlaylist } from 'features/playlistSlice';
 
 export function Playlists() {
     const { playlists = [], filterPlaylists = [] } = useSelector(state => state.playlist);
@@ -21,7 +21,9 @@ export function Playlists() {
     const [searchValue, setSearchValue] = useState('');
 
     useEffect(() => {
-        dispatch(initPlaylist());
+        (async () => {
+            await dispatch(fetchAllPlaylists());
+        })()
     }, [dispatch])
 
     return (
@@ -36,7 +38,7 @@ export function Playlists() {
                             placeholder={`Search playlists`}
                             dispatch={{
                                 search: (value) => dispatch(searchPlaylist({ searchText: value })),
-                                noSearch: () => dispatch(initPlaylist())
+                                noSearch: () => dispatch(fetchAllPlaylists())
                             }}
                         />
                     </div>
@@ -70,7 +72,7 @@ export function Playlists() {
             </div >
             <PlaylistModal
                 show={showModal}
-                onHide={() => { setShowModal(false); dispatch(initPlaylist()) }}
+                onHide={() => { setShowModal(false); dispatch(fetchAllPlaylists()) }}
                 list
             />
         </section >

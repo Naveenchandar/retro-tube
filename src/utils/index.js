@@ -52,7 +52,7 @@ export const filterSearchVideos = ({ videos, searchText, type = '', chip: active
             return '';
         }
         if (type === 'playlist') {
-            return fetchSearchVideo(name, searchText);
+            return fetchSearchVideo(title, searchText);
         }
         return fetchSearchVideo(title, searchText);
     })
