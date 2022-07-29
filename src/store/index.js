@@ -6,6 +6,7 @@ import authReducer from 'features/authSlice';
 import themeReducer from 'features/themeSlice';
 import watchlaterReducer from 'features/watchLaterSlice';
 import historyReducer from 'features/historySlice';
+import likedVidoesReducer from 'features/likedVideosSlice';
 
 export const store = configureStore({
     reducer: {
@@ -16,5 +17,6 @@ export const store = configureStore({
         theme: themeReducer,
         watchlater: watchlaterReducer,
         history: historyReducer,
+        likedVideos: likedVidoesReducer,
     }
 })

@@ -4,27 +4,30 @@ import { PlaylistModal } from 'components';
 import { useDispatch } from 'react-redux';
 import { videoActivePlaylistModal } from 'features/playlistSlice';
 import { getLocalStorageItem, setLocalStorageItem } from 'utils';
+import { addToLikedVideos } from 'features/likedVideosSlice';
 
 export function SingleAction({ data, videoId }) {
     const { state: { like } } = useLocation();
     const dispatch = useDispatch();
-    const { _id } = data;
-    const [likedVideos, setLikedVideos] = useState(getLocalStorageItem('retro-liked-videos'));
+    // const { _id } = data;
+    // const [likedVideos, setLikedVideos] = useState(getLocalStorageItem('retro-liked-videos'));
     const [filled, setFilled] = useState(like);
     const [showModal, setShowModal] = useState(false);
 
-    const likeVideo = () => {
-        if (!like) {
-            const videos = [...likedVideos, data];
-            setLikedVideos(videos);
-            setLocalStorageItem('retro-liked-videos', JSON.stringify(videos));
-            setFilled(true);
-        } else {
-            setFilled(false);
-            const filterVideos = likedVideos?.filter(({ _id: id }) => id !== _id);
-            setLikedVideos(filterVideos);
-            setLocalStorageItem('retro-liked-videos', JSON.stringify(filterVideos));
-        }
+    const likeVideo = async () => {
+        // if (!like) {
+        //     const videos = [...likedVideos, data];
+        //     setLikedVideos(videos);
+        //     setLocalStorageItem('retro-liked-videos', JSON.stringify(videos));
+        // } else {
+        //     setFilled(false);
+        //     const filterVideos = likedVideos?.filter(({ _id: id }) => id !== _id);
+        //     setLikedVideos(filterVideos);
+        //     setLocalStorageItem('retro-liked-videos', JSON.stringify(filterVideos));
+        // }
+        setFilled(true);
+        const obj = {...data, isLiked: true};
+        await dispatch(addToLikedVideos(obj));
     }
 
     const saveToPlaylist = () => {
