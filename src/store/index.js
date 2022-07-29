@@ -4,6 +4,7 @@ import categoriesReducer from 'features/categorySlice';
 import playlistReducer from 'features/playlistSlice';
 import authReducer from 'features/authSlice';
 import themeReducer from 'features/themeSlice';
+import watchlaterReducer from 'features/watchLaterSlice';
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
         categories: categoriesReducer,
         playlist: playlistReducer,
         user: authReducer,
-        theme: themeReducer
+        theme: themeReducer,
+        watchlater: watchlaterReducer,
     }
 })
