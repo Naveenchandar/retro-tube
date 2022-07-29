@@ -104,6 +104,7 @@ export function Videos() {
             <PlaylistModal
                 show={showModal}
                 onHide={() => { setShowModal(false); setShowOptions(''); }}
+                videoId={showOptions}
             />
         </main>
     )

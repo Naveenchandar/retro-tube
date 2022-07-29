@@ -60,6 +60,17 @@ export const fetchAllPlaylists = createAsyncThunk('get/playlists', async () => {
     } catch (error) {
         notification('danger', error?.response?.data?.error || error?.message);
     }
+});
+
+export const removeVideoFromPlaylist = createAsyncThunk('remove/playlist/video', async ({ playlistId, videoId }, { dispatch, rejectWithValue }) => {
+    try {
+        await axios.delete(`/api/user/playlists/${playlistId}/${videoId}`);
+        notification('success', 'video removed from playlist');
+        dispatch(fetchAllPlaylists());
+    } catch (error) {
+        notification('danger', error?.response?.data?.error || error?.message);
+        return rejectWithValue(error?.response?.data?.error || error?.message);
+    }
 })
 
 const playlistSlice = createSlice({
@@ -124,32 +135,6 @@ const playlistSlice = createSlice({
             state.editPlaylist = findPlaylist;
             state.showInput = true;
         },
-        updatePlaylist: (state, action) => {
-            const currentState = current(state);
-            const filterDuplicateItem = currentState.playlists.find(({ name }) => name === (
-                currentState.inputValue && name !== currentState.editPlaylist?.name
-            ));
-            if (!currentState.inputValue) {
-                state.inputError = 'Please enter playlist name';
-            } else if (filterDuplicateItem) {
-                state.inputError = 'Playlist name already exists';
-            } else {
-                const data = currentState.playlists.map(item => {
-                    const { id } = item;
-                    if (id === currentState.editPlaylist?.id) {
-                        return { ...item, name: currentState.inputValue };
-                    }
-                    return item;
-                });
-                setLocalStorageItem('retro-tube-playlist', JSON.stringify(data));
-                state.playlists = data;
-                state.inputValue = '';
-                state.inputError = '';
-                state.showInput = false;
-                notification('success', `${currentState.inputValue} playlist updated`);
-            }
-            initPlaylist();
-        },
         removeVideosFromPlaylist: (state, action) => {
             const currentSate = current(state);
             const { playlistId, videoId } = action.payload;
@@ -213,7 +198,7 @@ const playlistSlice = createSlice({
 export const {
     toggleInput, inputChange, inputError, playlistCreate,
     videoActivePlaylistModal, videosAddToPlaylist,
-    deletePlaylist, editPlaylist, updatePlaylist, removeVideosFromPlaylist,
+    deletePlaylist, editPlaylist, removeVideosFromPlaylist,
     searchPlaylist, initPlaylist,
 } = playlistSlice.actions;
 

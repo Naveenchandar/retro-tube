@@ -30,6 +30,7 @@ export const addToLikedVideos = createAsyncThunk('add/likedvideos', async (video
 export const removedLikedVideo = createAsyncThunk('remove/video', async (videoId, { rejectWithValue }) => {
     try {
         const { data: { likes } } = await axios.delete(`/api/user/likes/${videoId}`);
+        notification('success', 'video removed from liked videos');
         return likes;
     } catch (error) {
         notification('danger', error?.response?.data?.error || error?.message);
