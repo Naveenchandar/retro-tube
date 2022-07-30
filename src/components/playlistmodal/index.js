@@ -1,31 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useSelector, useDispatch } from 'react-redux';
-import { deletePlaylist, inputChange, playlistCreate, toggleInput, updatePlaylist, videosAddToPlaylist } from 'features/playlistSlice';
+import { addPlaylists, playlistDelete, inputChange, toggleInput, addVideoToPlaylist, fetchAllPlaylists } from 'features/playlistSlice';
 import { Playlists } from 'components';
 import './index.css';
 
 export function PlaylistModal(props) {
-    const { onHide, list, ...rest } = props;
-    const { showInput, inputValue, inputError, playlists } = useSelector(state => state.playlist);
+    const { onHide, list, video, show, ...rest } = props;
+    const { showInput, inputValue, inputError, playlists, addPlaylist: { loading, error } } = useSelector(state => state.playlist);
     const dispatch = useDispatch();
     const [checked, setChecked] = useState([]);
-    const [edit, setEdit] = useState(false);
 
     const createPlaylist = () => {
-        if (edit) {
-            dispatch(updatePlaylist());
-        } else {
-            dispatch(playlistCreate());
-        }
+        dispatch(addPlaylists(inputValue));
     }
 
-    const addVideosToPlaylist = (event, targetValue) => {
+    useEffect(() => {
+        (async () => {
+            await dispatch(fetchAllPlaylists());
+        })()
+    }, [dispatch])
+
+    const addVideosToPlaylist = (event, targetValue, video) => {
         if (event.target?.checked) {
             setChecked([...checked, targetValue]);
         }
-        dispatch(videosAddToPlaylist(targetValue))
+        dispatch(addVideoToPlaylist({ playlistId: targetValue, video }))
     }
 
     return (
@@ -34,6 +35,7 @@ export function PlaylistModal(props) {
             size="sm"
             aria-labelledby="contained-modal-title-vcenter"
             centered
+            show={show}
         >
             <Modal.Header closeButton onHide={onHide}>
                 <Modal.Title id="contained-modal-title-vcenter">
@@ -43,11 +45,11 @@ export function PlaylistModal(props) {
             <Modal.Body>
                 {playlists?.map(item => <Playlists
                     item={item}
-                    key={item.name}
+                    key={item.title}
                     addVideosToPlaylist={addVideosToPlaylist}
-                    editPlaylist={() => setEdit(true)}
-                    deletePlaylist={() => dispatch(deletePlaylist(item))}
+                    deletePlaylist={() => dispatch(playlistDelete(item))}
                     list={list}
+                    video={video}
                 />
                 )}
                 <p className='pointer' onClick={() => dispatch(toggleInput())}>
@@ -63,13 +65,13 @@ export function PlaylistModal(props) {
                         <span className='playlist_name_length'>{inputValue?.length}/30</span>
                     </>
                 ) : null}
-                {inputError && (
-                    <p>{inputError}</p>
+                {(inputError || error) && (
+                    <p>{inputError || error}</p>
                 )}
             </Modal.Body>
             <Modal.Footer>
                 {showInput ?
-                    <Button onClick={createPlaylist}>{edit ? 'Update' : 'Create'}</Button>
+                    <Button onClick={createPlaylist} disabled={loading}>Create</Button>
                     : <Button onClick={onHide}>Close</Button>
                 }
             </Modal.Footer>

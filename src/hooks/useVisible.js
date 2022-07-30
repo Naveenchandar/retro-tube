@@ -5,10 +5,14 @@ export function useComponentVisible(initialIsVisible) {
     const ref = useRef(null);
 
     const handleClickOutside = (event) => {
-        if (ref.current && !ref.current.contains(event.target)) {
-            setIsComponentVisible(false);
-        } else {
+        if (ref.current && ref.current.contains(event.target)) {
             setIsComponentVisible(true);
+        } 
+        else if (ref.current && ref.current?.hasChildNodes(event.target)) {
+            setIsComponentVisible(true);
+        } 
+        else {
+            setIsComponentVisible(false);
         }
     };
 

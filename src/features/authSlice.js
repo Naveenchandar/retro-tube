@@ -16,6 +16,7 @@ export const loginUser = createAsyncThunk("auth/loginUser", async (info, { dispa
         const { status, data } = await axios.post("/api/auth/login", info)
         if (status === 200 && data?.encodedToken) {
             notification('success', 'logged in successfully');
+            axios.defaults.headers.common["authorization"] = data?.encodedToken;
             dispatch(updateUser(jwt_decode(data?.encodedToken)));
             localStorage.setItem("retro-tube-token", data?.encodedToken);
             return data;

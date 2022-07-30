@@ -6,6 +6,9 @@ export const getLocalStorageItem = (key) => {
     if (key === 'retro-tube-token') {
         return getItem ? jwt_decode(getItem) : {}
     }
+    if (key === 'retro-tube-theme') {
+        return getItem;
+    }
     if (getItem) {
         return JSON.parse(getItem)
     }
@@ -49,7 +52,7 @@ export const filterSearchVideos = ({ videos, searchText, type = '', chip: active
             return '';
         }
         if (type === 'playlist') {
-            return fetchSearchVideo(name, searchText);
+            return fetchSearchVideo(title, searchText);
         }
         return fetchSearchVideo(title, searchText);
     })
@@ -93,3 +96,23 @@ export const handleValidation = (info, errorInfo) => {
     }
     return { ...errorInfo, valid: true };
 }
+
+export const checkOnlineStatus = async () => {
+    try {
+        const online = window.navigator.onLine
+        return online;
+    } catch (err) {
+        return false;
+    }
+};
+
+export const isVideoLiked = (videoId, videos) => {
+    return videos.some(({ _id }) => _id === videoId);
+};
+
+export const isVideoInPlaylist = (videoId, playlistId, playlists) => {
+    return playlists
+        .find(({ _id }) => _id === playlistId)
+        ?.videos.some(({ _id }) => _id === videoId);
+};
+

@@ -20,7 +20,7 @@ export const getAllPlaylistsHandler = function (schema, request) {
         404,
         {},
         {
-          errors: ["The email you entered is not Registered. Not Found error"],
+          error: "The email you entered is not Registered. Not Found error",
         }
       );
     }
@@ -53,7 +53,7 @@ export const addNewPlaylistHandler = function (schema, request) {
     404,
     {},
     {
-      errors: ["The email you entered is not Registered. Not Found error"],
+      error: "The email you entered is not Registered. Not Found error",
     }
   );
 };
@@ -76,7 +76,7 @@ export const removePlaylistHandler = function (schema, request) {
   return new Response(
     404,
     {},
-    { errors: ["The user you request does not exist. Not Found error."] }
+    { error: "The user you request does not exist. Not Found error." }
   );
 };
 
@@ -95,7 +95,7 @@ export const getVideosFromPlaylistHandler = function (schema, request) {
   return new Response(
     404,
     {},
-    { errors: ["The user you request does not exist. Not Found error."] }
+    { error: "The user you request does not exist. Not Found error." }
   );
 };
 
@@ -116,7 +116,7 @@ export const addVideoToPlaylistHandler = function (schema, request) {
         409,
         {},
         {
-          errors: ["The video is already in your playlist"],
+          error: "The video is already in your playlist",
         }
       );
     }
@@ -126,7 +126,7 @@ export const addVideoToPlaylistHandler = function (schema, request) {
   return new Response(
     404,
     {},
-    { errors: ["The user you request does not exist. Not Found error."] }
+    { error: "The user you request does not exist. Not Found error." }
   );
 };
 
@@ -150,6 +150,6 @@ export const removeVideoFromPlaylistHandler = function (schema, request) {
   return new Response(
     404,
     {},
-    { errors: ["The user you request does not exist. Not Found error."] }
+    { error: "The user you request does not exist. Not Found error." }
   );
 };

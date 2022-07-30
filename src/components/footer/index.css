@@ -1,5 +1,5 @@
 footer {
-    background-color: var(--box-shadow);
+    background-color: var(--footer-bg);
 }
 
 footer .copy_rights {
@@ -19,5 +19,9 @@ footer .copy_rights i {
 }
 
 .copy_rights a {
-    color: var(--black);
+    color: var(--text-primary);
+}
+
+.copy_rights p {
+    color: var(--text-primary);
 }

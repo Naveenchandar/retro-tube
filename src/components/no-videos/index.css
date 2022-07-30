@@ -1,0 +1,7 @@
+.no_video :is(p) { 
+    color: var(--text-primary);
+}
+
+.no_video a {
+    color: var(--text-link);
+}

@@ -19,7 +19,7 @@ export const getHistoryVideosHandler = function (schema, request) {
         404,
         {},
         {
-          errors: ["The email you entered is not Registered. Not Found error"],
+          error: "The email you entered is not Registered. Not Found error",
         }
       );
     }
@@ -49,7 +49,7 @@ export const addVideoToHistoryHandler = function (schema, request) {
         404,
         {},
         {
-          errors: ["The email you entered is not Registered. Not Found error"],
+          error: "The email you entered is not Registered. Not Found error",
         }
       );
     }
@@ -59,7 +59,7 @@ export const addVideoToHistoryHandler = function (schema, request) {
         409,
         {},
         {
-          errors: ["The video is already in your history"],
+          error: "The video is already in your history",
         }
       );
     }
@@ -89,7 +89,7 @@ export const removeVideoFromHistoryHandler = function (schema, request) {
         404,
         {},
         {
-          errors: ["The email you entered is not Registered. Not Found error"],
+          error: "The email you entered is not Registered. Not Found error",
         }
       );
     }
@@ -121,7 +121,7 @@ export const clearHistoryHandler = function (schema, request) {
         404,
         {},
         {
-          errors: ["The email you entered is not Registered. Not Found error"],
+          error: "The email you entered is not Registered. Not Found error",
         }
       );
     }

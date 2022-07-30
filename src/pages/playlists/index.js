@@ -11,7 +11,7 @@ import {
     SearchInput,
 } from 'components';
 import './index.css';
-import { initPlaylist, searchPlaylist } from 'features/playlistSlice';
+import { fetchAllPlaylists, searchPlaylist } from 'features/playlistSlice';
 
 export function Playlists() {
     const { playlists = [], filterPlaylists = [] } = useSelector(state => state.playlist);
@@ -21,11 +21,13 @@ export function Playlists() {
     const [searchValue, setSearchValue] = useState('');
 
     useEffect(() => {
-        dispatch(initPlaylist());
+        (async () => {
+            await dispatch(fetchAllPlaylists());
+        })()
     }, [dispatch])
 
     return (
-        <section>
+        <section className='section'>
             <div className='flex'>
                 <Sidebar />
                 <MainSection data={playlists?.length} type='playlists'>
@@ -36,7 +38,7 @@ export function Playlists() {
                             placeholder={`Search playlists`}
                             dispatch={{
                                 search: (value) => dispatch(searchPlaylist({ searchText: value })),
-                                noSearch: () => dispatch(initPlaylist())
+                                noSearch: () => dispatch(fetchAllPlaylists())
                             }}
                         />
                     </div>
@@ -46,17 +48,18 @@ export function Playlists() {
                         btn='Add new playlist'
                         icon={<IoMdAdd />}
                         onClick={() => setShowModal(true)}
+                        type='playlist'
                     />
                     <main className={filterPlaylists?.length ? 'playlist_videos' : 'no_video'}>
-                        {filterPlaylists?.map(({ id, name, videos }) => {
+                        {filterPlaylists?.map(({ _id, title, videos }) => {
                             return (
                                 <Link
-                                    key={id}
-                                    to={`/playlists/${id}`}
+                                    key={_id}
+                                    to={`/playlists/${_id}`}
                                     className='playlist_link flex p-3 m-3'
                                 >
                                     <div className="ms-2 me-auto">
-                                        <div className="fw-bold">{name}</div>
+                                        <div className="fw-bold">{title}</div>
                                     </div>
                                     <Badge bg="primary">
                                         {videos?.length > 1 ? `${videos.length} videos` : `${videos.length} video`}
@@ -69,7 +72,7 @@ export function Playlists() {
             </div >
             <PlaylistModal
                 show={showModal}
-                onHide={() => { setShowModal(false); dispatch(initPlaylist()) }}
+                onHide={() => { setShowModal(false); dispatch(fetchAllPlaylists()) }}
                 list
             />
         </section >

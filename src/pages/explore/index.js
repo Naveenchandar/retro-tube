@@ -3,7 +3,7 @@ import { Sidebar, Videos } from 'components';
 
 export function Explore() {
     return (
-        <section>
+        <section className='explore_section'>
             <div className='flex'>
                 <Sidebar />
                 <Videos />

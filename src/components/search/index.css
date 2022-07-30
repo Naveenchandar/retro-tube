@@ -8,4 +8,10 @@
     border: 1px solid #c8c9ca;
     font-size: 1.6rem;
     top: 5px;
+    background-color: var(--search-input-bg);
+    color: var(--text-primary);
+}
+
+.search_input::-webkit-search-cancel-button {
+    color: var(--text-primary);
 }

@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getLocalStorageItem, setLocalStorageItem } from 'utils';
+// import { getLocalStorageItem, setLocalStorageItem } from 'utils';
 import { Chips, PlaylistModal, SearchInput, Video } from 'components';
 import './index.css';
 import { chipOnChange, filterBasedOnActiveChip, loadingVideos, loadVideos, loadVideosError, searchVideos } from 'features/videosSlice';
 import { videoActivePlaylistModal } from 'features/playlistSlice';
+import { addToWatchlaterVideos } from 'features/watchLaterSlice';
 
 
 export function Videos() {
     const location = useLocation();
 
     const [showOptions, setShowOptions] = useState();
-    const [watchLaterVideos, setWatchLaterVideos] = useState(getLocalStorageItem('retro-tube-watchlater'));
+    // const [watchLaterVideos, setWatchLaterVideos] = useState(getLocalStorageItem('retro-tube-watchlater'));
     const [showModal, setShowModal] = useState(false);
     const [searchValue, setSearchValue] = useState('');
 
@@ -44,17 +45,18 @@ export function Videos() {
         dispatch(filterBasedOnActiveChip())
     }
 
-    const handleMoreOptions = (videoId) => {
-        setShowOptions(videoId);
+    const handleMoreOptions = (video) => {
+        setShowOptions(video);
     }
 
-    const watchLater = (item) => {
-        const filterDuplicateItem = watchLaterVideos.find(({ _id }) => _id === item._id)
-        if (!filterDuplicateItem) {
-            const data = [...watchLaterVideos, item];
-            setWatchLaterVideos([...watchLaterVideos, item]);
-            setLocalStorageItem('retro-tube-watchlater', JSON.stringify(data));
-        }
+    const watchLater = async (item) => {
+        await dispatch(addToWatchlaterVideos(item));
+        // const filterDuplicateItem = watchLaterVideos.find(({ _id }) => _id === item._id)
+        // if (!filterDuplicateItem) {
+        //     const data = [...watchLaterVideos, item];
+        //     setWatchLaterVideos([...watchLaterVideos, item]);
+        //     setLocalStorageItem('retro-tube-watchlater', JSON.stringify(data));
+        // }
         setShowOptions('');
     }
 
@@ -102,6 +104,7 @@ export function Videos() {
             <PlaylistModal
                 show={showModal}
                 onHide={() => { setShowModal(false); setShowOptions(''); }}
+                video={showOptions}
             />
         </main>
     )

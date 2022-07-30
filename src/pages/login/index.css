@@ -1,14 +1,18 @@
 body {
-    background-color: var(--bg-color)
+    background-color: var(--bg-color);
+}
+
+#login {
+    background-color: var(--background);
 }
 
 #login label, #login span {
-    font-size: 1.6rem
+    font-size: 1.6rem;
 }
 
 .login_body {
     width: 30%;
-    background-color: var(--white)
+    background-color: var(--background);
 }
 
 .login_body .input {
@@ -20,26 +24,26 @@ body {
     padding: 1.3rem;
     margin: 1.6rem 0;
     background-color: var(--primary-color) !important;
-    color: var(--white) !important;
+    color: var(--text-primary-1) !important;
     font-size: 1.6rem;
 }
 
 .login_btn a {
-    font-size: 1.8rem
+    font-size: 1.8rem;
 }
 
 .login_header h4 {
-    font-size: 2.6rem
+    font-size: 2.6rem;
 }
 
 #login input {
     font-size: 1.4rem;
-    padding: 1.4rem
+    padding: 1.4rem;
 }
 
 .input_password {
     position: relative;
-    width: 100%
+    width: 100%;
 }
 
 .input_password i {
@@ -49,5 +53,9 @@ body {
 }
 
 .input_errormsg {
-    color: var(--red);
+    color: var(--error-msg);
+}
+
+.login_body :is(label, .login_header h4) {
+    color: var(--text-primary);
 }

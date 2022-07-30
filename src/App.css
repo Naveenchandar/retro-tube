@@ -1,16 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap");
 
-:root {
-    --header-bg: #00000066;
-    --btn-hover: #dedde2;
-    --chips-bg: #0000000d;
-    --chips-border: #0000001a;
-    --sidebar-border: #e5e5e5;
-    --created-by: ##606060;
-    --sidebar-link: #121212;
-    --box-shadow: #00000033;
-}
-
 * {
     font-family: Montserrat, sans-serif;
 }

@@ -7,6 +7,6 @@
     color: var(--primary-color);
 }
 
-.group_videos {
-    grid-template-columns: repeat(3, 1fr);
+.watch_later {
+    background-color: var(--background);
 }

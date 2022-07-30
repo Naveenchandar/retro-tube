@@ -3,8 +3,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Sidebar, NoVideos } from 'components'
 import { Video } from 'components/video';
-import { getLocalStorageItem, setLocalStorageItem } from 'utils';
-import { deletePlaylist as playlistDelete, removeVideosFromPlaylist } from 'features/playlistSlice';
+import { notification } from 'utils';
+import { playlistDelete, removeVideoFromPlaylist } from 'features/playlistSlice';
+import { addToWatchlaterVideos } from 'features/watchLaterSlice';
 
 
 export function Playlist() {
@@ -15,28 +16,29 @@ export function Playlist() {
     const navigate = useNavigate();
 
     const [showOptions, setShowOptions] = useState();
-    const { videos = [], id, name } = playlists?.find(({ id }) => id === playlistId);
-    const watchLaterVideos = useState(getLocalStorageItem('retro-tube-watchlater'));
+    const { videos = [], _id: playListId, title } = playlists?.find(({ _id }) => _id === playlistId) || '';
+    // const watchLaterVideos = useState(getLocalStorageItem('retro-tube-watchlater'));
 
     const handleMoreOptions = (videoId) => {
         setShowOptions(videoId);
     }
 
-    const watchLater = (item) => {
-        const filterDuplicateItem = watchLaterVideos.find(({ _id }) => _id === item._id)
-        if (!filterDuplicateItem) {
-            const data = [...watchLaterVideos, item];
-            setLocalStorageItem('retro-tube-watchlater', JSON.stringify(data));
-        }
+    const watchLater = async(item) => {
+        // const filterDuplicateItem = watchLaterVideos.find(({ _id }) => _id === item._id)
+        // if (!filterDuplicateItem) {
+        //     const data = [...watchLaterVideos, item];
+        //     setLocalStorageItem('retro-tube-watchlater', JSON.stringify(data));
+        // }
+        await dispatch(addToWatchlaterVideos(item));
         setShowOptions('');
     }
 
-    const deletePlaylist = (name) => {
+    const deletePlaylist = () => {
         try {
-            dispatch(playlistDelete(name));
+            dispatch(playlistDelete({ _id: playlistId, title }));
             navigate('/playlists');
         } catch (error) {
-            console.error('playlist delete:', error)
+            notification('danger', error?.response?.data?.error || error?.message);
         }
     }
 
@@ -52,10 +54,11 @@ export function Playlist() {
                                 options={showOptions}
                                 handleMoreOptions={handleMoreOptions}
                                 watchLater={watchLater}
-                                moreOptionsList={['Remove from playlist', 'Add to Watch later']}
-                                handleRemoveFromPlaylist={(video) => dispatch(
-                                    dispatch(removeVideosFromPlaylist({ playlistId: id, videoId: video._id }))
-                                )}
+                                moreOptionsList={['Remove from playlist', 'Watch later']}
+                                handleRemoveFromPlaylist={(video) => {
+                                    dispatch(removeVideoFromPlaylist({ playlistId: playListId, videoId: video._id }));
+                                    setShowOptions('');
+                                }}
                             />
                         )
                     })}
@@ -68,15 +71,15 @@ export function Playlist() {
     }
 
     return (
-        <section>
+        <section className='section'>
             <div className='flex'>
                 <Sidebar />
                 <main className='flex flex_dcolumn w_100 section_videos'>
                     <div className='playlist_head flex justify_spacebtw m-4'>
-                        <h1>{name}</h1>
+                        <h1>{title}</h1>
                         <button
                             className="btn btn_primary main_header_btn align_center"
-                            onClick={() => deletePlaylist(name)}
+                            onClick={deletePlaylist}
                         ><span className='main_header_btn_caption'>Delete Playlist</span></button>
                     </div>
                     {getPlaylistVideosById()}

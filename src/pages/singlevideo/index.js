@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import YouTube from 'react-youtube';
 import { useParams } from 'react-router-dom';
 import { Sidebar } from 'components';
 import './index.css';
 import { SingleAction } from './singleAction';
-import { getLocalStorageItem, setLocalStorageItem } from 'utils';
+// import { getLocalStorageItem, setLocalStorageItem } from 'utils';
+import { addToHistoryVideos } from 'features/historySlice';
 
 export function SingleVideo() {
+    const dispatch = useDispatch();
     const [videoInfo, setVideoInfo] = useState({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
@@ -20,17 +23,18 @@ export function SingleVideo() {
 
     const playVideo = (event) => {
         if (event?.data) {
-            const historyVideos = getLocalStorageItem('retro-tube-history');
-            if (historyVideos?.length > 0) {
-                const findVideo = historyVideos?.find(({ _id }) => _id === videoInfo?._id);
-                if (!findVideo) {
-                    const data = [...historyVideos, videoInfo];
-                    setLocalStorageItem('retro-tube-history', JSON.stringify(data));
-                }
-            } else {
-                const data = [videoInfo];
-                setLocalStorageItem('retro-tube-history', JSON.stringify(data));
-            }
+            dispatch(addToHistoryVideos(videoInfo))
+            // const historyVideos = getLocalStorageItem('retro-tube-history');
+            // if (historyVideos?.length > 0) {
+            //     const findVideo = historyVideos?.find(({ _id }) => _id === videoInfo?._id);
+            //     if (!findVideo) {
+            //         const data = [...historyVideos, videoInfo];
+            //         setLocalStorageItem('retro-tube-history', JSON.stringify(data));
+            //     }
+            // } else {
+            //     const data = [videoInfo];
+            //     setLocalStorageItem('retro-tube-history', JSON.stringify(data));
+            // }
         }
     }
 
