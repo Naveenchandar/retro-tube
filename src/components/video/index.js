@@ -3,6 +3,8 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
 import { MoreOptions } from 'components';
 import './index.css';
+import { useComponentVisible } from 'hooks/useVisible';
+import { useEffect } from 'react';
 
 export function Video(props) {
     const { data, options, handleMoreOptions, watchLater, moreOptionsList,
@@ -11,6 +13,12 @@ export function Video(props) {
     const navigate = useNavigate();
 
     const { user } = useSelector(store => store.user);
+    const { ref, setIsComponentVisible, isComponentVisible } = useComponentVisible(false);
+    useEffect(()=>{
+        if(ref.current){
+            setIsComponentVisible(true);
+        }
+    },[ref, setIsComponentVisible])
 
     const handleClickVideo = (videoId) => {
         navigate(`/video/${videoId}`, { state: { like: like ? true : false } });
@@ -60,10 +68,10 @@ export function Video(props) {
                             {moreOptionsList?.length > 0 ?
                                 <>
                                     <button onClick={() => handleMoreOptions(data)}>
-                                        <span className="material-icons-outlined ml-1 vertical_icon">more_vert</span>
+                                        <span className="material-icons-outlined ml-1 vertical_icon" ref={ref}>more_vert</span>
                                     </button>
-                                    {options?._id === _id ? (
-                                        <MoreOptions list={moreOptionsList} handleClickMoreOptions={handleClickMoreOptions} />
+                                    {options?._id === _id && isComponentVisible ? (
+                                        <MoreOptions list={moreOptionsList} handleClickMoreOptions={handleClickMoreOptions} isComponentVisible={isComponentVisible} />
                                     ) : ''}
                                 </> : ''}
                             {history ? <AiFillCloseCircle onClick={() => moreAction(data)} className='close_video pointer' title='Remove from history' /> : ''}

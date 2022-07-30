@@ -12,7 +12,6 @@ export function Navbar() {
     const { user: { firstName = '', email = '' } } = useSelector(state => state.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { ref, isComponentVisible } = useComponentVisible(true);
     const { theme, changeTheme } = useTheme();
 
     const [isLogoutVisible, setIsLogoutVisible] = useState(false);
@@ -47,9 +46,11 @@ export function Navbar() {
                 <div className="flex align_center">
                     {email ?
                         <div className="relative_pos username_div">
-                            <h3 className="pointer username" onClick={() => setIsLogoutVisible(isComponentVisible ? true : false)}>Hi, {firstName}</h3>
-                            {isLogoutVisible && isComponentVisible && (
-                                <button className="auth_btn logout_btn nav_link absolute_pos" ref={ref} onClick={handleLogout}>Logout</button>
+                            <h3 className="pointer username" onClick={() => setIsLogoutVisible((prevState)=> prevState ? false : true)}>
+                                Hi, {firstName}
+                            </h3>
+                            {isLogoutVisible && (
+                                <button className="auth_btn logout_btn nav_link absolute_pos" onClick={handleLogout}>Logout</button>
                             )}
                         </div>
                         :
