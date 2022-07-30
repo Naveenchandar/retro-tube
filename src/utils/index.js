@@ -109,3 +109,10 @@ export const checkOnlineStatus = async () => {
 export const isVideoLiked = (videoId, videos) => {
     return videos.some(({ _id }) => _id === videoId);
 };
+
+export const isVideoInPlaylist = (videoId, playlistId, playlists) => {
+    return playlists
+        .find(({ _id }) => _id === playlistId)
+        ?.videos.some(({ _id }) => _id === videoId);
+};
+

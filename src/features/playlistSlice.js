@@ -62,6 +62,18 @@ export const fetchAllPlaylists = createAsyncThunk('get/playlists', async () => {
     }
 });
 
+export const addVideoToPlaylist = createAsyncThunk('add/playlist/video', async ({ playlist: playlistInfo, video }, { dispatch, rejectWithValue }) => {
+    try {
+        const { data: { playlist } } = await axios.post(`api/user/playlists/${playlistInfo?._id}`, { video });
+        notification('success', `Video added to ${playlistInfo?.title} playlist`);
+        dispatch(fetchAllPlaylists());
+        return playlist;
+    } catch (error) {
+        notification('danger', error?.response?.data?.error || error?.message);
+        return rejectWithValue(error?.response?.data?.error || error?.message);
+    }
+})
+
 export const removeVideoFromPlaylist = createAsyncThunk('remove/playlist/video', async ({ playlistId, videoId }, { dispatch, rejectWithValue }) => {
     try {
         await axios.delete(`/api/user/playlists/${playlistId}/${videoId}`);
@@ -189,7 +201,16 @@ const playlistSlice = createSlice({
             state.playlists = payload;
             state.filterPlaylists = payload;
         },
-        [fetchAllPlaylists.pending]: (state) => {
+        [fetchAllPlaylists.rejected]: (state) => {
+            state.loading = false;
+        },
+        [addVideoToPlaylist.pending]: (state) => {
+            state.loading = true;
+        },
+        [addVideoToPlaylist.fulfilled]: (state, { payload }) => {
+            state.loading = false;
+        },
+        [addVideoToPlaylist.rejected]: (state) => {
             state.loading = false;
         },
     }

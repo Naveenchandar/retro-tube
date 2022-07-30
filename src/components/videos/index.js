@@ -45,8 +45,8 @@ export function Videos() {
         dispatch(filterBasedOnActiveChip())
     }
 
-    const handleMoreOptions = (videoId) => {
-        setShowOptions(videoId);
+    const handleMoreOptions = (video) => {
+        setShowOptions(video);
     }
 
     const watchLater = async (item) => {
@@ -104,7 +104,7 @@ export function Videos() {
             <PlaylistModal
                 show={showModal}
                 onHide={() => { setShowModal(false); setShowOptions(''); }}
-                videoId={showOptions}
+                video={showOptions}
             />
         </main>
     )

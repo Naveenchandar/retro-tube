@@ -1,27 +1,28 @@
-import { removeVideoFromPlaylist } from 'features/playlistSlice';
+import { addVideoToPlaylist, removeVideoFromPlaylist } from 'features/playlistSlice';
 import { useState } from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
-import { isVideoLiked } from 'utils';
+import { isVideoInPlaylist } from 'utils';
 import './index.css';
 
-export function Playlists({ item, addVideosToPlaylist, deletePlaylist, list, videoId }) {
-    
+export function Playlists({ item, deletePlaylist, list, video }) {
+
     const { playlists } = useSelector(state => state.playlist);
     const dispatch = useDispatch();
-    
-    const [isChecked, setIsChecked] = useState(isVideoLiked(item?._id, playlists));
-    
+
+    const [isChecked, setIsChecked] = useState(isVideoInPlaylist(video?._id, item?._id, playlists));
+
     const changeInput = (event, item) => {
         if (isChecked) {
             setIsChecked(false);
-            dispatch(removeVideoFromPlaylist({ playlistId: item?._id, videoId }));
+            dispatch(removeVideoFromPlaylist({ playlistId: item?._id, videoId: video?._id }));
         } else {
             setIsChecked(true);
-            addVideosToPlaylist(event, item);
+            // addVideosToPlaylist(event, item);
+            dispatch(addVideoToPlaylist({ playlist: item, video }))
         }
     }
-    
+
     return (
         <ul className='playlist_names'>
             <li className='pointer'>

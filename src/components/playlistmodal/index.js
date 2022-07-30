@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useSelector, useDispatch } from 'react-redux';
-import { addPlaylists, playlistDelete, inputChange, toggleInput, videosAddToPlaylist, fetchAllPlaylists } from 'features/playlistSlice';
+import { addPlaylists, playlistDelete, inputChange, toggleInput, addVideoToPlaylist, fetchAllPlaylists } from 'features/playlistSlice';
 import { Playlists } from 'components';
 import './index.css';
 
 export function PlaylistModal(props) {
-    const { onHide, list, videoId, ...rest } = props;
+    const { onHide, list, video, show, ...rest } = props;
     const { showInput, inputValue, inputError, playlists, addPlaylist: { loading, error } } = useSelector(state => state.playlist);
     const dispatch = useDispatch();
     const [checked, setChecked] = useState([]);
@@ -22,11 +22,11 @@ export function PlaylistModal(props) {
         })()
     }, [dispatch])
 
-    const addVideosToPlaylist = (event, targetValue) => {
+    const addVideosToPlaylist = (event, targetValue, video) => {
         if (event.target?.checked) {
             setChecked([...checked, targetValue]);
         }
-        dispatch(videosAddToPlaylist(targetValue))
+        dispatch(addVideoToPlaylist({ playlistId: targetValue, video }))
     }
 
     return (
@@ -35,6 +35,7 @@ export function PlaylistModal(props) {
             size="sm"
             aria-labelledby="contained-modal-title-vcenter"
             centered
+            show={show}
         >
             <Modal.Header closeButton onHide={onHide}>
                 <Modal.Title id="contained-modal-title-vcenter">
@@ -48,7 +49,7 @@ export function PlaylistModal(props) {
                     addVideosToPlaylist={addVideosToPlaylist}
                     deletePlaylist={() => dispatch(playlistDelete(item))}
                     list={list}
-                    videoId={videoId}
+                    video={video}
                 />
                 )}
                 <p className='pointer' onClick={() => dispatch(toggleInput())}>
