@@ -58,7 +58,7 @@ export const fetchAllPlaylists = createAsyncThunk('get/playlists', async () => {
         const { data: { playlists } } = await axios.get('/api/user/playlists');
         return playlists;
     } catch (error) {
-        notification('danger', typeof error?.response);
+        notification('danger', error?.response);
         notification('danger', typeof error?.message);
         notification('danger', error?.response?.data?.error || error?.message);
     }
