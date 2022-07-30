@@ -1,16 +1,21 @@
+import { Suspense } from 'react';
 import { ReactNotifications } from 'react-notifications-component'
 import "./App.css";
-import { Footer, NavRoutes } from "components";
+import { Footer, NavRoutes, ErrorBoundary } from "components";
 import { useTheme } from 'hooks/useTheme';
 
 function App() {
   const { theme } = useTheme();
   return (
-    <div data-theme={theme}>
-      <ReactNotifications />
-      <NavRoutes />
-      <Footer />
-    </div>
+    <ErrorBoundary>
+      <Suspense fallback={'Loading...'}>
+        <div data-theme={theme}>
+          <ReactNotifications />
+          <NavRoutes />
+          <Footer />
+        </div>
+      </Suspense>
+    </ErrorBoundary>
   );
 }
 
