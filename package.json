@@ -2,6 +2,7 @@
   "name": "retro-tube",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://naveenchandar.github.io/react-gh-pages",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
     "axios": "^0.26.1",
@@ -24,6 +25,8 @@
     "uuid": "^8.3.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -46,5 +49,8 @@
   },
   "overrides": {
     "autoprefixer": "10.4.5"
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }
