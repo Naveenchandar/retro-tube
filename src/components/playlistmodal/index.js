@@ -9,6 +9,7 @@ import './index.css';
 export function PlaylistModal(props) {
     const { onHide, list, video, show, ...rest } = props;
     const { showInput, inputValue, inputError, playlists, addPlaylist: { loading, error } } = useSelector(state => state.playlist);
+    const { user } = useSelector(state => state.user);
     const dispatch = useDispatch();
     const [checked, setChecked] = useState([]);
 
@@ -17,10 +18,12 @@ export function PlaylistModal(props) {
     }
 
     useEffect(() => {
-        (async () => {
-            await dispatch(fetchAllPlaylists());
-        })()
-    }, [dispatch])
+        if (user?.email) {
+            (async () => {
+                await dispatch(fetchAllPlaylists());
+            })()
+        }
+    }, [dispatch, user?.email])
 
     const addVideosToPlaylist = (event, targetValue, video) => {
         if (event.target?.checked) {
