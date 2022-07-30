@@ -4,6 +4,10 @@
     width: 100%;
     margin-bottom: 2rem;
 }
+.main_video, .single_video { 
+    background-color: var(--background);
+    color: var(--text-primary);
+}
 
 .single_video_avatar {
     flex-shrink: 0;
@@ -21,4 +25,9 @@
 
 .single_video_info {
     width: 98%;
+}
+
+.single_video_info :is(.single_video_actions > *) {
+    background-color: var(--background);
+    color: var(--text-primary);
 }

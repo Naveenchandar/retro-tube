@@ -11,7 +11,7 @@ export function Playlists({ item, deletePlaylist, list, video }) {
     const dispatch = useDispatch();
 
     const [isChecked, setIsChecked] = useState(isVideoInPlaylist(video?._id, item?._id, playlists));
-
+    
     const changeInput = (event, item) => {
         if (isChecked) {
             setIsChecked(false);

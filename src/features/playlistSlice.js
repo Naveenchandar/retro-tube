@@ -64,7 +64,7 @@ export const fetchAllPlaylists = createAsyncThunk('get/playlists', async () => {
 
 export const addVideoToPlaylist = createAsyncThunk('add/playlist/video', async ({ playlist: playlistInfo, video }, { dispatch, rejectWithValue }) => {
     try {
-        const { data: { playlist } } = await axios.post(`api/user/playlists/${playlistInfo?._id}`, { video });
+        const { data: { playlist } } = await axios.post(`/api/user/playlists/${playlistInfo?._id}`, { video });
         notification('success', `Video added to ${playlistInfo?.title} playlist`);
         dispatch(fetchAllPlaylists());
         return playlist;
