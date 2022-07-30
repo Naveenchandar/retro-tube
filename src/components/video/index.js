@@ -26,7 +26,11 @@ export function Video(props) {
 
     const handleClickMoreOptions = (item) => {
         if (item === 'Watch later') {
-            watchLater(data);
+            if (user?.email) {
+                watchLater(data);
+            } else {
+                navigate('/login', { replace: true });
+            }
         }
         if (item === 'Remove from Watch later') {
             handleFromRemoveWatchLater(data);

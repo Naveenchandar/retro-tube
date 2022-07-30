@@ -21,7 +21,7 @@ export const fetchWatchLaterVideos = createAsyncThunk('get/watchlater', async ()
 export const addToWatchlaterVideos = createAsyncThunk('add/watchlater', async (video, { rejectWithValue }) => {
     try {
         const { data: { watchlater } } = await axios.post('/api/user/watchlater', { video });
-        notification('success', `Added to watchlater videos`);
+        notification('success', `Added to watch later videos`);
         return watchlater;
     } catch (error) {
         notification('danger', error?.response?.data?.error || error?.message);
@@ -32,7 +32,7 @@ export const addToWatchlaterVideos = createAsyncThunk('add/watchlater', async (v
 export const removeWatchLaterVideo = createAsyncThunk('delete/watchlater', async (videoId) => {
     try {
         const { data: { watchlater } } = await axios.delete(`/api/user/watchlater/${videoId}`)
-        notification('success', `Removed from watchlater videos`);
+        notification('success', `Removed from watch later videos`);
         return watchlater;
     } catch (error) {
         notification('danger', error?.response?.data?.error || error?.message);
