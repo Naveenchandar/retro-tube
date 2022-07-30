@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { useComponentVisible } from "hooks/useVisible";
+// import { useComponentVisible } from "hooks/useVisible";
 import { updateUser } from "features/authSlice";
 import './index.css';
 import { useTheme } from "hooks/useTheme";
