@@ -15,7 +15,8 @@ import { v4 as uuid } from "uuid";
 export const getAllPlaylistsHandler = function (schema, request) {
   console.log('schema:', schema)
   console.log('request:', request)
-  // const user = requiresAuth.call(this, request);
+  const user = requiresAuth.call(this, request);
+  console.log('user:', user)
   try {
     // if (!user) {
     //   return new Response(
