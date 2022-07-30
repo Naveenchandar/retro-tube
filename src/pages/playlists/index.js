@@ -15,20 +15,23 @@ import { fetchAllPlaylists, searchPlaylist } from 'features/playlistSlice';
 
 export function Playlists() {
     const { playlists = [], filterPlaylists = [] } = useSelector(state => state.playlist);
+    const { user } = useSelector(state => state.user);
     const dispatch = useDispatch();
 
     const [showModal, setShowModal] = useState(false);
     const [searchValue, setSearchValue] = useState('');
 
     useEffect(() => {
-        (async () => {
-            await dispatch(fetchAllPlaylists());
-        })()
+        if (user?.email) {
+            (async () => {
+                await dispatch(fetchAllPlaylists());
+            })()
+        }
         return () => {
             setShowModal(false);
             setSearchValue('');
         }
-    }, [dispatch])
+    }, [dispatch, user?.email])
 
     return (
         <section className='section'>
