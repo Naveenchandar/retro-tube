@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { filterSearchVideos, getLocalStorageItem, notification, setLocalStorageItem } from 'utils';
+import { filterSearchVideos, notification } from 'utils';
 
 const initialState = {
     showInput: false,
     inputValue: '',
     inputError: '',
-    playlists: getLocalStorageItem('retro-tube-playlist'),
-    filterPlaylists: getLocalStorageItem('retro-tube-playlist'),
+    playlists: [],
+    filterPlaylists: [],
     currentVideo: '',
     editPlaylist: '',
     addPlaylist: {
@@ -58,7 +58,7 @@ export const fetchAllPlaylists = createAsyncThunk('get/playlists', async () => {
         const { data: { playlists } } = await axios.get('/api/user/playlists');
         return playlists;
     } catch (error) {
-        notification('danger', typeof error?.response?.data?.error);
+        notification('danger', typeof error?.response);
         notification('danger', typeof error?.message);
         notification('danger', error?.response?.data?.error || error?.message);
     }
@@ -132,14 +132,14 @@ const playlistSlice = createSlice({
                 }
                 return item;
             });
-            setLocalStorageItem('retro-tube-playlist', JSON.stringify(data));
+            // setLocalStorageItem('retro-tube-playlist', JSON.stringify(data));
             return { ...state, playlists: data };
         },
         deletePlaylist: (state, action) => {
             const playlistName = action.payload.name || action.payload;
             const remainingPlaylist = current(state).playlists.filter(({ name }) => name?.toLowerCase() !== playlistName?.toLowerCase());
             state.playlists = remainingPlaylist;
-            setLocalStorageItem('retro-tube-playlist', JSON.stringify(remainingPlaylist));
+            // setLocalStorageItem('retro-tube-playlist', JSON.stringify(remainingPlaylist));
             notification('success', `${playlistName} playlist deleted`);
         },
         editPlaylist: (state, action) => {
