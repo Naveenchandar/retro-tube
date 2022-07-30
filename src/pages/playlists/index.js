@@ -27,7 +27,7 @@ export function Playlists() {
     }, [dispatch])
 
     return (
-        <section>
+        <section className='section'>
             <div className='flex'>
                 <Sidebar />
                 <MainSection data={playlists?.length} type='playlists'>
