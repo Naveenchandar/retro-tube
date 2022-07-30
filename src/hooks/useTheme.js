@@ -13,7 +13,7 @@ export const useTheme = () => {
         const token = localStorage.getItem("retro-tube-token");
         const user = getLocalStorageItem("retro-tube-token");
         if (user._id) {
-            axios.defaults.headers.common["authorization"] = token;
+            // axios.defaults.headers.common["authorization"] = token;
             dispatch(updateUser(user));
         }
     }, [dispatch]);

@@ -13,18 +13,20 @@ import { v4 as uuid } from "uuid";
  * send GET Request at /api/user/playlist
  * */
 export const getAllPlaylistsHandler = function (schema, request) {
-  const user = requiresAuth.call(this, request);
+  console.log('schema:', schema)
+  console.log('request:', request)
+  // const user = requiresAuth.call(this, request);
   try {
-    if (!user) {
-      return new Response(
-        404,
-        {},
-        {
-          error: "The email you entered is not Registered. Not Found error",
-        }
-      );
-    }
-    return new Response(200, {}, { playlists: user.playlists });
+    // if (!user) {
+    //   return new Response(
+    //     404,
+    //     {},
+    //     {
+    //       error: "The email you entered is not Registered. Not Found error",
+    //     }
+    //   );
+    // }
+    return new Response(200, {}, { playlists: [] });
   } catch (error) {
     return new Response(
       500,

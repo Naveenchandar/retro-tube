@@ -10,7 +10,9 @@ import { Response } from "miragejs";
  * send GET Request at /api/videos
  * */
 
-export const getAllVideosHandler = function () {
+export const getAllVideosHandler = function (schema, request) {
+  console.log('request:', request)
+  console.log('schema:', schema)
   try {
     return new Response(200, {}, { videos: this.db.videos });
   } catch (error) {
