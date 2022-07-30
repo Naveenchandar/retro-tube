@@ -22,6 +22,10 @@ export function LikedVideos() {
         (async () => {
             await dispatch(fetchAllLikedVideos());
         })()
+        return () => {
+            setShowOptions();
+            setSearchValue('');
+        }
     }, [dispatch])
 
     const handleMoreOptions = (videoId) => {

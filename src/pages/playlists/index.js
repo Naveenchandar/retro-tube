@@ -24,6 +24,10 @@ export function Playlists() {
         (async () => {
             await dispatch(fetchAllPlaylists());
         })()
+        return () => {
+            setShowModal(false);
+            setSearchValue('');
+        }
     }, [dispatch])
 
     return (

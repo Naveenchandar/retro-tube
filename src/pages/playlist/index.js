@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Sidebar, NoVideos } from 'components'
@@ -23,7 +23,13 @@ export function Playlist() {
         setShowOptions(videoId);
     }
 
-    const watchLater = async(item) => {
+    useEffect(() => {
+        return () => {
+            setShowOptions();
+        }
+    }, [])
+
+    const watchLater = async (item) => {
         // const filterDuplicateItem = watchLaterVideos.find(({ _id }) => _id === item._id)
         // if (!filterDuplicateItem) {
         //     const data = [...watchLaterVideos, item];

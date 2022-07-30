@@ -37,6 +37,11 @@ export function Videos() {
             }
             dispatch(loadingVideos(false));
         })()
+        return () =>{
+            setShowModal(false);
+            setSearchValue('');
+            setShowOptions();
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

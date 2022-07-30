@@ -16,6 +16,9 @@ export function History() {
         (async () => {
             await dispatch(fetchHistoryVideos());
         })()
+        return () => {
+            setSearchValue('');
+        }
     }, [dispatch])
 
     const removeFromHistory = async (video) => {
