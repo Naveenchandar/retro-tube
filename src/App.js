@@ -9,9 +9,10 @@ function App() {
     // <ErrorBoundary>
     //   <Suspense fallback={'Loading...'}>
     <div data-theme={theme}>
-      <ReactNotifications />
-      <NavRoutes />
-      <Footer />
+      {/* <ReactNotifications /> */}
+      {/* <NavRoutes /> */}
+      <h1>CRA-CreateReactApp</h1>
+      {/* <Footer /> */}
     </div>
     //   </Suspense>
     // </ErrorBoundary>
