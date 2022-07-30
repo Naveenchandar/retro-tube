@@ -10,7 +10,7 @@ export function SingleAction({ data, videoId }) {
     const dispatch = useDispatch();
     // const { _id } = data;
     // const [likedVideos, setLikedVideos] = useState(getLocalStorageItem('retro-liked-videos'));
-    const [filled, setFilled] = useState(isVideoLiked(videoId, videos));
+    const filled = isVideoLiked(videoId, videos);
     const [showModal, setShowModal] = useState(false);
 
     const likeVideo = async () => {

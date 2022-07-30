@@ -21,6 +21,7 @@ export const fetchAllLikedVideos = createAsyncThunk('get/alllikedvideos', async 
 export const addToLikedVideos = createAsyncThunk('add/likedvideos', async (video) => {
     try {
         const { data: { likes } } = await axios.post('/api/user/likes', { video });
+        notification('success', 'video added to liked videos');
         return likes;
     } catch (error) {
         notification('danger', error?.response?.data?.error || error?.message);
