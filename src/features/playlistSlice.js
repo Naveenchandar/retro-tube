@@ -14,6 +14,7 @@ const initialState = {
         loading: false,
         error: ''
     },
+    error: '',
     loading: false
 }
 
@@ -53,14 +54,14 @@ export const playlistDelete = createAsyncThunk('delete/playlist',
         }
     })
 
-export const fetchAllPlaylists = createAsyncThunk('get/playlists', async () => {
+export const fetchAllPlaylists = createAsyncThunk('get/playlists', async (type, { rejectWithValue }) => {
     try {
         const { data: { playlists } } = await axios.get('/api/user/playlists');
         return playlists;
     } catch (error) {
-        notification('danger', error?.response);
-        notification('danger', typeof error?.message);
-        notification('danger', error?.response?.data?.error || error?.message);
+        console.error(type, error?.response?.data?.error || error?.response?.data?.message || error?.message);
+        notification('danger', error?.response?.data?.error || error?.response?.data?.message || error?.message);
+        return rejectWithValue(error?.response?.data?.error || error?.response?.data?.message || error?.message);
     }
 });
 
@@ -203,8 +204,11 @@ const playlistSlice = createSlice({
             state.playlists = payload;
             state.filterPlaylists = payload;
         },
-        [fetchAllPlaylists.rejected]: (state) => {
+        [fetchAllPlaylists.rejected]: (state, { payload }) => {
             state.loading = false;
+            state.playlists = [];
+            state.error = payload;
+            state.filterPlaylists = [];
         },
         [addVideoToPlaylist.pending]: (state) => {
             state.loading = true;

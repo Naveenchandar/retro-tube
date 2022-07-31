@@ -91,9 +91,8 @@ export function Login() {
         firstName: "Naveen",
         lastName: "Ram"
       }));
-      // await dispatch(loginUser(info));
-      navigate(from ? from : '/', { replace: true });
       await dispatch(loginUser(info));
+      navigate(from ? from : '/', { replace: true });
     } catch (error) {
       setErrorInfo({ error: error?.response?.data?.error || error?.message });
     }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { IoMdAdd } from 'react-icons/io';
 import { useSelector, useDispatch } from 'react-redux';
 import { Badge } from 'react-bootstrap';
@@ -14,7 +14,7 @@ import './index.css';
 import { fetchAllPlaylists, searchPlaylist } from 'features/playlistSlice';
 
 export function Playlists() {
-    const { playlists = [], filterPlaylists = [] } = useSelector(state => state.playlist);
+    const { playlists = [], filterPlaylists = [], error } = useSelector(state => state.playlist);
     const { user } = useSelector(state => state.user);
     const dispatch = useDispatch();
 
@@ -24,7 +24,7 @@ export function Playlists() {
     useEffect(() => {
         if (user?.email) {
             (async () => {
-                await dispatch(fetchAllPlaylists());
+                await dispatch(fetchAllPlaylists('fetchAllPlaylists'));
             })()
         }
         return () => {
@@ -32,6 +32,10 @@ export function Playlists() {
             setSearchValue('');
         }
     }, [dispatch, user?.email])
+
+    if (error) {
+        return <Navigate to='/login' />;
+    }
 
     return (
         <section className='section'>
