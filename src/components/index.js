@@ -13,3 +13,4 @@ export { Sidebar } from './sidebar';
 export { Video } from './video';
 export { Videos } from './videos';
 export { ErrorBoundary } from './error-boundary';
+export { Modal } from './modal';
