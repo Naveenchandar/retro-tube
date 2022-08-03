@@ -7,13 +7,10 @@ import {
     Sidebar,
     Video,
 } from 'components';
-// import { filterSearchVideos, getLocalStorageItem, setLocalStorageItem } from 'utils';
 import { fetchAllLikedVideos, removedLikedVideo, searchVideos } from 'features/likedVideosSlice';
 
 export function LikedVideos() {
     const { videos, filterVideos, loading } = useSelector(state => state.likedVideos);
-    // const [likedVideos, setLikedVideos] = useState(getLocalStorageItem('retro-liked-videos'));
-    // const [filterLikedVideos, setFilterLikedVideos] = useState(getLocalStorageItem('retro-liked-videos'))
     const [showOptions, setShowOptions] = useState();
     const [searchValue, setSearchValue] = useState('');
     const dispatch = useDispatch();
@@ -33,20 +30,11 @@ export function LikedVideos() {
     }
 
     const removeLikedVideos = async (video) => {
-        // const remainingVideos = likedVideos.filter(({ _id }) => _id !== video._id);
-        // setLikedVideos(remainingVideos);
-        // setFilterLikedVideos(remainingVideos);
-        // setLocalStorageItem('retro-liked-videos', JSON.stringify(remainingVideos));
-        // setShowOptions('');
         await dispatch(removedLikedVideo(video._id));
+        setShowOptions('');
     }
 
     const searchLikedVideos = (value = '') => {
-        // if (value) {
-        //     setFilterLikedVideos(filterSearchVideos({ videos: likedVideos, searchText: value }));
-        // } else {
-        //     setFilterLikedVideos(getLocalStorageItem('retro-liked-videos'));
-        // }
         dispatch(searchVideos(value));
     }
 

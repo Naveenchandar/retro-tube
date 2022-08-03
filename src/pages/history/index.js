@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineDelete } from 'react-icons/ai';
-import { MainHeader, MainSection, SearchInput, Sidebar, Video } from 'components';
+import { MainHeader, MainSection, Modal, SearchInput, Sidebar, Video } from 'components';
 import { fetchHistoryVideos, removeVideoFromHistory, searchVideos, removeAllVideosFromHistory } from 'features/historySlice';
-// import { getLocalStorageItem, removeLocalStorageItem, setLocalStorageItem } from 'utils';
 
 export function History() {
     const { videos, filterVideos, loading } = useSelector(state => state.history);
     const dispatch = useDispatch();
-    // const [historyVideos, setHistoryVideos] = useState(getLocalStorageItem('retro-tube-history'));
-    // const [filterHistoryVideos, setFilterHistoryVideos] = useState(getLocalStorageItem('retro-tube-history'));
     const [searchValue, setSearchValue] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         (async () => {
@@ -22,27 +20,16 @@ export function History() {
     }, [dispatch])
 
     const removeFromHistory = async (video) => {
-        // const remainingVideos = historyVideos.filter(({ _id }) => _id !== video._id);
-        // setHistoryVideos(remainingVideos);
-        // setFilterHistoryVideos(remainingVideos);
-        // setLocalStorageItem('retro-tube-history', JSON.stringify(remainingVideos));
         await dispatch(removeVideoFromHistory(video._id));
     }
 
     const clearHistory = async () => {
-        // removeLocalStorageItem('retro-tube-history');
-        // setHistoryVideos([]);
-        // setFilterHistoryVideos([]);
         await dispatch(removeAllVideosFromHistory());
+        setIsModalOpen(false);
     }
 
     const searchWatchLaterVideos = (value = '') => {
         dispatch(searchVideos(value));
-        // if (value) {
-        //     setFilterHistoryVideos(filterHistoryVideos({ videos: historyVideos, searchText: value }));
-        // } else {
-        //     setFilterHistoryVideos(getLocalStorageItem('retro-tube-watchlater'));
-        // }
     }
 
     return (
@@ -67,7 +54,7 @@ export function History() {
                             title='History'
                             btn='Clear history'
                             icon={<AiOutlineDelete />}
-                            onClick={clearHistory}
+                            onClick={() => setIsModalOpen(true)}
                         />
                         <main className={filterVideos?.length ? 'videos group_videos' : 'no_video'}>
                             {filterVideos?.map(item => {
@@ -83,6 +70,12 @@ export function History() {
                         </main>
                     </MainSection>
                 }
+                <Modal
+                    open={isModalOpen}
+                    close={() => setIsModalOpen(false)}
+                    type='History'
+                    onOk={clearHistory}
+                />
             </div>
         </section>
     )

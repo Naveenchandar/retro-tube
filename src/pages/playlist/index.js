@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Sidebar, NoVideos } from 'components'
+import { Sidebar, NoVideos, Modal } from 'components'
 import { Video } from 'components/video';
 import { notification } from 'utils';
 import { playlistDelete, removeVideoFromPlaylist } from 'features/playlistSlice';
@@ -16,6 +16,7 @@ export function Playlist() {
     const navigate = useNavigate();
 
     const [showOptions, setShowOptions] = useState();
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const { videos = [], _id: playListId, title } = playlists?.find(({ _id }) => _id === playlistId) || '';
     // const watchLaterVideos = useState(getLocalStorageItem('retro-tube-watchlater'));
 
@@ -39,14 +40,17 @@ export function Playlist() {
         setShowOptions('');
     }
 
-    const deletePlaylist = () => {
+    const deletePlaylist = async () => {
         try {
-            dispatch(playlistDelete({ _id: playlistId, title }));
+            await dispatch(playlistDelete({ _id: playlistId, title }));
+            setIsModalOpen(false);
             navigate('/playlists');
         } catch (error) {
             notification('danger', error?.response?.data?.error || error?.message);
         }
     }
+
+    const closeModal = () => setIsModalOpen(false);
 
     const getPlaylistVideosById = () => {
         if (videos?.length) {
@@ -85,8 +89,16 @@ export function Playlist() {
                         <h1>{title}</h1>
                         <button
                             className="btn btn_primary main_header_btn align_center"
-                            onClick={deletePlaylist}
-                        ><span className='main_header_btn_caption'>Delete Playlist</span></button>
+                            onClick={() => setIsModalOpen(true)}
+                        >
+                            <span className='main_header_btn_caption'>Delete Playlist</span>
+                        </button>
+                        <Modal
+                            open={isModalOpen}
+                            close={closeModal}
+                            type='Playlist'
+                            onOk={deletePlaylist}
+                        />
                     </div>
                     {getPlaylistVideosById()}
                 </main>

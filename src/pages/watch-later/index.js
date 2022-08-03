@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { MainHeader, MainSection, SearchInput, Sidebar, Video } from 'components';
-// import { filterSearchVideos } from 'utils';
+import { MainHeader, MainSection, Modal, SearchInput, Sidebar, Video } from 'components';
 import './index.css';
 import { fetchWatchLaterVideos, removeWatchLaterVideo, searchVideos } from 'features/watchLaterSlice';
 
 export function WatchLater() {
     const { videos, filterVideos, loading } = useSelector(state => state.watchlater);
     const dispatch = useDispatch();
-    // const [watchLaterVideos, setWatchlaterVideos] = useState(getLocalStorageItem('retro-tube-watchlater'));
-    // const [filterWatchLaterVideos, setFilterWatchlaterVideos] = useState(getLocalStorageItem('retro-tube-watchlater'));
     const [showOptions, setShowOptions] = useState();
     const [searchValue, setSearchValue] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         (async () => {
@@ -24,20 +22,12 @@ export function WatchLater() {
     }
     const handleFromRemoveWatchLater = async (video) => {
         await dispatch(removeWatchLaterVideo(video?._id));
-        // const remainingVideos = watchLaterVideos.filter(({ _id }) => _id !== video._id);
-        // setWatchlaterVideos(remainingVideos);
-        // setFilterWatchlaterVideos(remainingVideos);
-        // setLocalStorageItem('retro-tube-watchlater', JSON.stringify(remainingVideos));
         setShowOptions('');
+        setIsModalOpen(false);
     }
 
     const searchWatchLaterVideos = (value = '') => {
         dispatch(searchVideos(value));
-        // if (value) {
-        //     setFilterWatchlaterVideos(filterSearchVideos({ videos: watchLaterVideos, searchText: value }));
-        // } else {
-        //     setFilterWatchlaterVideos(getLocalStorageItem('retro-tube-watchlater'));
-        // }
     }
 
     return (
@@ -70,10 +60,16 @@ export function WatchLater() {
                                         options={showOptions}
                                         handleMoreOptions={handleMoreOptions}
                                         moreOptionsList={['Add to playlist', 'Remove from Watch later']}
-                                        handleFromRemoveWatchLater={handleFromRemoveWatchLater}
+                                        handleFromRemoveWatchLater={() => setIsModalOpen(true)}
                                     />
                                 )
                             })}
+                            <Modal
+                                open={isModalOpen}
+                                close={() => setIsModalOpen(false)}
+                                type='Watch later'
+                                onOk={handleFromRemoveWatchLater}
+                            />
                         </main>
                     </MainSection>
                 }
