@@ -64,3 +64,9 @@
 .section_videos :is(hr, .vertical_icon) {
     color: var(--text-primary);
 }
+
+@media (max-width:47.5rem) {
+    .video_caption {
+        width: 66vw;
+    }
+}

@@ -37,7 +37,7 @@ export function Videos() {
             }
             dispatch(loadingVideos(false));
         })()
-        return () =>{
+        return () => {
             setShowModal(false);
             setSearchValue('');
             setShowOptions();
