@@ -52,3 +52,29 @@
     height: 2rem;
     width: 2rem;
 }
+
+/* Mobile Navigation */
+.nav_hamburger {
+    color: var(--white);
+}
+
+@media (max-width: 47.5rem) {
+    .nav_bar {
+        justify-content: flex-start;
+        
+    }
+
+    .nav_options :is(.navbar_nav) {
+        flex-direction: column;
+    }
+
+    .nav_bar>div:nth-child(2) {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .nav_bar :is(.username) {
+        text-align: center;
+    }
+}
