@@ -29,7 +29,7 @@ export function Categories() {
     return (
         <>
             <h2 className='m-2'>Categories</h2>
-            <section className='flex align_center justify_spacebtw p-2 categories'>
+            <section className='flex align_center justify_spacebtw p-4 categories'>
                 {categoryList.map(({ id, categoryName, img, description, shortForm }) => {
                     return (
                         <section className='home_category flex flex_dcolumn' key={id} onClick={() => categoryRedirect(shortForm)}>
