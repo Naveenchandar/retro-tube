@@ -32,6 +32,7 @@ body {
   --video-subheader: #606060;
   --chips-hover: var(--primary-color);
   --error-msg: var(--red);
+  --border-bg: 1px solid var(--black);
 }
 
 [data-theme='dark'] {
@@ -50,4 +51,5 @@ body {
   --video-subheader: #aaaaaa;
   --chips-hover: #ffffff33;
   --error-msg: #ff7e7e;
+  --border-bg: 1px solid #606770;
 }
