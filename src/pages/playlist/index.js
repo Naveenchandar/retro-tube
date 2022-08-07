@@ -18,7 +18,6 @@ export function Playlist() {
     const [showOptions, setShowOptions] = useState();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { videos = [], _id: playListId, title } = playlists?.find(({ _id }) => _id === playlistId) || '';
-    // const watchLaterVideos = useState(getLocalStorageItem('retro-tube-watchlater'));
 
     const handleMoreOptions = (videoId) => {
         setShowOptions(videoId);
@@ -31,11 +30,6 @@ export function Playlist() {
     }, [])
 
     const watchLater = async (item) => {
-        // const filterDuplicateItem = watchLaterVideos.find(({ _id }) => _id === item._id)
-        // if (!filterDuplicateItem) {
-        //     const data = [...watchLaterVideos, item];
-        //     setLocalStorageItem('retro-tube-watchlater', JSON.stringify(data));
-        // }
         await dispatch(addToWatchlaterVideos(item));
         setShowOptions('');
     }
