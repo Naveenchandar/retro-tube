@@ -4,6 +4,7 @@
     display: grid;
     gap: 4px;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    border-top: 1px solid var(--border-bg);
 }
 
 .group_videos {
