@@ -46,15 +46,17 @@ export function PlaylistModal(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {playlists?.map(item => <Playlists
-                    item={item}
-                    key={item.title}
-                    addVideosToPlaylist={addVideosToPlaylist}
-                    deletePlaylist={() => dispatch(playlistDelete(item))}
-                    list={list}
-                    video={video}
-                />
-                )}
+                <ul className='playlist_names'>
+                    {playlists?.map(item => <Playlists
+                        item={item}
+                        key={item.title}
+                        addVideosToPlaylist={addVideosToPlaylist}
+                        deletePlaylist={() => dispatch(playlistDelete(item))}
+                        list={list}
+                        video={video}
+                    />
+                    )}
+                </ul>
                 <p className='pointer' onClick={() => dispatch(toggleInput())}>
                     <AiOutlinePlus className='add_playlist_icon' /> Create new playlist
                 </p>

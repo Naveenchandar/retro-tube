@@ -11,7 +11,7 @@ export function Playlists({ item, deletePlaylist, list, video }) {
     const dispatch = useDispatch();
 
     const [isChecked, setIsChecked] = useState(isVideoInPlaylist(video?._id, item?._id, playlists));
-    
+
     const changeInput = (event, item) => {
         if (isChecked) {
             setIsChecked(false);
@@ -24,28 +24,26 @@ export function Playlists({ item, deletePlaylist, list, video }) {
     }
 
     return (
-        <ul className='playlist_names'>
-            <li className='pointer'>
-                <label className='pointer w_100 flex align_center'>
-                    {!list && (
-                        <input type='checkbox' checked={isChecked} onChange={(e) => changeInput(e, item)} />
-                    )}
-                    &ensp;
-                    <span title={item?.title} className='playlist_name'>{item?.title}</span>
-                    <label className='playlist_actions'>
-                        {/* <AiOutlineEdit
+        <li className='pointer'>
+            <label className='pointer w_100 flex align_center'>
+                {!list && (
+                    <input type='checkbox' checked={isChecked} onChange={(e) => changeInput(e, item)} />
+                )}
+                &ensp;
+                <span title={item?.title} className='playlist_name'>{item?.title}</span>
+                <label className='playlist_actions'>
+                    {/* <AiOutlineEdit
                             className='pointer playlist_edit'
                             title='Edit Playlist'
                             onClick={() => editPlaylist(item)}
                         /> &nbsp; */}
-                        <AiOutlineDelete
-                            className='pointer playlist_delete'
-                            title='Delete Playlist'
-                            onClick={() => deletePlaylist(item?._id)}
-                        />
-                    </label>
+                    <AiOutlineDelete
+                        className='pointer playlist_delete'
+                        title='Delete Playlist'
+                        onClick={() => deletePlaylist(item?._id)}
+                    />
                 </label>
-            </li>
-        </ul>
+            </label>
+        </li>
     )
 }

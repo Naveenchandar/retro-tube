@@ -76,7 +76,7 @@ export function SingleVideo() {
                 <YouTube videoId={videoId} opts={opts} onReady={onPlayerReady} onPlay={playVideo} />
                 <section className='single_video_info'>
                     <h2 className="my-2">{title}</h2>
-                    <div className="flex align_center justify_spacebtw mb-2">
+                    <div className="flex align_center justify_spacebtw mb-2 actions_div">
                         <div className="flex">
                             <img alt={alt} src={avatar} className="mr-2 single_video_avatar" />
                             <div className="flex_dcolumn justify_spacebtw">

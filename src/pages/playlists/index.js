@@ -38,7 +38,7 @@ export function Playlists() {
     }
 
     return (
-        <section className='section'>
+        <section className='section playlists_section'>
             <div className='flex'>
                 <Sidebar />
                 <MainSection data={playlists?.length} type='playlists'>

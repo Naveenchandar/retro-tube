@@ -17,3 +17,23 @@
     text-decoration: none;
     color: var(--text-primary);
 }
+
+
+.playlists_section {
+    height: 100vh;
+}
+
+@media (max-width: 30em){
+    .playlist_videos {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+    
+    .playlists_section .section_videos {
+        margin: 0;
+    }
+
+    .playlists_section .search_input {
+        width: 70%;
+    }
+}

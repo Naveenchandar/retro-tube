@@ -45,3 +45,17 @@
     font-size: 2rem;
     color: var(--text-primary);
 }
+
+@media (max-width: 47.5rem) {
+    aside.sidebar {
+        min-width: 8rem;
+    }
+    .sidebar_link {
+        font-size: 1.3rem;
+    }
+    .sidebar_list li{
+        gap: 0.3rem;
+        display: flex;
+        flex-direction: column;
+    }
+}
