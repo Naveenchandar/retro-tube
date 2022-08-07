@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-// import { getLocalStorageItem, setLocalStorageItem } from 'utils';
 import { Chips, PlaylistModal, SearchInput, Video } from 'components';
 import './index.css';
 import { chipOnChange, filterBasedOnActiveChip, loadingVideos, loadVideos, loadVideosError, searchVideos } from 'features/videosSlice';
@@ -13,7 +12,6 @@ export function Videos() {
     const location = useLocation();
 
     const [showOptions, setShowOptions] = useState();
-    // const [watchLaterVideos, setWatchLaterVideos] = useState(getLocalStorageItem('retro-tube-watchlater'));
     const [showModal, setShowModal] = useState(false);
     const [searchValue, setSearchValue] = useState('');
 
@@ -56,12 +54,6 @@ export function Videos() {
 
     const watchLater = async (item) => {
         await dispatch(addToWatchlaterVideos(item));
-        // const filterDuplicateItem = watchLaterVideos.find(({ _id }) => _id === item._id)
-        // if (!filterDuplicateItem) {
-        //     const data = [...watchLaterVideos, item];
-        //     setWatchLaterVideos([...watchLaterVideos, item]);
-        //     setLocalStorageItem('retro-tube-watchlater', JSON.stringify(data));
-        // }
         setShowOptions('');
     }
 
