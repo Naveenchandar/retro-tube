@@ -1,0 +1,6 @@
+@media (max-width: 23.8em) {
+    .history_section .main_header {
+        flex-direction: column;
+        align-items: baseline;
+    }
+}

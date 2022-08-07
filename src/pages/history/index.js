@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { MainHeader, MainSection, Modal, SearchInput, Sidebar, Video } from 'components';
 import { fetchHistoryVideos, removeVideoFromHistory, searchVideos, removeAllVideosFromHistory } from 'features/historySlice';
+import './index.css';
 
 export function History() {
     const { videos, filterVideos, loading } = useSelector(state => state.history);
@@ -33,7 +34,7 @@ export function History() {
     }
 
     return (
-        <section className='section'>
+        <section className='section history_section'>
             <div className='flex'>
                 <Sidebar />
                 {loading ? 'Loading...' :
